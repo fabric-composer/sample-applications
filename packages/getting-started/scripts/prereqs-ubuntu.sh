@@ -2,7 +2,7 @@
 
 # Usage:
 #
-# ./prereqs-ubuntuX.sh
+# ./prereqs-ubuntu.sh
 #
 # User must then logout and login upon completion of script
 #
