@@ -31,12 +31,12 @@ winston.loggers.add('application', {
 
 const LOG = winston.loggers.get('application');
 
-LOG.info('Fabric Composer: Getting Started appliation');
+LOG.info('Fabric Composer: Getting Started application');
 
 require('yargs')
   .usage ('node cli.js  <participant> <action>')
   .commandDir('lib/cmds')
-  .demand(1,'Please specify a partipant, for example:   node cli.js  landregistry <action>')
+  .demand(1,'Please specify a participant, for example:   node cli.js  landregistry <action>')
   .help()
   .strict()
   .recommendCommands()

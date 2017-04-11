@@ -7,14 +7,12 @@ set -ev
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 #
-cd "${DIR}"/scripts
+cd "${DIR}"/hlfv1
 
-# Start up the Hyperledger Fabric
-docker-compose up -d --build
+docker-compose -f hlfv1_alpha-docker-compose.yml down
+docker rm $(docker ps -aq) ||
+docker-compose -f hlfv1_alpha-docker-compose.yml up -d
 
-
-# Wait for the Hyperledger Fabric to start.
-while ! nc localhost 7051 </dev/null; do sleep 1; done
-while ! nc localhost 7053 </dev/null; do sleep 1; done
-while ! nc localhost 7054 </dev/null; do sleep 1; done
-sleep 5
+node create-channel.js
+node join-channel.js
+cd ../..

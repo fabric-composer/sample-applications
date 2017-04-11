@@ -7,11 +7,11 @@ set -ev
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 # Shut down the Docker containers for the system tests.
-cd "${DIR}"/scripts
-docker-compose kill && docker-compose down
+cd "${DIR}"/hlfv1
+docker-compose -f hlfv1_alpha-docker-compose.yml kill && docker-compose -f hlfv1_alpha-docker-compose.yml down
 
 # remove the local state
-rm -rf ~/.composer-connection-profiles/defaultProfile
-rm -f ~/.composer-credentials/*
+#rm -rf ~/.composer-connection-profiles/defaultProfile
+#rm -f ~/.composer-credentials/*
 
 # Your system is now clean
