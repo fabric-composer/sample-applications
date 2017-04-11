@@ -6,6 +6,8 @@ Starting from nothing to an application running against and actual Hyperledger f
 
 ## Installation
 
+Before starting the installation process, ensure that you have all of the required prerequisites but following the guide [here](https://fabric-composer.github.io/installing/manual_prerequisites.html)
+
 1. Install Composer CLI
 
 ```bash
@@ -52,7 +54,7 @@ mkdir -p ~/.composer-connection-profiles/defaultProfile
 npm install
 ```
 
-This will check if you have `composer-cli` instaled, install all of the guide's dependencies, download the Hyperledger Fabric docker images, start the Fabric instance and deploy the business network
+This will check if you have `composer-cli` installed, install all of the guide's dependencies, download the Hyperledger Fabric docker images, start the Fabric instance and deploy the business network
 
 5. Run the unit tests, create some sample assets and run a transaction changing the status of a property
 
