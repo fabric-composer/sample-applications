@@ -12,8 +12,8 @@
     "startHLF": "scripts/start-hyperledger.sh",
     "stopHLF": "scripts/stop-hyperledger.sh",
     "teardownHLF": "scripts/teardown.sh",
-    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy --archiveFile digitalPropertyNetwork.bna  -p defaultProfile -i admin -s adminpw && composer network list -n digitalproperty-network -i admin -s adminpw",
-    "postinstall": "scripts/download-hyperledger.sh && npm run startHLF && npm run deployNetwork"
+    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy --archiveFile digitalPropertyNetwork.bna  --enrollId WebAppAdmin --enrollSecret DJY27pEnl16d && composer network list -n digitalproperty-network --enrollId WebAppAdmin --enrollSecret DJY27pEnl16d",
+    "install": "scripts/download-hyperledger.sh && scripts/start-hyperledger.sh && npm run deployNetwork"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,8 @@
   "license": "ISC",
   "dependencies": {
     "cli-table": "^0.3.1",
-    "composer-admin": "^0.5.10",
-    "composer-client": "^0.5.10",
+    "composer-admin": "^0.5.0",
+    "composer-client": "^0.5.0",
     "config": "^1.24.0",
     "digitalproperty-network": "latest",
     "jsonfile": "^2.4.0",

@@ -1,7 +1,7 @@
 {
   "gettingstarted": {
-       "participantId" : "admin",
-       "participantPwd" :"adminpw",
+       "participantId" : "WebAppAdmin",
+       "participantPwd" :"DJY27pEnl16d",
        "businessNetworkIdentifier" : "digitalproperty-network",
        "connectionProfile" :"defaultProfile"
     }
