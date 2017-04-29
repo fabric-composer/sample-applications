@@ -4,7 +4,7 @@
 set -ev
 
 
-# Grab the Concerto directory.
+# Grab the root (parent) directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
@@ -21,9 +21,9 @@ mkdir -p "$TMP"
 
 cd "$TMP"
 
-git clone https://github.com/fabric-composer/sample-applications
+git clone "$(git rev-parse --show-toplevel)" composer-sample-applications
 
-GETTING_STARTED=$TMP/sample-applications/packages/getting-started
+GETTING_STARTED=$TMP/composer-sample-applications/packages/getting-started
 
 cd "$GETTING_STARTED"
 
@@ -36,13 +36,13 @@ composer network list -n digitalproperty-network --enrollId WebAppAdmin --enroll
 # Leave Composer-GettingStarted back to tmp
 cd "$TMP"
 
-git clone https://github.com/fabric-composer/sample-networks
+git clone https://github.com/hyperledger/composer-sample-networks
 
-cd "$TMP/sample-networks/packages/digitalproperty-network"
+cd "$TMP/composer-sample-networks/packages/digitalproperty-network"
 
 npm install
 
-TRANSACTION_FILE=$TMP/sample-networks/packages/digitalproperty-network/lib/DigitalLandTitle.js
+TRANSACTION_FILE=$TMP/composer-sample-networks/packages/digitalproperty-network/lib/DigitalLandTitle.js
 
 rm "$TRANSACTION_FILE"
 

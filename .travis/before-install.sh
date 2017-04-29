@@ -4,7 +4,7 @@
 set -ev
 set -o pipefail
 
-# Grab the Concerto directory.
+# Grab the root (parent) directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 npm install -g npm

@@ -4,7 +4,7 @@
   "description": "The repository for the Fabric Composer Getting Started application",
   "main": "index.js",
   "scripts": {
-    "preinstall": "composer --version || echo 'Please first run npm install -g composer-cli' ",
+    "preinstall": "composer --version || { echo 'Please first run npm install -g composer-cli' ; exit 1;} ",
     "test": "mocha --recursive && npm run bootstrapAssets && npm run listAssets && npm run submitTransaction",
     "submitTransaction": "node cli.js landregistry submit && node cli.js landregistry list",
     "listAssets": "node cli.js landregistry list",
@@ -30,8 +30,8 @@
   "license": "ISC",
   "dependencies": {
     "cli-table": "^0.3.1",
-    "composer-admin": "^0.5.0",
-    "composer-client": "^0.5.0",
+    "composer-admin": "^0.7.0",
+    "composer-client": "^0.7.0",
     "config": "^1.24.0",
     "digitalproperty-network": "latest",
     "jsonfile": "^2.4.0",
@@ -44,7 +44,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-things": "^0.2.0",
-    "composer-connector-embedded": "^0.5.0",
+    "composer-connector-embedded": "^0.7.0",
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2"
