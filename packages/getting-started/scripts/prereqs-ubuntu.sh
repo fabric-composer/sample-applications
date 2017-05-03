@@ -11,11 +11,12 @@
 set -e
 
 # Array of supported versions
-declare -a versions=('trusty' 'utopic' 'xenial' 'yakkety');
+declare -a versions=('trusty' 'xenial' 'yakkety');
 
-## check the version and extract codename of ubuntu if release codename not provided by user
+# check the version and extract codename of ubuntu if release codename not provided by user
 if [ -z "$1" ]; then
-    source /etc/lsb-release || echo "Release information not found, run script passing Ubuntu version codename as a parameter" exit 1
+    source /etc/lsb-release || \
+        (echo "Release information not found, run script passing Ubuntu version codename as a parameter"; exit 1)
     CODENAME=$DISTRIB_CODENAME
 else 
     CODENAME=$1
@@ -39,23 +40,19 @@ sudo apt-get -y install git
 sudo apt-get -y install build-essential libssl-dev
 
 # Execute nvm installation script
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
-# Update bash profile
-cat <<EOF >> ~/.profile
-export NVM_DIR=~/.nvm
-[ -s "\$NVM_DIR/nvm.sh" ] && . "\$NVM_DIR/nvm.sh"
-EOF
-
-# Reload bash profile
-source ~/.profile
+# Set up nvm environment without restarting the shell
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Install node and npm
-nvm install 6.9.5
+nvm install --lts
 
 # Configure nvm to use version 6.9.5
-nvm use 6.9.5
-nvm alias default 6.9.5
+nvm use --lts
+nvm alias default 'lts/*'
 
 # Install the latest version of npm
 npm install npm@latest -g
@@ -63,47 +60,48 @@ npm install npm@latest -g
 # Ensure that CA certificates are installed
 sudo apt-get -y install apt-transport-https ca-certificates
 
-# Add new GPG key and add it to adv keychain
-sudo apt-key adv \
-               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+# Add Docker repository key to APT keychain
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Update where APT will search for Docker Packages
-echo "deb https://apt.dockerproject.org/repo ubuntu-$CODENAME main" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu ${CODENAME} stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list
 
 # Update package lists
 sudo apt-get update
 
 # Verifies APT is pulling from the correct Repository
-sudo apt-cache policy docker-engine
+sudo apt-cache policy docker-ce
 
 # Install kernel packages which allows us to use aufs storage driver if V14 (trusty/utopic)
-if [ "$CODENAME" == "trusty" ] || [ "$CODENAME" == "utopic" ] ; then
+if [ "$CODENAME" == "trusty" ]; then
     sudo apt-get -y install linux-image-extra-$(uname -r) linux-image-extra-virtual
 fi
 
-# Install docker-engine
-instalDocker="sudo apt-get -y install docker-engine=1.12.3-0~$CODENAME"
-eval $instalDocker
+# Install Docker
+sudo apt-get -y install docker-ce
 
-# Modify user account
+# Add user account to the docker group
 sudo usermod -aG docker $(whoami)
 
 # Install docker compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.13.0/docker-compose-$(uname -s)-$(uname -m)" \
+    -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Print installation details for user
-echo ""
-echo "Installation completed, versions installed are:"
-echo "Node:"
+echo ''
+echo 'Installation completed, versions installed are:'
+echo ''
+echo -n 'Node:           '
 node --version
-echo "npm:"
+echo -n 'npm:            '
 npm --version
-echo "docker:"
+echo -n 'Docker:         '
 docker --version
-echo "docker-compose:"
+echo -n 'Docker Compose: '
 docker-compose --version
 
 # Print reminder of need to logout in order for these changes to take effect!
+echo ''
 echo "Please logout then login before continuing."
