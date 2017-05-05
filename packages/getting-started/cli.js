@@ -31,7 +31,7 @@ winston.loggers.add('application', {
 
 const LOG = winston.loggers.get('application');
 
-LOG.info('Fabric Composer: Getting Started appliation');
+LOG.info('Hyperledger Composer: Getting Started application');
 
 require('yargs')
   .usage ('node cli.js  <participant> <action>')
@@ -40,5 +40,5 @@ require('yargs')
   .help()
   .strict()
   .recommendCommands()
-  .epilogue('For more information visit us at https://fabric-composer.github.io')
+  .epilogue('For more information visit us at https://hyperledger.github.io/composer/')
   .argv;

@@ -24,7 +24,7 @@ fi
 
 # check version is supported
 if echo ${versions[@]} | grep -q -w $CODENAME; then 
-    echo "Installing Fabric Composer prereqs for Ubuntu $CODENAME"
+    echo "Installing Hyperledger Composer prereqs for Ubuntu $CODENAME"
 else 
     echo "Ubuntu $CODENAME is not supported"
     exit 1

@@ -1,7 +1,7 @@
 {
   "name": "getting-started",
   "version": "1.0.0",
-  "description": "The repository for the Fabric Composer Getting Started application",
+  "description": "The repository for the Hyperledger Composer Getting Started application",
   "main": "index.js",
   "scripts": {
     "preinstall": "composer --version || { echo 'Please first run npm install -g composer-cli' ; exit 1;} ",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fabric-composer/sample-applications"
+    "url": "https://github.com/hyperledger/composer-sample-applications.git"
   },
   "keywords": [
     "Blockchain",
     "Solutions",
     "Framework",
     "getting-started",
-    "Fabric Composer"
+    "Hyperledger Composer"
   ],
   "author": "Author",
   "license": "ISC",
