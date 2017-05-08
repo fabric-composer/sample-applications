@@ -4,13 +4,12 @@ matrix:
     include:
         - env: SYSTEST=getting-started FC_TASK=systest
           sudo: required
-          services:
-            - docker
           node_js:
             - '6'
         
 dist: trusty
 before_install: ./.travis/before-install.sh
+install: ./packages/getting-started/scripts/prereqs-ubuntu.sh
 script: ./.travis/script.sh
 sudo: false
 notifications:
