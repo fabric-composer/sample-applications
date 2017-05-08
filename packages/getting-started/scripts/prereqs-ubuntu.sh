@@ -31,23 +31,30 @@ else
 fi
 
 # Update package lists
+echo "Updating package lists"
 sudo apt-get update
 
 # Install Git
+echo "Installing GitHub"
 sudo apt-get -y install git
 
 # Install nvm dependencies
+echo "Installing nvm dependencies"
 sudo apt-get -y install build-essential libssl-dev
 
 # Execute nvm installation script
+echo "Executing nvm installation script"
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
 # Set up nvm environment without restarting the shell
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="~/.nvm"
+source ~/.nvm/nvm.sh
+echo "Configuring nvm environment in directory $NVM_DIR"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Install node and npm
+"Installing nodeJS and npm"
 nvm install --lts
 
 # Configure nvm to use version 6.9.5

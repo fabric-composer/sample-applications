@@ -7,8 +7,6 @@ set -o pipefail
 # Grab the root (parent) directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
-npm install -g npm
-
 echo "ABORT_BUILD=false" > ${DIR}/build.cfg
 echo "ABORT_CODE=0" >> ${DIR}/build.cfg
 
