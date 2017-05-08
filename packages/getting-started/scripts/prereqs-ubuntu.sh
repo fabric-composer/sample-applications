@@ -48,6 +48,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | b
 
 # Set up nvm environment without restarting the shell
 export NVM_DIR="~/.nvm"
+source ~/.nvm/nvm.sh
 echo "Configuring nvm environment in directory $NVM_DIR"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
