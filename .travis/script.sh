@@ -11,6 +11,7 @@ ME=`basename "$0"`
 echo ${ME} `date`
 
 source ${DIR}/build.cfg
+source ${HOME}/.nvm/nvm.sh
 
 if [ "${ABORT_BUILD}" = "true" ]; then
   echo "-#- exiting early from ${ME}"
