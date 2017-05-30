@@ -34,7 +34,7 @@ unzip fabric-dev-servers.zip
 # change into the repo direcoty
 cd "${DIR}"
 npm install
-cd packages/digitalpropery-app
+cd packages/digitalproperty-app
 npm run deployNetwork
 npm test
 
