@@ -17,8 +17,8 @@ $ unzip fabric-dev-servers.zip
 
 ```
 $ mkdir ~/fabric-tools && cd ~/fabric-tools
-$ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/fabric-dev-servers/fabric-dev-servers.tar.gz
-$ tar xzf fabric-dev-servers.zip
+$ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+$ tar xvz fabric-dev-servers.tar.gz
 ```
 
 2. Choose which version of Fabric to use. For v0.6 this needs to be set explicitly as follows.
@@ -126,6 +126,12 @@ $ cd composer-sample-applications
 $ npm install
 ```
 
+To see a summary of all the sample applications, there's a simple command that will show summary details of the applications
+A useful information node.js script has been created to show the available sample applications
+```
+$ node ~/github/composer-sample-applications/info.js
+```
+
 2. When you started fabric you will have chosen which version to use.  If you have chosen Fabirc v0.6 you will need to suffix the targets in the npm commands below with `:hlfv06`. Both examples are given below - do not issue both commands!
 
 *Note: this does not change the application source code or the model, purely the name of the Composer profile to use, and the Fabric's admin indentity*
@@ -133,9 +139,7 @@ $ npm install
 3. Deploy the business network
 
 ```
-$ cd getting-started
-$ npm run deployNetwork
-$ cd getting-started
+$ cd packages/getting-started
 $ npm run deployNetwork
 $ npm run deployNetwork:hlfv0.6     # if you want to use v0.6
 ```
@@ -145,10 +149,6 @@ $ npm run deployNetwork:hlfv0.6     # if you want to use v0.6
 $ npm test
 $ npm test:hlfv0.6     # if you want to use v0.6
 ```
-
-# Step 3: And next
-To recap, a fabric has been started, and the Composer framework has been deployed to the Fabric, along with a sample business network.
-An application that uses this network has been run.
 
 ## Troubleshooting
 A useful information node.js script has been created to show the available sample applications
