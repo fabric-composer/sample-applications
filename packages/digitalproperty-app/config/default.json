@@ -1,0 +1,8 @@
+{
+  "digitalproperty-app": {
+       "participantId" : "admin",
+       "participantPwd" :"adminpw",
+       "businessNetworkIdentifier" : "digitalproperty-network",
+       "connectionProfile" :"hlfv1"
+    }
+}

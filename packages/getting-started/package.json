@@ -1,7 +1,7 @@
 {
   "name": "getting-started",
   "version": "1.0.0",
-  "description": "The repository for the Hyperledger Composer Getting Started application",
+  "description": "The repository for the Hyperledger Composer Getting Started application - DEPRECATED",
   "main": "index.js",
   "scripts": {
     "preinstall": "composer --version || { echo 'Please first run npm install -g composer-cli' ; exit 1;} ",

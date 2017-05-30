@@ -24,7 +24,7 @@
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const Table = require('cli-table');
 const winston = require('winston');
-let config = require('config').get('gettingstarted');
+let config = require('config').get('digitalproperty-app');
 // const mqlight = require('mqlight');
 const prettyjson = require('prettyjson');
 

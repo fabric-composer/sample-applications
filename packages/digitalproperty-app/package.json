@@ -1,0 +1,66 @@
+{
+  "name": "digitalproperty-app",
+  "version": "1.0.0",
+  "config": {
+    "fabricversion": "hlfv1"
+  },
+  "description": "Hyperledger Composer - Digital Property console application",
+  "bin" : {
+    "digitalproperty" : "cli.js"
+  },
+  "main": "cli.js",
+  "scripts": {
+    "postinstall": "composer --version",
+    "preinstall": "./rootcheck.sh ",
+    "test": "npm run bootstrapAssets && npm run listAssets && npm run submitTransaction",
+    "submitTransaction": "node cli.js landregistry submit && node cli.js landregistry list",
+    "listAssets": "node cli.js landregistry list",
+    "bootstrapAssets": "node cli.js landregistry bootstrap",
+    "submitTransaction:hlfv0.6": "NODE_ENV=hlfv0.6 node cli.js landregistry submit && NODE_ENV=hlfv0.6 node cli.js landregistry list",
+    "listAssets:hlfv0.6": "NODE_ENV=hlfv0.6 node cli.js landregistry list",
+    "bootstrapAssets:hlfv0.6": "NODE_ENV=hlfv0.6 node cli.js landregistry bootstrap",
+    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna &&  composer network deploy -p hlfv1 --archiveFile digitalPropertyNetwork.bna  --enrollId admin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1",
+    "deployNetwork:hlfv0.6": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy --archiveFile digitalPropertyNetwork.bna  --enrollId WebAppAdmin --enrollSecret DJY27pEnl16d && composer network list -n digitalproperty-network --enrollId WebAppAdmin --enrollSecret DJY27pEnl16d",
+    "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna &&  composer network update -p hlfv1 --archiveFile digitalPropertyNetwork.bna  --enrollId admin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hyperledger/composer-sample-applications"
+  },
+  "keywords": [
+    "Blockchain",
+    "Solutions",
+    "Framework",
+    "getting-started",
+    "Hyplerledger Composer"
+  ],
+  "author": "Author",
+  "license": "ISC",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "composer-cli":"unstable",
+    "composer-client":"unstable",
+    "config": "^1.24.0",
+    "digitalproperty-network": "latest",
+    "fabric-ca-client": "1.0.0-alpha.1",
+    "fabric-client": "1.0.0-alpha.1",
+    "jsonfile": "^2.4.0",
+    "lodash": "^4.17.4",
+    "prettyjson": "^1.2.1",
+    "sprintf-js": "^1.0.3",
+    "winston": "^2.3.0",
+    "yargs": "^6.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-things": "^0.2.0",
+    "composer-connector-embedded":"unstable",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.2"
+  },
+  "pkg": {
+  	"scripts" : "lib/**/*.js"
+  }
+}

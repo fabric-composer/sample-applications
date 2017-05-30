@@ -25,18 +25,18 @@ winston.loggers.add('application', {
     console: {
         level: 'silly',
         colorize: true,
-        label: 'Composer-GettingStarted'
+        label: 'DigitalProperty-App'
     }
 });
 
 const LOG = winston.loggers.get('application');
 
-LOG.info('Hyperledger-Composer: Getting Started application');
+LOG.info('Hyperledger Composer: Digital Property console application');
 try{
 require('yargs')
   .usage ('node cli.js  <participant> <action>')
   .commandDir('lib/cmds')
-  .demand(1,'Please specify a partipant, for example:   node cli.js  landregistry <action>')
+  .demand(1,'Please specify a partipant, for example:  digitalproperty landregistry <action>')
   .help()
   .strict()
   .recommendCommands()
