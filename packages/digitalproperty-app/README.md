@@ -19,6 +19,7 @@ $ unzip fabric-dev-servers.zip
 $ mkdir ~/fabric-tools && cd ~/fabric-tools
 $ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
 $ tar xvz fabric-dev-servers.tar.gz
+
 ```
 
 2. Choose which version of Fabric to use. For v0.6 this needs to be set explicitly as follows.
@@ -150,8 +151,5 @@ $ npm test
 $ npm test:hlfv0.6     # if you want to use v0.6
 ```
 
-## Troubleshooting
-A useful information node.js script has been created to show the available sample applications
-```
-$ node ~/github/composer-sample-applications/info.js
-```
+
+
