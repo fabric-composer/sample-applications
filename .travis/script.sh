@@ -25,7 +25,8 @@ cd "${DIR}"
 mkdir ./fabric-tools && cd ./fabric-tools
 
 # this should be moved to a better location
-curl -O https://raw.githubusercontent.com/mbwhite/composer-tools/master/fabric-dev-servers/fabric-dev-servers.zip
+curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.zip
+
 unzip fabric-dev-servers.zip
 ./downloadFabric.sh
 ./startFabric.sh
