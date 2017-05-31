@@ -37,4 +37,4 @@ jspm_packages
 .node_repl_history
 
 # Getting started archive - created as part of thenpm install
-packages/getting-started/digitalPropertyNetwork.bna
+packages/**/digitalPropertyNetwork.bna
