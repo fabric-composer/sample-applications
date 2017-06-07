@@ -1,0 +1,14 @@
+<div class="bc-vda-dashboard">
+  <div class="bc-vda-bc-view-container">
+    <div class="bc-vda-bc-view-background">
+      <bc-view chain="chain"></bc-view>
+    </div>
+    <div class="bc-vda-bc-view-alerts">
+      <bc-new-block-alert chain="chain"></bc-new-block-alert>
+    </div>
+  </div>
+  <!-- <button ng-click="addBlock('id', 'type', 'submitter')"></button> -->
+  <div class="bc-vda-recent-transactions-table-container">
+    <bc-recent-transaction-table transactions="transactions"></bc-recent-transaction-table>
+  </div>
+</div>

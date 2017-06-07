@@ -1,0 +1,44 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+.bc-man-login {
+	display: flex;
+	height: 100%;
+	.bc-man-loginbox {
+		background-color: @grey-med;
+		color: @font-default;
+		width: 350px;
+		margin: auto;
+		font-size: 0.9em;
+		.bc-man-loginbox-header {
+			padding: 20px 24px 14px;
+			border-bottom: 1px solid white;
+		}
+		form {
+			padding: 12px 24px 24px;
+			input {
+				width: 100%;
+				padding: 8px 12px;
+				box-sizing: border-box;
+				border: 1px solid white;
+			}
+			label {
+				color: @font-default;
+				margin-bottom: 4px;
+			}
+			button {
+				color: @font-default;
+				font-size: 1em;
+				background-color: @magenta-med;
+				border: 0px;
+				margin-top: 12px;
+				padding: 12px 24px;
+			}
+			button:hover {
+				cursor: pointer;
+				background-color: @magenta-med;
+			}
+			.bc-man-form-row {
+				margin-top: 20px;
+			}
+		}
+	}
+}

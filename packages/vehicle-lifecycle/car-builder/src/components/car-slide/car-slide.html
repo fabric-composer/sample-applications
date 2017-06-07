@@ -1,0 +1,13 @@
+<ion-card (click)="build(car)">
+  <div class="header">
+    <h3>Car</h3>
+    <h2><strong>Arium</strong> {{car.name}}</h2>
+  </div>
+
+  <div class="image" [ngStyle]="{'background-image': 'url(assets/' + car.image + ')', 'background-size': car.zoom}">
+  </div>
+
+  <div class="build">
+    <button ion-button color="secondary">Build <img src="assets/arrow_right.svg"></button>
+  </div>
+</ion-card>

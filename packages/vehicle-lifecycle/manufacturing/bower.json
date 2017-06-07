@@ -1,0 +1,27 @@
+{
+  "name": "bc-manufacturer",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Anna Thomas <annaet@uk.ibm.com>",
+    "Dan Cunnington <dancunnington@uk.ibm.com>",
+    "Joe Pavitt <joepavit@uk.ibm.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^4.7.4",
+    "angular": "^1.6.4",
+    "angular-ui-router": "^0.4.2",
+    "components-font-awesome": "^4.7.0",
+    "angular-ui-notification": "^0.3.6"
+  }
+}

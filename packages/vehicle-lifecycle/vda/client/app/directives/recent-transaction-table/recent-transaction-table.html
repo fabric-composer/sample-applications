@@ -1,0 +1,28 @@
+<div class="bc-vda-recent-transactions-table">
+	<div class="bc-vda-recent-transactions-table-header">
+		<p class="bc-vda-recent-transactions-table-header-text">RECENT TRANSACTIONS</p>
+		<p class="bc-vda-recent-transactions-table-filter"><span class="bc-vda-last">LAST</span> 
+			<span class="bc-vda-24-hours active" ngClick="showLast('24_hours')">24 HOURS</span> / 
+			<span class="bc-vda-week" ngClick="showLast('week')">WEEK</span> / 
+			<span class="bc-vda-month" ngClick="showLast('month')">MONTH</span>
+		</p>
+	</div>
+	<table cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>Timestamp</th>
+				<th>Transaction ID</th>
+				<th>Transaction Type</th>
+				<th>Transaction Submitter</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="t in transactions | orderBy: order.key : order.reverse">
+				<td>{{ t.timestamp | date:'medium' }}</td>
+				<td>{{ t.transaction_id }}</td>
+				<td>{{ t.transaction_type }}</td>
+				<td>{{ t.transaction_submitter }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

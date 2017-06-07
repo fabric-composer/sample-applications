@@ -1,0 +1,41 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+.bc-man-header {
+	background-color: @grey-dark;
+	border-bottom: 4px solid #464646;
+	height: 64px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0px 48px;
+	color: @white-off;
+	display: flex;
+	justify-content: space-between;
+	h1 {
+		font-weight: normal;
+		padding: 22px 0px;
+		width: 100%;
+	}
+	ul.bc-man-nav-tabs {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+		width: 100%;
+		text-align: right;
+		font-size: 0.9em;
+		li {
+			display: inline-block;
+			position: relative;
+			line-height: 68px;
+			padding: 0px 24px;
+			height: 100%;
+		}
+		li:hover {
+			cursor: pointer;
+			background-color: @grey-v-dark;
+			// border-bottom: 4px solid @magenta-med;
+		}
+		li.active {
+			pointer-events: none;
+			border-bottom: 4px solid @magenta-med;
+		}
+	}
+}

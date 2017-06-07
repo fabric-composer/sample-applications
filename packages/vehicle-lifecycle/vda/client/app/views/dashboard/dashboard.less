@@ -1,0 +1,57 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-vda-dashboard {
+	height: 100%;
+
+	.bc-vda-bc-view-container {
+		.bc-vda-bc-view-background {
+			padding: 52px 125px;
+			height: 150px;
+			background-image:linear-gradient(90deg, @blue 0%, @purple 100%);
+
+			.bc-view {
+				.bc-view-chain-container {
+					.bc-view-chain {
+						.bc-view-block {
+							border: 1px solid @white;
+							border-radius: 0;
+							font-family: "WorkSans-Light";
+							text-overflow: ellipsis;
+							label.block-label {
+								color: @white;
+								font-size: 22px;
+							}
+
+							label.transactionDetails, .transactionDetails {
+								font-size: 12px;
+
+								    
+							}
+							.bc-view-line {
+								background-color: @white;
+							}
+							.bc-view-block-transid, .bc-view-block-type  {
+								white-space: nowrap;
+								overflow:hidden !important;
+								text-overflow: ellipsis;
+								padding: 0px 10px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.bc-vda-bc-view-alerts {
+			height: 44px;
+			background: @dark-grey;
+			padding-left: 125px;
+			padding-right: 125px;
+		}
+	}
+
+	.bc-vda-recent-transactions-table-container {
+		padding: 27px 125px;
+	}
+}
+

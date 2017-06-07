@@ -1,0 +1,54 @@
+<div class="bc-vda-header">
+  <div class="bc-vda-logo" ui-sref="dashboard">
+    <img src="assets/images/VDA_Logo.svg"/>
+    <p>Vehicle &<br>
+    Drivers<br>
+    Authority</p>
+  </div>
+
+  <div class="bc-vda-header-search">
+    <div class="bc-vda-header-search-bar">
+        <img class="search" src="assets/images/search.svg"/>
+        <input type="text" placeholder="Search GOV.IO" />
+    </div>
+    <img class="user" src="assets/images/user.png" />
+
+  </div>
+  <div class="bc-vda-header-stats-container">
+    <div class="bc-vda-stats-item">
+      <p class="bc-vda-stats-item-header">REGISTERED VEHICLES</p>
+      <div class="bc-vda-item-value-container">
+        <p class="bc-vda-stats-item-value">{{registered_vehicles | number:0}}</p>
+        <img src="assets/images/up.svg" class="bc-vda-stats-item-arrow" />
+      </div>
+
+    </div>
+    <div class="bc-vda-stats-item">
+      <p class="bc-vda-stats-item-header">VIN ASSIGNED</p>
+      <div class="bc-vda-item-value-container">
+        <p class="bc-vda-stats-item-value">{{vin_assigned | number:0}}</p>
+        <img src="assets/images/up.svg" class="bc-vda-stats-item-arrow" />
+      </div>
+
+    </div>
+    <div class="bc-vda-stats-item">
+      <p class="bc-vda-stats-item-header">OWNER ISSUED</p>
+      <div class="bc-vda-item-value-container">
+        <p class="bc-vda-stats-item-value">{{v5c_issued | number:0}}</p>
+        <img src="assets/images/up.svg" class="bc-vda-stats-item-arrow" />
+      </div>
+
+    </div>
+    <div class="bc-vda-stats-item" ng-class="{active:isActive('/suspicious_vehicles')}" ui-sref="suspicious_vehicles">
+      <p class="bc-vda-stats-item-header">SUSPICIOUS VEHICLES</p>
+      <div class="bc-vda-item-value-container">
+        <p class="bc-vda-stats-item-value">{{suspicious_vehicles | number:0}}</p>
+        <img src="assets/images/down.svg" class="bc-vda-stats-item-arrow" />
+      </div>
+    </div>
+    <div class="bc-vda-stats-filter">
+      <p class="bc-vda-stats-filter-text">IN THE LAST <span class="bc-vda-week">WEEK</span></p>
+      <img src="assets/images/down-white.png" class="bc-vda-stats-item-arrow" />
+    </div>
+  </div>
+</div>

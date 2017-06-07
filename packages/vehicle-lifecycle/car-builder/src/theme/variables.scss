@@ -1,0 +1,260 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+$ipad: 768px;
+
+@import "ionic.globals";
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #ffd640,
+  white:      #ffffff,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  mid:        #FAF6F6,
+  mid-dark:   #454856,
+  dark:       #474a58
+);
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("#{$font-path}/Open_Sans/OpenSans-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("#{$font-path}/Open_Sans/OpenSans-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("#{$font-path}/Open_Sans/OpenSans-Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url("#{$font-path}/Open_Sans/OpenSans-Bold.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans-Semibold';
+  src: url("#{$font-path}/Open_Sans/OpenSans-Semibold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans-Italic';
+  src: url("#{$font-path}/Open_Sans/OpenSans-Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+* {
+  font-family: OpenSans, Roboto, sans-serif;
+}
+
+ion-app {
+  h1 {
+    font-size: 18px;
+    color: white;
+    margin-top: 0.2rem;
+  }
+
+  h2, .card h2 {
+    padding-top: 5px;
+    font-size: 18px;
+    text-align: left;
+    color: map-get($colors, mid-dark);
+  }
+
+  h3,
+  .card h3 {
+    text-transform: uppercase;
+    text-align: left;
+    padding-top: 25px;
+    letter-spacing: 3px;
+    font-family: "OpenSans-Semibold";
+    font-size: 12px;
+    color: map-get($colors, mid-dark);
+  }
+
+  h5,
+  .card h5 {
+    font-size: 36px;
+    font-family: "OpenSans-Bold";
+    color: map-get($colors, mid-dark);
+    margin-top: 14px;
+  }
+
+  .header-background {
+    height: 20%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    background: map-get($colors, dark);
+  }
+
+  button .button-inner {
+    font-family: "OpenSans-Semibold";
+    font-size: 12px;
+    color: map-get($colors, mid-dark);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    img {
+      margin-left: 10px;
+    }
+  }
+
+  .header-md::after {
+    background: none;
+  }
+
+  ion-header {
+    ion-navbar.toolbar {
+      min-height: 80px;
+
+      .toolbar-background {
+        background: map-get($colors, dark);
+        border: none;
+      }
+
+      .back-button {
+        display: none;
+      }
+
+      ion-title {
+        padding: 0;
+
+        .toolbar-title {
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .logo {
+            height: 25px;
+          }
+
+          .paul {
+            height: 37px;
+          }
+
+          @media (min-width: $ipad) {
+            justify-content: space-between;
+
+            .logo {
+              margin-left: 40px;
+            }
+
+            .paul {
+              margin-right: 40px;
+            }
+          }
+
+          h1 {
+            margin: 0 68px 0 85px;
+          }
+        }
+      }
+    }
+  }
+
+  ion-content.content {
+    background: map-get($colors, mid);
+
+    .scroll-content {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      padding-top: 80px !important;
+      -webkit-overflow-scrolling: auto;
+    }
+
+    ion-card.card {
+      border-radius: 8px;
+      box-shadow: 0 15px 50px -20px map-get($colors, dark);
+      box-shadow: 0 15px 50px -20px rgba(54, 56, 69, 0.5);
+
+      img {
+        width: auto;
+        float: left;
+        margin-right: 14px;
+      }
+    }
+  }
+}
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+ion-navbar .bar-button-default-ios,
+ion-navbar .bar-button-default.bar-button-ios-default,
+ion-navbar .bar-button-clear-ios-default {
+  color: white;
+  font-size: 0.8em;
+}
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";

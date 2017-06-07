@@ -1,0 +1,57 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-vda-recent-transactions-table {
+	color: @dark;
+
+	.bc-vda-recent-transactions-table-header {
+		p {
+			display: inline-block;
+		}
+		p.bc-vda-recent-transactions-table-header-text {
+			font-family: 'WorkSans-SemiBold';
+		}
+		p.bc-vda-recent-transactions-table-filter {
+			float: right;
+			font-family: 'WorkSans-Medium';
+			
+
+			.active {
+				color: @blue;
+				opacity: 1 !important;
+			}
+
+			.bc-vda-24-hours, .bc-vda-week, .bc-vda-month {
+				opacity: 0.5;
+				cursor: pointer;
+			}
+		}
+	}
+
+	table {
+		width: 100%;
+		margin-top: 25px;
+		thead {
+			tr {
+				th {
+					text-align: left;
+					opacity: 0.5;
+					border-bottom:1px solid #e3ecec;
+					padding: 17.5px 17.5px;
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					border-bottom:1px solid #e3ecec;
+					padding: 17.5px 17.5px;
+				}
+				
+				&:hover {
+					background-color: @table-hover;
+				}
+				
+			}
+		}
+	}
+}

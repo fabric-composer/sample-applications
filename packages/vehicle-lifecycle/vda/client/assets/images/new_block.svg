@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="19px" viewBox="0 0 34 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="VDA-Desktop-Scratch-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="VDA_1" transform="translate(-125.000000, -432.000000)">
+            <g id="Group-5" transform="translate(125.000000, 432.000000)">
+                <rect id="Rectangle-5" stroke="#FFFFFF" x="16.5" y="0.5" width="17" height="17"></rect>
+                <polygon id="Path" fill="#FFFFFF" transform="translate(24.999952, 8.999952) rotate(45.000000) translate(-24.999952, -8.999952) " points="28.5359519 11.1209521 27.1219514 12.5349517 24.9999517 10.4139515 22.8789514 12.5349517 21.4649514 11.1209521 23.5859517 8.99995194 21.4639519 6.87895212 22.877952 5.46495209 24.9999517 7.5859519 27.1209519 5.46495209 28.5349515 6.87895212 26.4139513 8.99995194"></polygon>
+                <polyline id="Path-2" stroke="#FFFFFF" points="0.499023438 0.749023438 8.75281045 0.749023438 8.75281045 17.7490238 1.49471664 17.7490238"></polyline>
+                <path d="M9.5,9.5 L16.5,9.5" id="Line" stroke="#FFFFFF" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

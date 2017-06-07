@@ -1,0 +1,65 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-man-sidebar {
+  width: 240px;
+  height: ~"calc(100% - 72px)";
+  background: @grey-v-dark;
+  padding: 36px 30px;
+
+  z-index: 5;
+  position: relative;
+
+  .header {
+    padding: 0 0 5px 0;
+    display: flex;
+
+    img {
+      margin-right: 22px;
+    }
+  }
+
+  h4 {
+    margin: 65px 0 0 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    height: 26px;
+
+    span:first-of-type {
+      opacity: 0.5;
+    }
+  }
+
+  li.selected {
+    span:first-of-type {
+      opacity: 1;
+    }
+  }
+
+  .status {
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+    margin: 8px;
+  }
+
+  .status-green {
+    background: @green;
+  }
+
+  .status-orange {
+    background: @orange;
+  }
+
+  .status-mustard {
+    background: @mustard;
+  }
+
+  .status-purple {
+    background: @purple;
+  }
+
+}

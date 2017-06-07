@@ -1,0 +1,18 @@
+{
+  "name": "vehicle-lifecycle-vda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "author": "Hyperledger Composer",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cfenv": "^1.0.4",
+    "config": "^1.26.1",
+    "express": "^4.15.2",
+    "express-less": "^0.1.0",
+    "ws": "^2.3.1"
+  }
+}

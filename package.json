@@ -3,7 +3,9 @@
     "postinstall": "npm run bootstrap",
     "bootstrap": "lerna bootstrap",
     "test": "lerna run test",
-    "start": "node info"
+    "start": "node info",
+    "bowerInstall": "gulp bower-install",
+    "bowerClean": "gulp bower-clean"
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -17,6 +19,11 @@
   "author": "Hyperledger Composer",
   "license": "Apache-2.0",
   "devDependencies": {
-    "lerna": "^2.0.0-rc.4"
+    "lerna": "^2.0.0-rc.4",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-debug": "^3.1.0",
+    "gulp-install": "^1.1.0",
+    "gulp-load-plugins": "^1.5.0"
   }
 }

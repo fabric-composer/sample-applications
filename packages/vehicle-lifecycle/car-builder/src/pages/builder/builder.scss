@@ -1,0 +1,247 @@
+page-builder {
+  ion-card.card:first-of-type {
+    margin-bottom: 28px;
+  }
+
+  ion-card.card.margin-card {
+    padding: 22px 0;
+  }
+
+  ion-card.animatedCard {
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
+    overflow: hidden;
+
+    max-height: 62px;
+  }
+
+  ion-card.expandedCard {
+    max-height: 1000px;
+  }
+
+  ion-card.card {
+    padding: 0;
+    margin: 12px 40px;
+    width: calc(100% - 80px);
+
+    h3:first-child {
+      padding: 0 0 0 25px;
+      margin: 0;
+    }
+
+    h3.car-option {
+      padding: 22px 0 22px 25px;
+
+      .car-option-selected {
+        font-family: "OpenSans";
+        font-style: italic;
+        opacity: 0.5;
+        letter-spacing: 0;
+        text-transform: capitalize;
+        font-size: 15px;
+        margin-left: 8px;
+        position: relative;
+        bottom: -1px;
+      }
+    }
+
+    h2 {
+      padding: 0 0 0 25px;
+    }
+
+    .opaque {
+      opacity: 1;
+    }
+
+    p {
+      padding: 0 0 0 25px;
+      margin: 11px 0 0;
+      font-size: 15px;
+      color: map-get($colors, dark);
+      opacity:0.5;
+    }
+
+    p:last-of-type {
+      padding: 0 0 0 25px;
+      margin: 9px 0 0;
+    }
+
+    .option-item {
+      padding-top: 22px;
+      margin: 22px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .top-option-item {
+      margin: 0;
+    }
+
+    .option-description {
+      width: 60%;
+    }
+
+    .option-colours,
+    .option-interiors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 0 4px 0;
+
+      .option-colour {
+        width: 68px;
+
+        @media (min-width: $ipad) {
+          width: 180px;
+        }
+
+        .sunburst {
+          background-image: linear-gradient(-180deg, #ffa047 0%, #d97122 100%);
+        }
+
+        .red {
+          background-image: linear-gradient(-180deg, #f5515f 0%, #9f031b 100%);
+        }
+
+        .purple {
+          background-image: linear-gradient(-134deg, #3023ae 0%, #c96dd8 100%);
+        }
+
+        .green {
+          background-image: linear-gradient(-180deg, #b4ed50 0%, #429321 100%);
+        }
+
+        .blue {
+          background-image: linear-gradient(-180deg, #51f5eb 0%, #03939f 100%);
+        }
+
+        .grape {
+          background-image: linear-gradient(-134deg, #ae2358 0%, #c96dd8 100%);
+        }
+      }
+
+      .option-interior {
+        width: 115px;
+
+        @media (min-width: $ipad) {
+          width: 240px;
+        }
+
+        .red {
+          background-image: url('../assets/red_leather.jpg');
+        }
+
+        .papyrus {
+          background-image: url('../assets/white_leather.jpg');
+        }
+
+        .grey {
+          background-image: url('../assets/grey_leather.jpg');
+        }
+
+        .brown {
+          background-image: url('../assets/brown_leather.jpg');
+        }
+      }
+
+      .option-colour,
+      .option-interior {
+        margin: 0 7px 18px 0;
+
+        .option-colour-preview,
+        .option-interior-preview {
+          border-radius: 5px;
+        }
+
+        .option-colour-preview {
+          width: 68px;
+          height: 86px;
+
+          @media (min-width: $ipad) {
+            width: 160px;
+            height: 200px;
+            margin: 0 10px;
+          }
+        }
+
+        .option-interior-preview {
+          height: 118px;
+          width: 115px;
+          background-size: cover;
+
+          @media (min-width: $ipad) {
+            width: 220px;
+            height: 220px;
+            margin: 0 10px;
+          }
+        }
+
+        h4 {
+          font-family: OpenSans;
+          font-size: 15px;
+          color: map-get($colors, dark);
+          letter-spacing: 0;
+          text-align: center;
+          margin: 14px 0 0 0;
+        }
+      }
+
+      .option-colour.selected,
+      .option-interior.selected {
+        .option-colour-preview,
+        .option-interior-preview {
+          border: 2px solid map-get($colors, dark);
+        }
+
+        h4 {
+          font-family: "OpenSans-Semibold";
+        }
+      }
+    }
+
+
+    ion-badge {
+      width: 70px;
+      height: 40px;
+      border: 6px solid map-get($colors, dark);
+      margin-right: 20px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-family: "OpenSans-Semibold";
+    }
+
+    ion-badge.selected {
+      border: 6px solid map-get($colors, secondary);
+
+      img {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  ion-card:last-of-type {
+    padding: 0;
+    height: 61px;
+
+    .button-default {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      text-transform: uppercase;
+
+      .button-inner {
+        justify-content: center;
+        margin-left: 16px;
+      }
+    }
+  }
+}

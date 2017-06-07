@@ -1,0 +1,11 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-slides [spaceBetween]="-60" [initialSlide]=1 pager>
+    <ion-slide *ngFor="let car of cars">
+      <car-slide [car]="car"></car-slide>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

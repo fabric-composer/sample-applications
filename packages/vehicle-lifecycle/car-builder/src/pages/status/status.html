@@ -1,0 +1,70 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-card class="order-header">
+    <h3>Order</h3>
+    <h2><strong>Arium</strong> {{car.name}}</h2>
+
+    <h5>#7092926</h5>
+  </ion-card>
+
+  <ion-card>
+    <h3 [ngClass]="{selected: stage[0]}">
+      <img [hidden]="stage[0]" src="assets/circle_empty.svg">
+      <img [hidden]="!stage[0]" src="assets/circle_tick.svg">
+      <span>
+        Order Received
+      </span>
+      <span class="progress-selected">{{stage[0] | date:'dd/MM'}}</span>
+    </h3>
+
+    <div class="connector-container">
+      <span class="connector" [hidden]="!stage[1]"></span>
+    </div>
+
+    <h3 [ngClass]="{selected: stage[1]}">
+      <img [hidden]="stage[1]" src="assets/circle_empty.svg">
+      <img [hidden]="!stage[1]" src="assets/circle_tick.svg">
+      <span>
+        Manufacture
+      </span>
+      <span class="progress-selected">{{stage[1]}}</span>
+    </h3>
+
+    <div class="connector-container">
+      <span class="connector" [hidden]="!stage[2]"></span>
+    </div>
+
+    <h3 [ngClass]="{selected: stage[2]}">
+      <img [hidden]="stage[2]" src="assets/circle_empty.svg">
+      <img [hidden]="!stage[2]" src="assets/circle_tick.svg">
+      <span>
+        VIN Assigned
+      </span>
+      <span class="progress-selected">{{stage[2]}}</span>
+    </h3>
+
+    <div class="connector-container">
+      <span class="connector" [hidden]="!stage[3]"></span>
+    </div>
+
+    <h3 [ngClass]="{selected: stage[3]}">
+      <img [hidden]="stage[3]" src="assets/circle_empty.svg">
+      <img [hidden]="!stage[3]" src="assets/circle_tick.svg">
+      <span>
+        Owner Issued
+      </span>
+      <span class="progress-selected">{{stage[3]}}</span>
+    </h3>
+  </ion-card>
+
+  <div class="connector-container hidden-connector" [hidden]="!stage[4]">
+    <span class="connector"></span>
+  </div>
+
+  <ion-card>
+    <button ion-button color="white" [ngClass]="{selected: stage[4]}">Delivery <img src="assets/diamond.svg"></button>
+  </ion-card>
+</ion-content>
