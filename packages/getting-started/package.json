@@ -26,8 +26,8 @@
     "getting-started",
     "Hyperledger Composer"
   ],
-  "author": "Author",
-  "license": "ISC",
+  "author": "Hyperledger Composer",
+  "license": "Apache-2.0",
   "dependencies": {
     "cli-table": "^0.3.1",
     "composer-admin": "^0.7.0",
