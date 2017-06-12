@@ -1,12 +1,12 @@
 {
   "name": "digitalproperty-app",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "config": {
     "fabricversion": "hlfv1"
   },
   "description": "Hyperledger Composer - Digital Property console application",
-  "bin" : {
-    "digitalproperty" : "cli.js"
+  "bin": {
+    "digitalproperty": "cli.js"
   },
   "main": "cli.js",
   "scripts": {
@@ -38,8 +38,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cli-table": "^0.3.1",
-    "composer-cli":"unstable",
-    "composer-client":"unstable",
+    "composer-cli": "unstable",
+    "composer-client": "unstable",
     "config": "^1.24.0",
     "digitalproperty-network": "latest",
     "fabric-ca-client": "1.0.0-alpha.1",
@@ -55,12 +55,12 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-things": "^0.2.0",
-    "composer-connector-embedded":"unstable",
+    "composer-connector-embedded": "unstable",
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2"
   },
   "pkg": {
-  	"scripts" : "lib/**/*.js"
+    "scripts": "lib/**/*.js"
   }
 }

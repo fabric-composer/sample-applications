@@ -1,0 +1,4 @@
+{
+    "nodeRedBaseURL":"ws://localhost:1880",
+    "composerRestServerBaseURL":"http://localhost:4000"
+}
