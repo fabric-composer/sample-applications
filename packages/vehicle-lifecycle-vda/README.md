@@ -20,3 +20,7 @@ This will download all of the relevant dependencies you will need to get going.
 To run the app, call:
 
     npm start
+
+### Configuration
+
+Application configuration can be found in `config/default.json`

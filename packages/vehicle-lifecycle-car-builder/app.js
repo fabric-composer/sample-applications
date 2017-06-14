@@ -13,7 +13,7 @@ var server = http.createServer(app);
 app.get('/assets/config.json', (req, res, next) => {
   res.json({
     useLocalWS: true,
-    nodeRedBaseURL: config.get("nodeRedBaseURL")
+    nodeRedBaseURL: process.env.NODE_RED_BASE_URL || config.get("nodeRedBaseURL")
   });
 });
 

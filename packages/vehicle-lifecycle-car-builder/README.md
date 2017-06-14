@@ -1,26 +1,23 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Blockchain - Car Builder
 
-## How to use this template
+This Vehicle-Lifecycle Car Builder application was created using the Ionic framework. 
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/driftyco/ionic2-app-base).
+### App Dependencies
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/driftyco/ionic2-app-base).
+Install Ionic and Cordova:
 
-### With the Ionic CLI:
+    npm install -g ionic cordova
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+### Run the app
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank --v2
-```
+Build the app:
 
-Then, to run it, cd into `myBlank` and run:
+    npm run build
 
-```bash
-$ ionic platform add ios
-$ ionic run ios
-```
+Run the app:
+    
+    npm start
 
-Substitute ios for android if not on a Mac.
+### Configuration
 
+Application configuration can be found in `config/default.json`
