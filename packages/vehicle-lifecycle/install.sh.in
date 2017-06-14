@@ -33,9 +33,9 @@ docker-compose pull
 docker pull hyperledger/fabric-ccenv:x86_64-1.0.0-alpha
 docker pull hyperledger/composer-cli:${COMPOSER_VERSION}
 docker pull hyperledger/composer-rest-server:${COMPOSER_VERSION}
-#docker pull hyperledger/vehicle-lifecycle-vda
-#docker pull hyperledger/vehicle-lifecycle-manufacturing
-#docker pull hyperledger/vehicle-lifecycle-car-builder
+docker pull hyperledger/vehicle-lifecycle-vda
+docker pull hyperledger/vehicle-lifecycle-manufacturing
+docker pull hyperledger/vehicle-lifecycle-car-builder
 docker pull nodered/node-red-docker
 
 # Kill any other Docker containers.
@@ -87,7 +87,8 @@ docker run \
   -d \
   --network composer_default \
   --name rest \
-  -v $(pwd):/home/composer \
+  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
+  -v $(pwd)/.hfc-key-store:/home/composer/.hfc-key-store \
   -e COMPOSER_CONNECTION_PROFILE=hlfabric \
   -e COMPOSER_BUSINESS_NETWORK=org.acme.biznet \
   -e COMPOSER_ENROLLMENT_ID=admin \
