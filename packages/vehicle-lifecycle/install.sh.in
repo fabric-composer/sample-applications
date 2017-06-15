@@ -72,7 +72,7 @@ docker run \
   --network composer_default \
   -v $(pwd):/home/composer \
   hyperledger/composer-cli:${COMPOSER_VERSION} \
-  composer network deploy -p hlfabric -a vehicle-lifecycle-network.bna -i PeerAdmin -s adminpw
+  composer network deploy -p hlfabric -a vehicle-lifecycle-network.bna -i admin -s adminpw
 
 # Submit the setup transaction.
 docker run \
