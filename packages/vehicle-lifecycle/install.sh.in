@@ -2,6 +2,28 @@
 #!/bin/bash
 set -ev
 
+# Docker stop function
+function stop()
+{
+P1=$(docker ps -q)
+if [ "${P1}" != "" ]; then
+  echo "Killing all running containers"  &2> /dev/null
+  docker kill ${P1}
+fi
+
+P2=$(docker ps -aq)
+if [ "${P2}" != "" ]; then
+  echo "Removing all containers"  &2> /dev/null
+  docker rm ${P2} -f
+fi
+}
+
+if [ "$1" == "stop" ]; then
+ echo "Stopping all Docker containers" >&2
+ stop
+ exit 0
+fi
+
 # Get the current directory.
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -39,11 +61,7 @@ docker pull hyperledger/vehicle-lifecycle-car-builder
 docker pull nodered/node-red-docker
 
 # Kill any other Docker containers.
-docker ps -aq | xargs docker rm -f
-
-# Kill and remove any running Docker containers.
-docker-compose -p composer kill
-docker-compose -p composer down --remove-orphans
+stop
 
 # Start all Docker containers.
 docker-compose -p composer up -d
