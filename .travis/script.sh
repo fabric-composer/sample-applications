@@ -65,5 +65,8 @@ cd "${DIR}"/fabric-tools
 ./stopFabric.sh
 ./teardownFabric.sh
 
+# Build the car builder application.
+cd "${DIR}/packages/vehicle-lifecycle-car-builder"
+npm run build
 
 exit 0

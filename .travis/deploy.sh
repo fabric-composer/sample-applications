@@ -61,37 +61,43 @@ git ls-remote
 docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
 
 # This is the list of Docker images to build.
-export DOCKER_IMAGES=(vehicle-lifecycle-car-builder vehicle-lifecycle-manufacturing vehicle-lifecycle-vda)
-export VERSION=($(node -e "console.log(require('${DIR}/package.json').version)"))
+export DOCKER_IMAGES="vehicle-lifecycle-car-builder vehicle-lifecycle-manufacturing vehicle-lifecycle-vda"
 
 # Push the code to npm.
 if [ -z "${TRAVIS_TAG}" ]; then
-    
+
+    # Set the prerelease version.
     npm run pkgstamp
-    for image in ${DOCKER_IMAGES}; do
+    export VERSION=$(node -e "console.log(require('${DIR}/package.json').version)")
+
+    # Build, tag, and publish Docker images.
+    for i in ${DOCKER_IMAGES}; do
 
         # Build the image and tag it with the version and unstable.
-        docker build --build-arg VERSION=${VERSION} -t hyperledger/${image}:${VERSION}${DIR}/packages/${image}/docker
-        docker tag hyperledger/${image}:${VERSION} hyperledger/${image}:unstable
+        docker build --build-arg VERSION=${VERSION} -t hyperledger/${i}:${VERSION} ${DIR}/packages/${i}
+        docker tag hyperledger/${i}:${VERSION} hyperledger/${i}:unstable
 
         # Push both the version and unstable.
-        docker push hyperledger/${image}:${VERSION}
-        docker push hyperledger/${image}:unstable
+        docker push hyperledger/${i}:${VERSION}
+        docker push hyperledger/${i}:unstable
 
     done
 
 else
-   
+
+    # Grab the current version.
+    export VERSION=$(node -e "console.log(require('${DIR}/package.json').version)")
+
     # Build, tag, and publish Docker images.
-    for image in ${DOCKER_IMAGES}; do
+    for i in ${DOCKER_IMAGES}; do
 
         # Build the image and tag it with the version and latest.
-        docker build --build-arg VERSION=${VERSION} -t hyperledger/${image}:${VERSION} ${DIR}/packages/${image}/docker
-        docker tag hyperledger/${image}:${VERSION} hyperledger/${image}:latest
+        docker build --build-arg VERSION=${VERSION} -t hyperledger/${i}:${VERSION} ${DIR}/packages/${i}
+        docker tag hyperledger/${i}:${VERSION} hyperledger/${i}:latest
 
         # Push both the version and latest.
-        docker push hyperledger/${image}:${VERSION}
-        docker push hyperledger/${image}:latest
+        docker push hyperledger/${i}:${VERSION}
+        docker push hyperledger/${i}:latest
 
     done
 
