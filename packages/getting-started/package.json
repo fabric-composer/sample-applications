@@ -1,6 +1,6 @@
 {
   "name": "getting-started",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "The repository for the Hyperledger Composer Getting Started application - DEPRECATED",
   "main": "index.js",
   "scripts": {

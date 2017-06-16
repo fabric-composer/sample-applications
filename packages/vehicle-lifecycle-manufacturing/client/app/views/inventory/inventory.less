@@ -1,0 +1,54 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+.bc-man-inventory {
+	.bc-man-inventory-heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		button.bc-man-button {
+			font-size: 0.8em;
+		}
+		.bc-man-button {
+			line-height: 42px;
+		}
+	}
+	.bc-inventory-vehicles {
+		.bc-inventory-vehicles-pagination {
+			background-color: #294048;
+			border-bottom: 1px solid #cee0e6;
+		}
+		table {
+			box-shadow: 0px 1px 4px 0px #1c1c1c;
+			background-color: @blue-dark;
+			thead {
+				tr {
+					th {
+						color: @grey-light;
+						border-bottom: 1px solid @white-blue;
+					}
+				}
+			}
+			tbody {
+				tr:nth-child(odd) td {
+					background-color: @blue-med;
+				}
+			}
+		}
+	}
+	.bc-view {
+		margin-top: 40px;
+		background-color: @blue-med;
+		.bc-view-chain-container {
+			.bc-view-chain {
+				.bc-view-block {
+					background-color: @blue-light;
+					label {
+						color: @white-off;
+					}
+					.bc-view-line {
+						background-color: @white-blue;
+					}
+				}
+			}
+		}
+	}
+}

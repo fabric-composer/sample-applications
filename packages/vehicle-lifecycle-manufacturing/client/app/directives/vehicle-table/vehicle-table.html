@@ -1,0 +1,45 @@
+<div class="bc-inventory-vehicles">
+	<div class="bc-inventory-vehicles-pagination" ng-if="list">
+		<div>
+			<select>
+				<option>10</option>
+				<option>20</option>
+				<option>30</option>
+			</select>
+			<label>items per page | 1-18 of 40 items</label>
+		</div>
+		<div>
+			<label>1 of 3 pages</label>
+			<div>
+				<i></i>
+				<div>1</div>
+				<i></i>
+			</div>
+		</div>
+	</div>
+	<table cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th ng-if="list"></th>
+				<th ng-click="orderBy('engine_number')">Engine Number <i class="fa fa-caret-down" aria-hidden="true" ng-class="{'active' : order.key.indexOf('engine_number') > -1, 'fa-rotate-180' : order.key.indexOf('engine_number') > -1 && order.reverse}"></i></th>
+				<th ng-click="orderBy('model')">Model <i class="fa fa-caret-down" aria-hidden="true" ng-class="{'active' : order.key.indexOf('model') > -1, 'fa-rotate-180' : order.key.indexOf('model') > -1 && order.reverse}"></i></th>
+				<th ng-click="orderBy('color')">Color <i class="fa fa-caret-down" aria-hidden="true" ng-class="{'active' : order.key.indexOf('color') > -1, 'fa-rotate-180' : order.key.indexOf('color') > -1 && order.reverse}"></i></th>
+				<th ng-click="orderBy('vin')">VIN No <i class="fa fa-caret-down" aria-hidden="true" ng-class="{'active' : order.key.indexOf('vin') > -1, 'fa-rotate-180' : order.key.indexOf('vin') > -1 && order.reverse}"></i></th>
+				<th ng-click="orderBy('status')">Status <i class="fa fa-caret-down" aria-hidden="true" ng-class="{'active' : order.key.indexOf('status') > -1, 'fa-rotate-180' : order.key.indexOf('status') > -1 && order.reverse}"></i></th>
+				<th ng-click="orderBy('est_date')">Est. Date <i class="fa fa-caret-down" aria-hidden="true" ng-class="{'active' : order.key.indexOf('est_date') > -1, 'fa-rotate-180' : order.key.indexOf('est_date') > -1 && order.reverse}"></i></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="v in vehicles | orderBy: order.key : order.reverse">
+				<td ng-if="list"></td>
+				<td ng-if="list"><a ng-click="vehicleSelect({index: $index})" ui-sref="inventory.vehicle({engineNumber: v.engine_number})">{{ v.engine_number }}</a></td>
+				<td ng-if="!list">{{ v.engine_number }}</td>
+				<td>{{ v.model }}</td>
+				<td>{{ v.color }}</td>
+				<td>{{ v.vin }}</td>
+				<td>{{ v.status }}</td>
+				<td>{{ v.est_date }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

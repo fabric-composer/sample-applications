@@ -1,0 +1,89 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-vda-suspicious-vehicles-table {
+	color: @dark;
+
+	.bc-vda-suspicious-vehicles-table-header {
+		p {
+			display: inline-block;
+		}
+		p.bc-vda-suspicious-vehicles-table-header-text {
+			font-family: 'WorkSans-SemiBold';
+		}
+		p.bc-vda-suspicious-vehicles-table-filter {
+			float: right;
+			font-family: 'WorkSans-Medium';
+			
+			.active {
+				color: @blue;
+				opacity: 1 !important;
+			}
+			.bc-vda-24-hours, .bc-vda-week, .bc-vda-month {
+				opacity: 0.5;
+				cursor: pointer;
+			}
+		}
+	}
+	table {
+		width: 100%;
+		margin-top: 25px;
+		border-collapse: separate;
+		thead {
+			tr {
+				th {
+					text-align: left;
+					color: rgba(0,0,0,0.5);
+					border-bottom:1px solid #e3ecec;
+					padding: 17.5px 17.5px;
+					button.bc-vda-contact-owner {
+						padding: 9px 13px;
+						background: transparent;
+						border: solid 1px @dark;
+						border-radius: 3px;
+						font-size: 15px;
+						display: inline-block;
+
+						&:hover {
+							cursor: pointer;
+						}
+					}
+					img.bc-vda-cross {
+						margin-left: 15px;
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+		tbody {
+			tr {
+				cursor: pointer;
+				td {
+					border-bottom:1px solid #e3ecec;
+					padding: 17.5px 17.5px;
+				}
+			}
+
+			tr.hover:hover {
+				background-color: @table-hover;
+			}
+
+			tr.bc-vda-transaction-details-table-container .bc-vda-transaction-details {
+				max-height: 0px;
+				overflow: hidden;
+				div {
+					overflow: hidden;
+				}
+			}
+
+			tr.bc-vda-transaction-details-table-container td.bc-vda-filler {
+					padding: 0;
+				
+			}
+		}
+	}
+	table.inner {
+		margin-top: 0px;
+		background-color: @table-background;
+	}
+}

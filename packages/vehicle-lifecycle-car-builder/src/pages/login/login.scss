@@ -1,0 +1,77 @@
+page-login {
+  ion-content.content > .scroll-content {
+    padding: 0 !important;
+  }
+
+  .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("../assets/background.png");
+    background-size: cover;
+
+    .map {
+      position: absolute;
+      z-index: 5;
+      opacity: 0.2;
+      height: 100%;
+    }
+
+    .login-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .logo {
+        height: 65px;
+        margin-top: 151px;
+
+        @media (min-width: $ipad) {
+          height: 85px;
+        }
+      }
+
+
+      .picture {
+        margin: 38px 0 52px 0;
+        height: 83px;
+
+        @media (min-width: $ipad) {
+          height: 105px;
+        }
+      }
+
+
+      h2 {
+        color: white;
+        margin: 0 0 254px 0;
+        font-size: 18px;
+        font-family: OpenSans;
+      }
+
+      button.button {
+        width: 290px;
+        height: 61px;
+        position: absolute;
+        bottom: 65px;
+        left: 43px;
+
+        @media (min-width: $ipad) {
+          left: 239px;
+        }
+
+        @media screen {
+          left: auto;
+        }
+      }
+    }
+
+  }
+}

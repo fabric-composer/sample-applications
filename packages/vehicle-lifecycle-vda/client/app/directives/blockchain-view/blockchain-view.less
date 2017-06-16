@@ -1,0 +1,34 @@
+.bc-view {
+	text-align: center;
+	min-height: 150px;
+	height: 150px;
+	.bc-view-chain-container {
+		height: 100%;
+		position: relative;
+		overflow-x: hidden;
+		.bc-view-chain {
+			height: 100%;
+			right: 0px;
+			position: absolute;
+			.bc-view-block {
+				position: absolute;
+				border-radius: 5px;
+				div {
+					height: 33%;
+					box-sizing: border-box;
+				}
+				div.bc-view-line {
+					position: absolute;
+					width: 30px;
+					height: 1px;
+					margin-left: -30px;
+					margin-top: -2.5px;
+					top: 50%;
+				}
+				div.bc-view-block-blockid {
+					padding-top: 20px;
+				}
+			}
+		}
+	}
+}

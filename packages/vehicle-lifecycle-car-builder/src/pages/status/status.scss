@@ -1,0 +1,113 @@
+page-status {
+  ion-card.card:first-of-type {
+    margin-bottom: 28px;
+  }
+
+  ion-card.card:last-of-type {
+    padding: 0;
+    height: 60px;
+  }
+
+  ion-card.card {
+    padding: 0 20px 20px 20px;
+    margin: 12px 40px;
+    width: calc(100% - 80px);
+
+    h3 {
+      opacity: 0.5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0 !important;
+      padding-top: 0;
+
+      img {
+        margin: 0 !important;
+        padding-bottom: 10px;
+      }
+    }
+
+    h3:first-of-type {
+      padding-top: 30px;
+    }
+
+    h3:last-of-type {
+      padding-bottom: 30px;
+    }
+
+    h3.selected {
+      opacity: 1;
+    }
+
+    .progress-selected {
+      font-family: "OpenSans";
+      font-style: italic;
+      opacity: 0.5;
+      letter-spacing: 0;
+      text-transform: none;
+      font-size: 15px;
+      height: 18px;
+      display: inline-block;
+      margin-top: 8px;
+      position: relative;
+      bottom: -1px;
+      text-align: right;
+      opacity: 0.5;
+    }
+
+    button {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+
+      .button-inner {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    button.selected {
+      opacity: 1;
+      background: map-get($colors, secondary);
+    }
+
+    button.outline-btn {
+      border: 3px solid map-get($colors, secondary);
+      background: white;
+      border-radius: 8px;
+    }
+  }
+
+  ion-card.card.order-header {
+    h3 {
+      margin: 0 !important;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 25px 0 10px;
+    }
+  }
+
+  .connector-container {
+    width: 100%;
+    height: 30px;
+    // position: absolute;
+    // margin-top: -20px;
+    // z-index: -1;
+    display: flex;
+    justify-content: center;
+
+    .connector {
+      width: 1px;
+      height: 30px;
+      background: map-get($colors, dark);
+      display: block;
+    }
+  }
+
+  .hidden-connector {
+    position: absolute;
+    margin-top: -20px;
+    z-index: -1;
+  }
+}

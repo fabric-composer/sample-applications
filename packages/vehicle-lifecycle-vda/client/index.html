@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Blockchain - VDA</title>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Opta Sample Data" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+
+  <link rel="stylesheet" href="less/stylesheets/assets/stylesheets/colors.css">
+  <link rel="stylesheet" href="less/stylesheets/assets/stylesheets/common.css">
+  <link rel="stylesheet" href="assets/stylesheets/fonts.css">
+
+  <link rel="stylesheet" href="less/stylesheets/app/directives/header/header.css">
+  <link rel="stylesheet" href="less/stylesheets/app/directives/blockchain-view/blockchain-view.css">
+  <link rel="stylesheet" href="less/stylesheets/app/directives/new-block-alert/new-block-alert.css">
+  <link rel="stylesheet" href="less/stylesheets/app/directives/recent-transaction-table/recent-transaction-table.css">
+  <link rel="stylesheet" href="less/stylesheets/app/directives/suspicious-vehicles-table/suspicious-vehicles-table.css">
+
+
+  <link rel="stylesheet" href="less/stylesheets/app/views/dashboard/dashboard.css">
+  <link rel="stylesheet" href="less/stylesheets/app/views/suspicious_vehicles/suspicious_vehicles.css">
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-websocket/dist/angular-websocket.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+
+  <script src="app/app.js"></script>
+
+  <script src="app/directives/header/header.directive.js"></script>
+  <script src="app/directives/blockchain-view/blockchain-view.directive.js"></script>
+  <script src="app/directives/new-block-alert/new-block-alert.directive.js"></script>
+  <script src="app/directives/recent-transaction-table/recent-transaction-table.directive.js"></script>
+  <script src="app/directives/suspicious-vehicles-table/suspicious-vehicles-table.directive.js"></script>
+
+  <script src="app/views/dashboard/dashboard.controller.js"></script>
+  <script src="app/views/suspicious_vehicles/suspicious_vehicles.controller.js"></script>
+
+
+</head>
+
+<body ng-app="bc-vda" ng-controller="AppCtrl">
+  <bc-vda-header></bc-vda-header>
+  <div ui-view="" style="height: calc(100% - 163px);"></div>
+</body>
+
+</html>

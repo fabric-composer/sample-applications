@@ -1,0 +1,190 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-man-dashboard {
+  width: 100%;
+  margin: 42px 52px;
+
+  h1 {
+    margin: 0 0 60px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      align-items: center;
+
+      input {
+        height: 33px;
+        width: 315px;
+        margin-right: 23px;
+        background-image: url('../../../../../assets/images/search.svg');
+        background-repeat: no-repeat;
+        background-position: 15px center;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      img {
+        height: 36px;
+        width: 36px;
+      }
+    }
+  }
+
+  h5 {
+    margin: 48px 0 30px 0;
+  }
+
+  .bc-man-production {
+    margin-left: -10px;
+    display: flex;
+    align-items: flex-start;
+    height: 470px;
+
+    @keyframes slideInFromLeft {
+      0% {
+        width: 0;
+
+      }
+      100% {
+        width: 240px;
+      }
+    }
+
+    .card {
+      animation: 0.6s ease-out 0s 1 slideInFromLeft;
+      overflow: hidden;
+      margin-right: 20px;
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      h5 {
+        margin: 0 0 3px 0;
+      }
+
+      p:first-of-type {
+        margin: 12px 0 8px;
+      }
+
+      p {
+        margin: 8px 0;
+      }
+
+      li {
+        padding: 1px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .swatch {
+        background: red;
+        width: 68px;
+        height: 86px;
+        border-radius: 5px;
+      }
+
+      .orange {
+        background-image: linear-gradient(-180deg, #ffa047 0%, #d97122 100%);
+      }
+
+      .red {
+        background-image: linear-gradient(-180deg, #f5515f 0%, #9f031b 100%);
+      }
+
+      .purple {
+        background-image: linear-gradient(-134deg, #3023ae 0%, #c96dd8 100%);
+      }
+
+      .green {
+        background-image: linear-gradient(-180deg, #b4ed50 0%, #429321 100%);
+      }
+
+      .blue {
+        background-image: linear-gradient(-180deg, #51f5eb 0%, #03939f 100%);
+      }
+
+      .grape {
+        background-image: linear-gradient(-134deg, #ae2358 0%, #c96dd8 100%);
+      }
+    }
+
+    .card-manufacture {
+      height: 162px;
+      margin: 10px 0 0 0;
+
+      .btn {
+        margin-top: 38px;
+      }
+    }
+
+    .card-delivery {
+      height: 68px;
+      margin: 10px 0 0 0;
+    }
+
+    .status {
+      span {
+        margin-left: 35px;
+      }
+
+      .date {
+        margin-left: 5px;
+      }
+    }
+
+    .status::before {
+      content: '';
+      border-radius: 5px;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      margin-top: 5px;
+    }
+
+    .status-green::before {
+      background: @green;
+    }
+
+    .status-yellow::before {
+      background: @yellow;
+    }
+
+    .status-red::before {
+      background: @red;
+    }
+  }
+
+  .bc-man-overview {
+    h5 {
+      display: flex;
+      align-items: center;
+
+      .btn {
+        margin: 0 5px;
+      }
+
+      .btn-secondary {
+        margin-right: 20px;
+      }
+
+      .btn:first-of-type {
+        margin-left: 40px;
+      }
+    }
+
+    .graphs {
+      display: flex;
+
+      img {
+        margin: -20px 0 0 -40px;
+      }
+
+      img:first-of-type {
+        margin-left: -30px;
+      }
+    }
+  }
+}

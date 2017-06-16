@@ -1,0 +1,121 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-vda-header {
+  background-color: @dark;
+  height: 163px;
+  padding: 26px 125px 0px 139px;
+
+  .bc-vda-logo {
+    display: inline-block;
+
+    p {
+      padding-left: 15px;
+      font-size: 15px;
+      display: inline-block;
+    }
+    img {
+      display: inline-block;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .bc-vda-header-search {
+    display: inline-block;
+    float: right;
+
+    .bc-vda-header-search-bar {
+      border-radius: 29px;
+      width: 316px;
+      border: 1px solid #434343;
+      background: @dark-grey;
+      height: 33px;
+      line-height: 33px;
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 11px;
+
+      input {
+        border: none;
+        height: 31px;
+        background: @dark-grey;
+        font-size: 15px;
+      }
+
+      img.search {
+        margin-left: 18px;
+        vertical-align: middle;
+        margin-right: 8px;
+
+      }
+    }
+    img.user {
+      display: inline-block;
+    }
+  }
+
+  .bc-vda-header-stats-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 93px;
+    margin-top: 10px;
+
+    .bc-vda-stats-item {
+      padding: 17px;
+      border-bottom: solid 3px @dark;
+
+      p.bc-vda-stats-item-header {
+        opacity: 0.5;
+      }
+      p.bc-vda-stats-item-value {
+        font-size: 22px;
+        font-family: 'WorkSans-Light';
+        margin-top: 5px;
+        display: inline-block;
+      }
+      img.bc-vda-stats-item-arrow {
+        display: inline-block;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 5px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: @dark-grey;
+        border-bottom: solid 3px @white;
+      }
+    }
+
+    .active {
+      background-color: @dark-grey;
+      border-bottom: solid 3px @white;
+    }
+
+    .bc-vda-stats-filter {
+      border-left: 1px solid #434343;
+      height: 49px;
+      margin: 17px;
+      display: flex;
+      align-items: center;
+
+      span.bc-vda-week {
+        color: @blue;
+      }
+      p {
+        display: inline-block;
+        padding-left: 44px;
+        text-align: center;
+      }
+      img {
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+<bc-man-sidebar></bc-man-sidebar>
+
+<div class="bc-man-dashboard">
+  <h1>
+    Dashboard
+    <div class="search">
+      <input type="text" name="search" placeholder="Search Arium"></input>
+      <img src="../../../assets/images/paul.png" alt="Profile">
+    </div>
+  </h1>
+
+  <div>
+    <h5>Currently In Production</h5>
+
+    <div class="bc-man-production">
+      <div ng-repeat="order in orders | orderBy : '-placed' | limitTo : 5">
+        <div class="card">
+          <div class="card-block">
+            <div class="card-header">
+              <div>
+                <h5>Order</h5>
+                <h3><strong>Arium</strong> {{order.car.name}}</h3>
+
+                <p style="margin-bottom: 5px;">{{order.placed | date : 'dd MMM yyyy'}}</p>
+                <p style="margin: 0 0 5px;">{{order.car.serial}}</p>
+              </div>
+
+              <div class="swatch" ng-class="{'orange': order.car.colour === 'sunburst orange', 'red': order.car.colour === 'inferno red', 'purple': order.car.colour === 'royal purple', 'green': order.car.colour === 'alpine green', 'blue': order.car.colour === 'statement blue', 'grape': order.car.colour === 'vibrant grape'}"></div>
+            </div>
+
+            <p ng-if="order.status === statuses[0]" class="status status-yellow">
+              <span class="fade">Order Received</span>
+            </p>
+            <p ng-if="order.status !== statuses[0] && order.status !== statuses[4]" class="status status-yellow">
+              <span class="fade">Incomplete</span>
+            </p>
+            <p ng-if="order.status === statuses[4]" class="status status-green">
+              <span class="fade">Complete</span>
+            </p>
+          </div>
+
+          <hr ng-if="order.manufacture" />
+
+          <div class="card-block" ng-if="order.manufacture">
+            <h5 class="card-title">Manufacture</h5>
+
+            <ul>
+              <li class="status" ng-class="order.manufacture.chassis ? 'status-green' : 'status-red'">
+                <span>Chassis</span>
+                <span class="date fade">{{order.manufacture.chassis | relativeDate : order.placed}}</span>
+              </li>
+              <li class="status" ng-class="order.manufacture.vinIssue ? 'status-green' : 'status-red'">
+                <span>VIN Issue</span>
+                <span class="date fade">{{order.manufacture.vinIssue | relativeDate : order.placed}}</span>
+              </li>
+              <li class="status" ng-class="order.manufacture.vinPrinting ? 'status-green' : 'status-red'">
+                <span>Owner Assigned</span>
+                <span class="date fade">{{order.manufacture.vinPrinting | relativeDate : order.placed}}</span>
+              </li>
+              <li class="status" ng-class="order.manufacture.interior ? 'status-green' : 'status-red'">
+                <span>Interior</span>
+                <span class="date fade">{{order.manufacture.interior | relativeDate : order.placed}}</span>
+              </li>
+              <li class="status" ng-class="order.manufacture.paint ? 'status-green' : 'status-red'">
+                <span>Paint</span>
+                <span class="date fade">{{order.manufacture.paint | relativeDate : order.placed}}</span>
+              </li>
+            </ul>
+          </div>
+
+          <hr ng-if="order.delivery" />
+
+          <div ng-if="order.delivery" class="card-block">
+            <h5 class="card-title">Delivery</h5>
+
+            <ul>
+              <li class="status" ng-class="order.delivery.shipping ? 'status-green' : 'status-red'">
+                <span>Shipping</span>
+                <span class="date fade">{{order.delivery.shipping | relativeDate : order.placed}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card card-secondary card-manufacture" ng-if="!order.manufacture">
+          <div class="card-block">
+            <h5 class="card-title">Manufacture</h5>
+
+            <button class="btn btn-primary" ng-click="start(order)">Start Manufacture</button>
+          </div>
+        </div>
+
+        <div class="card card-secondary card-delivery" ng-if="!order.delivery">
+          <div class="card-block">
+            <h5 class="card-title">Delivery</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="bc-man-overview">
+      <h5>
+        Production Overview
+        <button class="btn btn-secondary">Daily</button>
+        <button class="btn fade">Weekly</button>
+        <button class="btn fade">Monthly</button>
+      </h5>
+
+      <div class="graphs">
+        <img src="../../../assets/images/Graph 1.svg" alt="Cars Produced">
+        <img src="../../../assets/images/Graph 2.svg" alt="Queued Drills">
+        <img src="../../../assets/images/Graph 3.svg" alt="Complete Stops">
+      </div>
+    </div>
+  </div>
+</div>

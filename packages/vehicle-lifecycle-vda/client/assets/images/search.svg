@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="VDA-Desktop-Scratch-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="VDA_1" transform="translate(-955.000000, -36.000000)" fill="#FFFFFF">
+            <g id="Group-2" transform="translate(955.000000, 36.000000)">
+                <polygon id="Fill-2" points="10.181884 12.364301 12.363995 10.18219 16.0006103 13.8188052 13.8184992 16.0009163"></polygon>
+                <path d="M12,6 C12,2.68599987 9.31400012,0 6,0 C2.68599987,0 0,2.68599987 0,6 C0,9.31400012 2.68599987,12 6,12 C9.31400012,12 12,9.31400012 12,6 Z M6,10 C3.79399991,10 2,8.20600032 2,6 C2,3.79399967 3.79399991,2 6,2 C8.20600032,2 10,3.79399991 10,6 C10,8.20600032 8.20600032,10 6,10 Z" id="Fill-3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

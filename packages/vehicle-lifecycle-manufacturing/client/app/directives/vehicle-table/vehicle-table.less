@@ -1,0 +1,43 @@
+.bc-inventory-vehicles {
+	font-size: 0.9em;
+	.bc-inventory-vehicles-pagination {
+		display: flex;
+		font-size: 0.8em;
+		justify-content: space-between;
+		padding: 10px 12px 6px;
+		div {
+			display: inline-block;
+		}
+	}
+	table {
+		width: 100%;
+		thead {
+			tr {
+				font-size: 0.8em;
+				th {
+					text-transform: uppercase;
+					text-align: left;
+					padding: 12px 4px 8px;
+					cursor: pointer;
+					i {
+						margin-left: 10px;
+						opacity: 0.1;
+					}
+				}
+				th:hover i {
+					opacity: 0.6;
+				}
+				th i.active {
+					opacity: 1;
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					padding: 12px 4px 6px;
+				}
+			}
+		}
+	}
+}

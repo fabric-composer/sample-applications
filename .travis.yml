@@ -3,12 +3,16 @@ node_js:
 - '6'
 dist: trusty
 before_install: |
-    set -ev
-    set -o pipefail
-    npm install -g npm@4
-    npm install -g @alrra/travis-scripts
-
+    date
+    ./.travis/before-install.sh
+    date
 script: ./.travis/script.sh
+deploy:
+    provider: script
+    script: ./.travis/deploy.sh
+    skip_cleanup: true
+    on:
+        all_branches: true
 after_failure: |
     tail -n +1 -- /home/travis/.npm/_logs/*-debug.log
 sudo: required

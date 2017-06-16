@@ -1,0 +1,25 @@
+{
+  "name": "vehicle-lifecycle-manufacturer",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Vehicle Lifecycle - A manufacturers view",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "node server/app.js"
+  },
+  "author": "Hyperledger Composer",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cfenv": "^1.0.4",
+    "config": "^1.26.1",
+    "express": "^4.15.2",
+    "express-less": "^0.1.0",
+    "request": "^2.81.0",
+    "ws": "^2.3.1"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0"
+  }
+}

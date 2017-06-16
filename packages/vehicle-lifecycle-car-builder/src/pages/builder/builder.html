@@ -1,0 +1,160 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-card class="margin-card">
+    <h3>Car</h3>
+    <h2><strong>Arium</strong> {{car.name}}</h2>
+    <div class="car-details">
+      <p class="opaque">
+        5 Door, All Wheel Drive, 90kw
+      </p>
+      <p>
+        £29,900
+      </p>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'trim'">
+    <h3 class="car-option" (click)="open('trim')">
+      <img [hidden]="states['trim']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['trim']" src="assets/circle_tick.svg">
+      Trim
+      <span class="car-option-selected">{{states['trim']}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('trim', 'standard')">
+        <div class="option-description">
+          <h2>Standard</h2>
+          <p>
+            A simple but elegant finishing trim for your Arium.
+          </p>
+        </div>
+        <ion-badge [hidden]="states['trim'] === 'standard'" item-right color="dark">Free</ion-badge>
+        <ion-badge [hidden]="states['trim'] !== 'standard'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('trim', 'executive')">
+        <div class="option-description">
+          <h2>Executive</h2>
+          <p>
+            Sleek and aerodynamic tweaks to stand above the crowd.
+          </p>
+        </div>
+        <ion-badge [hidden]="states['trim'] === 'executive'" item-right color="dark">+£450</ion-badge>
+        <ion-badge [hidden]="states['trim'] !== 'executive'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'colour'">
+    <h3 class="car-option" (click)="open('colour')">
+      <img [hidden]="states['colour']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['colour']" src="assets/circle_tick.svg">
+      Colour
+      <span class="car-option-selected">{{states['colour']}}</span>
+    </h3>
+
+    <div class="option-colours">
+      <div class="option-colour" (click)="select('colour', 'sunburst orange')" [ngClass]="{selected: states['colour'] === 'sunburst orange'}">
+        <div class="option-colour-preview sunburst"></div>
+        <h4>Sunburst Orange</h4>
+      </div>
+
+      <div class="option-colour" (click)="select('colour', 'inferno red')" [ngClass]="{selected: states['colour'] === 'inferno red'}">
+        <div class="option-colour-preview red"></div>
+        <h4>Inferno Red</h4>
+      </div>
+
+      <div class="option-colour" (click)="select('colour', 'royal purple')" [ngClass]="{selected: states['colour'] === 'royal purple'}">
+        <div class="option-colour-preview purple"></div>
+        <h4>Royal Purple</h4>
+      </div>
+
+      <div class="option-colour" (click)="select('colour', 'alpine green')" [ngClass]="{selected: states['colour'] === 'alpine green'}">
+        <div class="option-colour-preview green"></div>
+        <h4>Alpine Green</h4>
+      </div>
+
+      <div class="option-colour" (click)="select('colour', 'statement blue')" [ngClass]="{selected: states['colour'] === 'statement blue'}">
+        <div class="option-colour-preview blue"></div>
+        <h4>Statement Blue</h4>
+      </div>
+
+      <div class="option-colour" (click)="select('colour', 'vibrant grape')" [ngClass]="{selected: states['colour'] === 'vibrant grape'}">
+        <div class="option-colour-preview grape"></div>
+        <h4>Vibrant Grape</h4>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'interior'">
+    <h3 class="car-option" (click)="open('interior')">
+      <img [hidden]="states['interior']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['interior']" src="assets/circle_tick.svg">
+      Interior
+      <span class="car-option-selected">{{states['interior']}}</span>
+    </h3>
+
+    <div class="option-interiors">
+      <div class="option-interior" (click)="select('interior', 'red rum')" [ngClass]="{selected: states['interior'] === 'red rum'}">
+        <div class="option-interior-preview red"></div>
+        <h4>Red Rum</h4>
+      </div>
+
+      <div class="option-interior" (click)="select('interior', 'papyrus')" [ngClass]="{selected: states['interior'] === 'papyrus'}">
+        <div class="option-interior-preview papyrus"></div>
+        <h4>Papyrus</h4>
+      </div>
+
+      <div class="option-interior" (click)="select('interior', 'rotor grey')" [ngClass]="{selected: states['interior'] === 'rotor grey'}">
+        <div class="option-interior-preview grey"></div>
+        <h4>Rotor grey</h4>
+      </div>
+
+      <div class="option-interior" (click)="select('interior', 'noble brown')" [ngClass]="{selected: states['interior'] === 'noble brown'}">
+        <div class="option-interior-preview brown"></div>
+        <h4>Noble Brown</h4>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'extras'">
+    <h3 class="car-option" (click)="open('extras')">
+      <img [hidden]="states['extras']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['extras']" src="assets/circle_tick.svg">
+      Extras
+      <span class="car-option-selected">{{getExtras()}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('extras', 'extended warranty')">
+        <div class="option-description">
+          <h2>Extended Warranty</h2>
+          <p>
+            Total piece of mind for the perfect Arium motoring experience.
+          </p>
+        </div>
+        <ion-badge [hidden]="containsExtra('extended warranty')" item-right color="dark">+£150</ion-badge>
+        <ion-badge [hidden]="!containsExtra('extended warranty')" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('extras', 'tinted windows')">
+        <div class="option-description">
+          <h2>Tinted Windows</h2>
+          <p>
+            Stylish privacy and protection from the sun's rays.
+          </p>
+        </div>
+        <ion-badge [hidden]="containsExtra('tinted windows')" item-right color="dark">+£450</ion-badge>
+        <ion-badge [hidden]="!containsExtra('tinted windows')" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card (click)="purchase()">
+    <button ion-button color="secondary">Purchase and Build <img src="assets/arrow_right.svg"></button>
+  </ion-card>
+</ion-content>

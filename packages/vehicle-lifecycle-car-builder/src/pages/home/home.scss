@@ -1,0 +1,25 @@
+page-home {
+  .map {
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    top: 0;
+  }
+
+  .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('../assets/background.png');
+
+    .logo {
+      height: 65px;
+    }
+  }
+
+  ion-content.content > .scroll-content {
+    padding: 0 !important;
+  }
+}

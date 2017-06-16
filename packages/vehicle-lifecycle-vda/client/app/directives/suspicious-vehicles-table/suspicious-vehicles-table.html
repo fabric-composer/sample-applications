@@ -1,0 +1,54 @@
+<div class="bc-vda-suspicious-vehicles-table">
+  <div class="bc-vda-suspicious-vehicles-table-header">
+    <p class="bc-vda-suspicious-vehicles-table-header-text">SUSPICIOUS VEHICLES</p>
+    <p class="bc-vda-suspicious-vehicles-table-filter"><span class="bc-vda-last">LAST</span>
+      <span class="bc-vda-24-hours active" ngClick="showLast('24_hours')">24 HOURS</span> /
+      <span class="bc-vda-week" ngClick="showLast('week')">WEEK</span> /
+      <span class="bc-vda-month" ngClick="showLast('month')">MONTH</span>
+    </p>
+  </div>
+  <table cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>VIN</th>
+        <th>Notification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat-start="v in vehicles track by $index" ng-click="toggleEntries($index)" class="bc-vda-suspicious-vehicle-row bc-vda-suspicious-vehicle-row-{{$index}} hover">
+        <td>{{ v.vehicle }}</td>
+        <td>{{ v.vin_number }}</td>
+        <td>{{ v.notification }}</td>
+      </tr>
+      <tr ng-repeat-end class="bc-vda-transaction-details-table-container bc-vda-transaction-details-table-container-{{ $index }}">
+        <td colspan="3" class="bc-vda-filler">
+          <div class="bc-vda-transaction-details">
+            <table class="inner" cellpadding="0" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Transaction</th>
+                  <th>Car Owner</th>
+                  <th>
+                    <button class="bc-vda-contact-owner">Contact Current Owner</button>
+                    <img src="assets/images/cross.png" class="bc-vda-cross" ng-click="toggleEntries($index)"/>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="td in v.transactionData" ng-click="toggleEntries($index)" class="hover">
+                  <td>{{ td.timestamp | date:'medium'}}</td>
+                  <td>{{ td.transaction }}</td>
+                  <td>{{ td.car_owner }}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

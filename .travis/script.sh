@@ -4,6 +4,7 @@
 set -ev
 set -o pipefail
 
+
 # Grab the root (parent) directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 ME=`basename "$0"`
@@ -44,5 +45,8 @@ cd "${DIR}"/fabric-tools
 ./stopFabric.sh
 ./teardownFabric.sh
 
+# Build the car builder application.
+cd "${DIR}/packages/vehicle-lifecycle-car-builder"
+npm run build
 
 exit 0

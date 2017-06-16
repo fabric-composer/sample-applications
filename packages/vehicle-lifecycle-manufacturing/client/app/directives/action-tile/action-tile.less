@@ -1,0 +1,31 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+.bc-man-action-tile {
+	box-shadow: 0px 2px 4px 0px #1c1c1c;
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+	font-size: 0.8em;
+	margin-left: 10px;
+	.bc-man-action-tile-details {
+		background-color: @blue-dark;
+		padding: 24px 24px 6px;
+		h3 {
+			font-size: 1.3em;
+			font-weight: normal;
+		}
+		p {
+			color: @font-faint;
+		}
+	}
+	.bc-man-action-tile-action {
+		background-color: @blue-med;
+		padding: 12px;
+		button {
+			margin-top: 0px;
+		}
+	}
+}
+
+.bc-man-action-tile:first-child {
+	margin-left: 0px;
+}

@@ -1,7 +1,6 @@
 
 'use strict'
 var chalk = require('chalk');
-var shell = require('shelljs');
 var fs  = require('fs');
 var path= require('path');
 var pretty = require('prettyjson');
