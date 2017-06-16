@@ -5,6 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "node info",
+    "preinstall" : "npm install -g cordova",
     "postinstall": "npm run pkgcheck && npm run bootstrap",
     "bootstrap": "git submodule init && git submodule update && lerna bootstrap",
     "test": "lerna run test",
