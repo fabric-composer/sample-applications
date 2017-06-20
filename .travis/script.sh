@@ -50,6 +50,7 @@ cd "${DIR}/packages/vehicle-lifecycle-car-builder"
 npm run build
 
 # Build the install.sh script for vehicle-lifecycle quick install
-./packages/vehicle-lifecycle/build.sh
+cd "${DIR}/packages/vehicle-lifecycle"
+./build.sh
 
 exit 0
