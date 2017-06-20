@@ -59,9 +59,9 @@ docker pull hyperledger/fabric-orderer:x86_64-1.0.0-beta
 docker pull hyperledger/fabric-couchdb:x86_64-1.0.0-beta
 docker pull hyperledger/composer-cli:${COMPOSER_VERSION}
 docker pull hyperledger/composer-rest-server:${COMPOSER_VERSION}
-docker pull hyperledger/vehicle-lifecycle-vda:unstable
-docker pull hyperledger/vehicle-lifecycle-manufacturing:unstable
-docker pull hyperledger/vehicle-lifecycle-car-builder:unstable
+docker pull hyperledger/vehicle-lifecycle-vda:latest
+docker pull hyperledger/vehicle-lifecycle-manufacturing:latest
+docker pull hyperledger/vehicle-lifecycle-car-builder:latest
 docker pull nodered/node-red-docker
 
 # Kill any other Docker containers.

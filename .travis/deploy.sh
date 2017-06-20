@@ -62,13 +62,22 @@ if [ -z "${TRAVIS_TAG}" ]; then
     # Build, tag, and publish Docker images.
     for i in ${DOCKER_IMAGES}; do
 
-        # Build the image and tag it with the version and unstable.
+        # Quick hack to push the latest tag
+        # Build the image and tag it with the version and latest.
         docker build --build-arg VERSION=${VERSION} -t hyperledger/${i}:${VERSION} ${DIR}/packages/${i}
-        docker tag hyperledger/${i}:${VERSION} hyperledger/${i}:unstable
+        docker tag hyperledger/${i}:${VERSION} hyperledger/${i}:latest
 
-        # Push both the version and unstable.
+        # Push both the version and latest.
         docker push hyperledger/${i}:${VERSION}
-        docker push hyperledger/${i}:unstable
+        docker push hyperledger/${i}:latest
+        
+        # # Build the image and tag it with the version and unstable.
+        # docker build --build-arg VERSION=${VERSION} -t hyperledger/${i}:${VERSION} ${DIR}/packages/${i}
+        # docker tag hyperledger/${i}:${VERSION} hyperledger/${i}:unstable
+
+        # # Push both the version and unstable.
+        # docker push hyperledger/${i}:${VERSION}
+        # docker push hyperledger/${i}:unstable
 
     done
 
