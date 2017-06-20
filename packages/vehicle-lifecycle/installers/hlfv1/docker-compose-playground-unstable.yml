@@ -10,10 +10,10 @@ services:
     environment:
       COMPOSER_CONFIG: >
        {
-          "defaultConnectionProfile": "hlfabric",
+          "defaultConnectionProfile": "hlfv1",
           "connectionProfiles": {
-            "hlfabric": {
-              "name": "hlfabric",
+            "hlfv1": {
+              "name": "hlfv1",
               "description": "Hyperledger Fabric v1.0",
               "type": "hlfv1",
               "keyValStore": "/home/composer/.hfc-key-store",

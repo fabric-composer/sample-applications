@@ -51,16 +51,13 @@ tail -n +${PAYLOAD_START} "${SOURCE}" | tar -xzf -
 
 docker pull hyperledger/composer-cli
 docker pull hyperledger/composer-rest-server
-docker pull hyperledger/vehicle-lifecycle-vda:unstable
-docker pull hyperledger/vehicle-lifecycle-manufacturing:unstable
-docker pull hyperledger/vehicle-lifecycle-car-builder:unstable
+docker pull hyperledger/vehicle-lifecycle-vda
+docker pull hyperledger/vehicle-lifecycle-manufacturing
+docker pull hyperledger/vehicle-lifecycle-car-builder
 docker pull nodered/node-red-docker
-
 
 # stop all the docker containers
 stop
-
-
 
 # run the fabric-dev-scripts to get a running fabric
 ./fabric-dev-servers/downloadFabric.sh
@@ -73,18 +70,22 @@ cd fabric-dev-servers/fabric-scripts/hlfv1/composer/creds
 docker exec composer mkdir /home/composer/.hfc-key-store
 tar -cv * | docker exec -i composer tar x -C /home/composer/.hfc-key-store
 
-
+# Copy the creds to somewhere more convenient
 cp -r ../creds ../../../../../.hfc-key-store
 
+# Change to previous directory
 cd -
+
 # Wait for playground to start
 sleep 5
 
+# Delete connection profile directory
 rm -rf ~/.composer-connection-profiles/hlfv1/*
 
-# create a composer connection profile
+# Create a composer connection profile directory
 mkdir -p ~/.composer-connection-profiles/hlfv1
 
+# Create connection profile
 cat << EOF > ~/.composer-connection-profiles/hlfv1/connection.json
 {
     "name": "hlfv1",
