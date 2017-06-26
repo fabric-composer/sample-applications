@@ -152,6 +152,7 @@ docker run \
   --name node-red \
   -v $(pwd)/.composer-connection-profiles:/usr/src/node-red/.composer-connection-profiles \
   -v $(pwd)/.hfc-key-store:/usr/src/node-red/.hfc-key-store \
+  -v $(pwd)/.hfc-key-store:/home/composer/.hfc-key-store \
   -e COMPOSER_BASE_URL=http://rest:3000 \
   -v $(pwd)/flows.json:/data/flows.json \
   -p 1880:1880 \
@@ -159,12 +160,15 @@ docker run \
 
 # Wait for the applications and Node-RED to start and initialize.
 sleep 10
+
 # Install custom nodes
 docker exec \
   -e NPM_CONFIG_LOGLEVEL=warn \
   node-red \
   bash -c "cd /data && npm install node-red-contrib-composer"
 docker restart node-red
+
+# Wait for the applications and Node-RED to start and initialize.
 sleep 10
 
 # Start the VDA application.
