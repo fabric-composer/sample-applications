@@ -63,15 +63,9 @@ stop
 ./fabric-dev-servers/downloadFabric.sh
 ./fabric-dev-servers/startFabric.sh
 
-# Delete connection profile directory
-rm -rf ~/.composer-connection-profiles/hlfv1/*
-
-# Create a composer connection profile directory
-mkdir -p ~/.composer-connection-profiles/hlfv1
-
-# Create connection profile
-cat << EOF > ~/.composer-connection-profiles/hlfv1/connection.json
-{
+# Create the environment variables with the connection profile in.
+mkdir -p .composer-connection-profiles/hlfv1 
+echo '{
     "name": "hlfv1",
     "description": "Hyperledger Fabric v1.0",
     "type": "hlfv1",
@@ -91,8 +85,7 @@ cat << EOF > ~/.composer-connection-profiles/hlfv1/connection.json
             "eventURL": "grpc://peer0.org1.example.com:7053"
         }
     ]
-}
-EOF
+}' > .composer-connection-profiles/hlfv1/connection.json
 
 # Start all composer
 docker-compose -p composer -f docker-compose-playground{{ENV}}.yml up -d
@@ -110,13 +103,17 @@ cd -
 # Wait for playground to start
 sleep 5
 
+# Doctor the permissions on the files so Docker can pointlessly overwrite them.
+chmod 666 .composer-connection-profiles/hlfv1/connection.json
+chmod 777 .hfc-key-store
+chmod 666 .hfc-key-store/*
 
 # Deploy the business network archive.
 docker run \
   --rm \
   --network composer_default \
-  -v $(pwd):/home/composer \
-  -v ~/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
+  -v $(pwd)/vehicle-lifecycle-network.bna:/home/composer/vehicle-lifecycle-network.bna \
+  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.hfc-key-store:/home/composer/.hfc-key-store \
   hyperledger/composer-cli \
   composer network deploy -p hlfv1 -a vehicle-lifecycle-network.bna -i PeerAdmin -s whatever
@@ -125,8 +122,8 @@ docker run \
 docker run \
   --rm \
   --network composer_default \
-  -v ~/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd):/home/composer \
+  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
+  -v $(pwd)/.hfc-key-store:/home/composer/.hfc-key-store \
   hyperledger/composer-cli \
   composer transaction submit -p hlfv1 -n org-acme-biznet -i admin -s adminpw -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
 
@@ -135,7 +132,7 @@ docker run \
   -d \
   --network composer_default \
   --name rest \
-  -v ~/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
+  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.hfc-key-store:/home/composer/.hfc-key-store \
   -e COMPOSER_CONNECTION_PROFILE=hlfv1 \
   -e COMPOSER_BUSINESS_NETWORK=org-acme-biznet \
@@ -153,9 +150,8 @@ docker run \
   -d \
   --network composer_default \
   --name node-red \
-  -v ~/.composer-connection-profiles:/usr/src/node-red/.composer-connection-profiles \
+  -v $(pwd)/.composer-connection-profiles:/usr/src/node-red/.composer-connection-profiles \
   -v $(pwd)/.hfc-key-store:/usr/src/node-red/.hfc-key-store \
-  -v $(pwd):/home/composer \
   -e COMPOSER_BASE_URL=http://rest:3000 \
   -v $(pwd)/flows.json:/data/flows.json \
   -p 1880:1880 \
@@ -164,7 +160,10 @@ docker run \
 # Wait for the applications and Node-RED to start and initialize.
 sleep 10
 # Install custom nodes
-docker exec node-red bash -c "cd /data && npm install node-red-contrib-composer"
+docker exec \
+  -e NPM_CONFIG_LOGLEVEL=warn \
+  node-red \
+  bash -c "cd /data && npm install node-red-contrib-composer"
 docker restart node-red
 sleep 10
 
@@ -205,13 +204,18 @@ hyperledger/vehicle-lifecycle-car-builder
 ##docker ps -aq | xargs docker rm -f
 
 # Open the playground in a web browser.
+URLS="http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100"
 case "$(uname)" in
-"Darwin") open http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100
+"Darwin") open ${URLS}
           ;;
 "Linux")  if [ -n "$BROWSER" ] ; then
 	       	        $BROWSER http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100
-	        elif    which xdg-open > /dev/null ; then
-	                xdg-open http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100
+	        elif    which x-www-browser > /dev/null ; then
+                  nohup x-www-browser ${URLS} < /dev/null > /dev/null 2>&1 &
+          elif    which xdg-open > /dev/null ; then
+                  for URL in ${URLS} ; do 
+                          xdg-open ${URL}
+	                done
           elif  	which gnome-open > /dev/null ; then
 	                gnome-open http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100
           #elif other types blah blah
@@ -225,3 +229,4 @@ esac
 
 # Exit; this is required as the payload immediately follows.
 exit 0
+
