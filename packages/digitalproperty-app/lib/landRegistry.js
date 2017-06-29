@@ -139,7 +139,7 @@ class LandRegistry {
         let factory = this.businessNetworkDefinition.getFactory();
 
         LOG.info('LandRegistry:_bootstrapTitles', 'Creating a person');
-        owner = factory.newInstance('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
+        owner = factory.newResource('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
         owner.firstName = 'Fred';
         owner.lastName = 'Bloggs';
 
@@ -147,12 +147,12 @@ class LandRegistry {
         let ownerRelation = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
 
         LOG.info('LandRegistry:_bootstrapTitles', 'Creating a land title#1');
-        let landTitle1 = factory.newInstance('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
+        let landTitle1 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
         landTitle1.owner = ownerRelation;
         landTitle1.information = 'A nice house in the country';
 
         LOG.info('LandRegistry:_bootstrapTitles', 'Creating a land title#2');
-        let landTitle2 = factory.newInstance('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:6789');
+        let landTitle2 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:6789');
         landTitle2.owner = ownerRelation;
         landTitle2.information = 'A small flat in the city';
 
