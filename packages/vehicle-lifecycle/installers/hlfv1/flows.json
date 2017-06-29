@@ -1,8 +1,46 @@
 [
     {
+        "id": "cffe8c3.a09aa7",
+        "type": "tab",
+        "label": "Main Flow"
+    },
+    {
+        "id": "7c63f9d4.3701e8",
+        "type": "tab",
+        "label": "Query Flow"
+    },
+    {
+        "id": "2fc29e6d.ebbea2",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/placeorder",
+        "wholemsg": "false"
+    },
+    {
+        "id": "9694475c.ed1588",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/updateorderstatus",
+        "wholemsg": "false"
+    },
+    {
+        "id": "a5b5c2ca.76bf2",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/placeorder",
+        "wholemsg": "false"
+    },
+    {
+        "id": "47184e15.1506b",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/updateorderstatus",
+        "wholemsg": "false"
+    },
+    {
         "id": "2a6c9e97.ed1452",
         "type": "websocket in",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "server": "2fc29e6d.ebbea2",
         "client": "",
@@ -18,7 +56,7 @@
     {
         "id": "ac4d8fcd.9a156",
         "type": "websocket out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "server": "2fc29e6d.ebbea2",
         "client": "",
@@ -29,7 +67,7 @@
     {
         "id": "f4fa8de6.9fcef",
         "type": "websocket in",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "server": "9694475c.ed1588",
         "client": "",
@@ -45,7 +83,7 @@
     {
         "id": "ff5f5b2.46ce1a8",
         "type": "websocket out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "server": "9694475c.ed1588",
         "client": "",
@@ -56,7 +94,7 @@
     {
         "id": "aa933049.223d3",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "received UpdateOrderStatus socket msg",
         "active": false,
         "console": "false",
@@ -68,7 +106,7 @@
     {
         "id": "5275527f.00658c",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "parse",
         "func": "msg.payload = JSON.parse(msg.payload);\nmsg.url = context.global.endpoint + '/PlaceOrder'\nreturn msg;\n",
         "outputs": 1,
@@ -85,7 +123,7 @@
     {
         "id": "807e6eab.07092",
         "type": "inject",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "topic": "",
         "payload": "",
@@ -104,7 +142,7 @@
     {
         "id": "7dbb0bba.151b84",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "parse",
         "func": "msg.payload = JSON.parse(msg.payload);\nmsg.payload.$class = 'org.acme.vehicle.lifecycle.manufacturer.UpdateOrderStatus';\nmsg.url = context.global.endpoint + '/UpdateOrderStatus'\nreturn msg;",
         "outputs": 1,
@@ -121,7 +159,7 @@
     {
         "id": "28142f97.a8576",
         "type": "change",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "rules": [
             {
@@ -146,7 +184,7 @@
     {
         "id": "93eaa3d3.d0d73",
         "type": "inject",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "topic": "",
         "payload": "",
@@ -165,7 +203,7 @@
     {
         "id": "a0cac78e.b6ad28",
         "type": "http request",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "setup demo",
         "method": "POST",
         "ret": "obj",
@@ -182,7 +220,7 @@
     {
         "id": "56045274.27d1bc",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "active": true,
         "console": "false",
@@ -194,7 +232,7 @@
     {
         "id": "94d31bc4.1aa258",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "set msg.url",
         "func": "msg.url = context.global.endpoint + '/SetupDemo';\nreturn msg;",
         "outputs": 1,
@@ -210,7 +248,7 @@
     {
         "id": "889546cf.15b658",
         "type": "inject",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "topic": "",
         "payload": "",
@@ -229,7 +267,7 @@
     {
         "id": "e55bf990.42e8d8",
         "type": "http request",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "get orders",
         "method": "GET",
         "ret": "obj",
@@ -246,7 +284,7 @@
     {
         "id": "f500bdd7.1b0b2",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "active": true,
         "console": "false",
@@ -258,7 +296,7 @@
     {
         "id": "94db54d0.bbd8b8",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "set msg.url",
         "func": "msg.url = context.global.endpoint + '/Order';\nreturn msg;",
         "outputs": 1,
@@ -274,7 +312,7 @@
     {
         "id": "1fb9ff07.a2f091",
         "type": "inject",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "topic": "",
         "payload": "",
@@ -293,7 +331,7 @@
     {
         "id": "8f5a0602.d2ea28",
         "type": "http request",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "get vehicles",
         "method": "GET",
         "ret": "obj",
@@ -310,7 +348,7 @@
     {
         "id": "57dd881a.8c82c8",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "active": true,
         "console": "false",
@@ -322,7 +360,7 @@
     {
         "id": "60301aa6.7d7244",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "set msg.url",
         "func": "msg.url = context.global.endpoint + '/Vehicle';\nreturn msg;",
         "outputs": 1,
@@ -338,7 +376,7 @@
     {
         "id": "f50c7191.47685",
         "type": "inject",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "topic": "",
         "payload": "",
@@ -357,7 +395,7 @@
     {
         "id": "60572739.2a1ed8",
         "type": "http request",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "get transactions",
         "method": "GET",
         "ret": "obj",
@@ -374,7 +412,7 @@
     {
         "id": "f6b57772.5ee318",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "active": true,
         "console": "false",
@@ -386,7 +424,7 @@
     {
         "id": "800aaa52.75cbe8",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "set msg.url",
         "func": "msg.url = context.global.endpoint + '/UpdateOrderStatus';\nreturn msg;",
         "outputs": 1,
@@ -402,7 +440,7 @@
     {
         "id": "d547d561.e61a08",
         "type": "switch",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -432,7 +470,7 @@
     {
         "id": "c18c36d2.ce5ad8",
         "type": "websocket out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "server": "2fc29e6d.ebbea2",
         "client": "",
@@ -443,7 +481,7 @@
     {
         "id": "5c92de24.5998f",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "pong",
         "func": "msg.payload = '__pong__';\nreturn msg;",
         "outputs": 1,
@@ -459,7 +497,7 @@
     {
         "id": "294cd88b.68d818",
         "type": "switch",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -489,7 +527,7 @@
     {
         "id": "dfa4f7fa.542418",
         "type": "change",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "rules": [
             {
@@ -514,7 +552,7 @@
     {
         "id": "b6ce9c01.510d6",
         "type": "websocket out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "server": "9694475c.ed1588",
         "client": "",
@@ -525,7 +563,7 @@
     {
         "id": "6e4b1aeb.5cede4",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "pong",
         "func": "msg.payload = '__pong__';\nreturn msg;",
         "outputs": 1,
@@ -541,12 +579,12 @@
     {
         "id": "629bcb73.277b64",
         "type": "hyperledger-composer-in",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "receive event",
-        "connectionProfile": "hlfabric",
-        "businessNetworkIdentifier": "org.acme.biznet",
-        "userID": "admin",
-        "userSecret": "adminpw",
+        "connectionProfile": "hlfv1",
+        "businessNetworkIdentifier": "org-acme-biznet",
+        "userID": "PeerAdmin",
+        "userSecret": "whatever",
         "actionType": "create",
         "x": 127,
         "y": 322,
@@ -560,7 +598,7 @@
     {
         "id": "1b14d03c.abcec",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "event received",
         "active": true,
         "console": "false",
@@ -572,7 +610,7 @@
     {
         "id": "bb20e608.507508",
         "type": "switch",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "",
         "property": "$class",
         "propertyType": "msg",
@@ -605,7 +643,7 @@
     {
         "id": "7b3fc12e.8a17e",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "received PlaceOrder socket msg",
         "active": true,
         "console": "false",
@@ -617,12 +655,12 @@
     {
         "id": "b8542de5.fb094",
         "type": "hyperledger-composer-out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "submit placeorder tx",
-        "connectionProfile": "hlfabric",
-        "businessNetworkIdentifier": "org.acme.biznet",
-        "userID": "admin",
-        "userSecret": "adminpw",
+        "connectionProfile": "hlfv1",
+        "businessNetworkIdentifier": "org-acme-biznet",
+        "userID": "PeerAdmin",
+        "userSecret": "whatever",
         "actionType": "create",
         "x": 874,
         "y": 102,
@@ -631,12 +669,12 @@
     {
         "id": "cecc7dd2.a2f3c",
         "type": "hyperledger-composer-out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "submit update status tx",
-        "connectionProfile": "hlfabric",
-        "businessNetworkIdentifier": "org.acme.biznet",
-        "userID": "admin",
-        "userSecret": "adminpw",
+        "connectionProfile": "hlfv1",
+        "businessNetworkIdentifier": "org-acme-biznet",
+        "userID": "PeerAdmin",
+        "userSecret": "whatever",
         "actionType": "create",
         "x": 910,
         "y": 280,
@@ -645,7 +683,7 @@
     {
         "id": "392c1404.c2d33c",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "parse",
         "func": "eventMsg = {};\neventMsg.payload = {};\neventMsg.payload.orderId = msg.orderId;\neventMsg.payload.vehicleDetails = msg.vehicleDetails;\neventMsg.payload.timestamp = msg.timestamp;\neventMsg.payload.transactionId = msg.eventId.substr(0, msg.eventId.indexOf('#'));\nreturn eventMsg;",
         "outputs": 1,
@@ -661,7 +699,7 @@
     {
         "id": "7b094721.51bcd8",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "parse",
         "func": "eventMsg = {};\neventMsg.payload = {};\neventMsg.payload.order = msg.order;\neventMsg.payload.orderStatus = msg.orderStatus;\neventMsg.payload.timestamp = msg.timestamp;\neventMsg.payload.transactionId = msg.eventId.substr(0, msg.eventId.indexOf('#'));\n\nreturn eventMsg;",
         "outputs": 1,
@@ -677,7 +715,7 @@
     {
         "id": "583e09ae.fba668",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "transaction payload",
         "active": true,
         "console": "false",
@@ -689,7 +727,7 @@
     {
         "id": "126a9a2b.839226",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "create new payload",
         "func": "var order = msg;\nconsole.log('What is the event payload?',order)\ndelete msg._session;\ndelete msg.headers;\ndelete msg.responseUrl;\ndelete msg.statusCode;\n\nmsg.payload = {\n    \"$class\":'org.acme.vehicle.lifecycle.manufacturer.UpdateOrderStatus',\n    \"vin\": \"\",\n    \"v5c\": \"\",\n    \"numberPlate\": \"\",\n    \"order\": order.orderId,\n    \"orderStatus\": \"PLACED\"\n};\n\nmsg.url = context.global.endpoint + '/UpdateOrderStatus'\nreturn msg;",
         "outputs": 1,
@@ -705,7 +743,7 @@
     {
         "id": "dfa0192e.6b5258",
         "type": "debug",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "transaction payload",
         "active": true,
         "console": "false",
@@ -717,12 +755,12 @@
     {
         "id": "3d397781.6f3ee8",
         "type": "hyperledger-composer-out",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "submit update status tx",
-        "connectionProfile": "hlfabric",
-        "businessNetworkIdentifier": "org.acme.biznet",
-        "userID": "admin",
-        "userSecret": "adminpw",
+        "connectionProfile": "hlfv1",
+        "businessNetworkIdentifier": "org-acme-biznet",
+        "userID": "PeerAdmin",
+        "userSecret": "whatever",
         "actionType": "create",
         "x": 854.5,
         "y": 534,
@@ -731,7 +769,7 @@
     {
         "id": "45d0d393.7872fc",
         "type": "function",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "name": "REST API URL Configuration",
         "func": "let something;\nif(msg.payload.trim()){\n    context.global.endpoint = msg.payload.trim();\n}\nelse{\n    context.global.endpoint = \"http://localhost:4000/api\";\n}\nconsole.log('What is context.global.endpoint?',context.global.endpoint);",
         "outputs": 1,
@@ -745,7 +783,7 @@
     {
         "id": "8131e868.6e18d8",
         "type": "exec",
-        "z": "2eb37991.cd6d36",
+        "z": "cffe8c3.a09aa7",
         "command": "echo $COMPOSER_BASE_URL",
         "addpay": false,
         "append": "",
@@ -763,17 +801,66 @@
         ]
     },
     {
-        "id": "2fc29e6d.ebbea2",
-        "type": "websocket-listener",
-        "z": "",
-        "path": "/ws/placeorder",
-        "wholemsg": "false"
+        "id": "1261c5b5.66329a",
+        "type": "inject",
+        "z": "7c63f9d4.3701e8",
+        "name": "",
+        "topic": "",
+        "payload": "{\"$class\": \"org.vda.ScrapAllVehiclesByColour\", \"colour\":\"grey\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 183,
+        "y": 71,
+        "wires": [
+            [
+                "ecc5481a.4abd18"
+            ]
+        ]
     },
     {
-        "id": "9694475c.ed1588",
-        "type": "websocket-listener",
-        "z": "",
-        "path": "/ws/updateorderstatus",
-        "wholemsg": "false"
+        "id": "512c1781.10e118",
+        "type": "debug",
+        "z": "7c63f9d4.3701e8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 380,
+        "y": 150.25,
+        "wires": []
+    },
+    {
+        "id": "ecc5481a.4abd18",
+        "type": "hyperledger-composer-out",
+        "z": "7c63f9d4.3701e8",
+        "name": "ScrapAllVehiclesByColour",
+        "connectionProfile": "hlfv1",
+        "businessNetworkIdentifier": "org-acme-biznet",
+        "userID": "PeerAdmin",
+        "userSecret": "whatever",
+        "actionType": "create",
+        "x": 479,
+        "y": 70.75,
+        "wires": []
+    },
+    {
+        "id": "d8429986.469598",
+        "type": "hyperledger-composer-in",
+        "z": "7c63f9d4.3701e8",
+        "name": "EventReceived",
+        "connectionProfile": "hlfv1",
+        "businessNetworkIdentifier": "org-acme-biznet",
+        "userID": "PeerAdmin",
+        "userSecret": "whatever",
+        "actionType": "create",
+        "x": 190,
+        "y": 149.75,
+        "wires": [
+            [
+                "512c1781.10e118"
+            ]
+        ]
     }
 ]
