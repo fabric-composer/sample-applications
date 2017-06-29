@@ -33,7 +33,7 @@ unzip fabric-dev-servers.zip
 ./startFabric.sh
 ./createComposerProfile.sh
 
-# change into the repo direcoty
+# change into the repo directory
 cd "${DIR}"
 npm install
 cd packages/digitalproperty-app
@@ -48,5 +48,9 @@ cd "${DIR}"/fabric-tools
 # Build the car builder application.
 cd "${DIR}/packages/vehicle-lifecycle-car-builder"
 npm run build
+
+# Build the install.sh script for vehicle-lifecycle quick install
+cd "${DIR}/packages/vehicle-lifecycle"
+./build.sh
 
 exit 0

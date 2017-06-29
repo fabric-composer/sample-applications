@@ -34,17 +34,6 @@ if [[ "${TRAVIS_REPO_SLUG}" != hyperledger* ]]; then
     exit 0
 fi
 
-# are we building the docs?
-if [ "${DOCS}" != "" ]; then
-  if [ -z "${TRAVIS_TAG}" ]; then
-    DOCS="unstable"
-  else
-    DOCS="full"
-  fi
-  ./.travis/deploy_docs.sh
-  exit 0
-fi
-
 
 # Set the GitHub deploy key we will use to publish.
 set-up-ssh --key "$encrypted_c6d9af089ec4_key" \
@@ -72,7 +61,7 @@ if [ -z "${TRAVIS_TAG}" ]; then
 
     # Build, tag, and publish Docker images.
     for i in ${DOCKER_IMAGES}; do
-
+        
         # Build the image and tag it with the version and unstable.
         docker build --build-arg VERSION=${VERSION} -t hyperledger/${i}:${VERSION} ${DIR}/packages/${i}
         docker tag hyperledger/${i}:${VERSION} hyperledger/${i}:unstable
