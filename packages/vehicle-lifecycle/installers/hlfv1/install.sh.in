@@ -49,6 +49,10 @@ PAYLOAD_START=$((PAYLOAD_LINE + 1))
 echo PAYLOAD_START=${PAYLOAD_START}
 tail -n +${PAYLOAD_START} "${SOURCE}" | tar -xzf -
 
+# Ensure sensible permissions on the extracted files.
+find . -type d | xargs chmod a+rx
+find . -type f | xargs chmod a+r
+
 docker pull hyperledger/composer-cli
 docker pull hyperledger/composer-rest-server
 docker pull hyperledger/vehicle-lifecycle-vda
@@ -64,7 +68,7 @@ stop
 ./fabric-dev-servers/startFabric.sh
 
 # Create the environment variables with the connection profile in.
-mkdir -p .composer-connection-profiles/hlfv1 
+mkdir -p .composer-connection-profiles/hlfv1
 echo '{
     "name": "hlfv1",
     "description": "Hyperledger Fabric v1.0",
@@ -104,9 +108,9 @@ cd -
 sleep 5
 
 # Doctor the permissions on the files so Docker can pointlessly overwrite them.
-chmod 666 .composer-connection-profiles/hlfv1/connection.json
-chmod 777 .hfc-key-store
-chmod 666 .hfc-key-store/*
+chmod a+rw .composer-connection-profiles/hlfv1/connection.json
+chmod a+rwx .hfc-key-store
+chmod a+rw .hfc-key-store/*
 
 # Deploy the business network archive.
 docker run \
@@ -217,7 +221,7 @@ case "$(uname)" in
 	        elif    which x-www-browser > /dev/null ; then
                   nohup x-www-browser ${URLS} < /dev/null > /dev/null 2>&1 &
           elif    which xdg-open > /dev/null ; then
-                  for URL in ${URLS} ; do 
+                  for URL in ${URLS} ; do
                           xdg-open ${URL}
 	                done
           elif  	which gnome-open > /dev/null ; then
