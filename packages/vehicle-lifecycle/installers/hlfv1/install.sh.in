@@ -73,7 +73,7 @@ echo '{
     "name": "hlfv1",
     "description": "Hyperledger Fabric v1.0",
     "type": "hlfv1",
-    "keyValStore": "/home/composer/.composer-wallet",
+    "keyValStore": "/home/composer/.composer-credentials",
     "timeout": 300,
     "orderers": [
         {
@@ -95,11 +95,11 @@ echo '{
 docker-compose -p composer -f docker-compose-playground{{ENV}}.yml up -d
 # copy over pre-imported admin credentials
 cd fabric-dev-servers/fabric-scripts/hlfv1/composer/creds
-docker exec composer mkdir /home/composer/.composer-wallet
-tar -cv * | docker exec -i composer tar x -C /home/composer/.composer-wallet
+docker exec composer mkdir /home/composer/.composer-credentials
+tar -cv * | docker exec -i composer tar x -C /home/composer/.composer-credentials
 
 # Copy the creds to somewhere more convenient
-cp -r ../creds ../../../../../.composer-wallet
+cp -r ../creds ../../../../../.composer-credentials
 
 # Change to previous directory
 cd -
@@ -109,8 +109,8 @@ sleep 5
 
 # Doctor the permissions on the files so Docker can pointlessly overwrite them.
 chmod a+rw .composer-connection-profiles/hlfv1/connection.json
-chmod a+rwx .composer-wallet
-chmod a+rw .composer-wallet/*
+chmod a+rwx .composer-credentials
+chmod a+rw .composer-credentials/*
 
 # Deploy the business network archive.
 docker run \
@@ -118,7 +118,7 @@ docker run \
   --network composer_default \
   -v $(pwd)/vehicle-lifecycle-network.bna:/home/composer/vehicle-lifecycle-network.bna \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-wallet:/home/composer/.composer-wallet \
+  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   hyperledger/composer-cli \
   composer network deploy -p hlfv1 -a vehicle-lifecycle-network.bna -i PeerAdmin -s whatever
 
@@ -127,7 +127,7 @@ docker run \
   --rm \
   --network composer_default \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-wallet:/home/composer/.composer-wallet \
+  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   hyperledger/composer-cli \
   composer transaction submit -p hlfv1 -n org-acme-biznet -i admin -s adminpw -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
 
@@ -137,7 +137,7 @@ docker run \
   --network composer_default \
   --name rest \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-wallet:/home/composer/.composer-wallet \
+  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   -e COMPOSER_CONNECTION_PROFILE=hlfv1 \
   -e COMPOSER_BUSINESS_NETWORK=org-acme-biznet \
   -e COMPOSER_ENROLLMENT_ID=admin \
@@ -155,8 +155,8 @@ docker run \
   --network composer_default \
   --name node-red \
   -v $(pwd)/.composer-connection-profiles:/usr/src/node-red/.composer-connection-profiles \
-  -v $(pwd)/.composer-wallet:/usr/src/node-red/.composer-wallet \
-  -v $(pwd)/.composer-wallet:/home/composer/.composer-wallet \
+  -v $(pwd)/.composer-credentials:/usr/src/node-red/.composer-credentials \
+  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   -e COMPOSER_BASE_URL=http://rest:3000 \
   -v $(pwd)/flows.json:/data/flows.json \
   -p 1880:1880 \
