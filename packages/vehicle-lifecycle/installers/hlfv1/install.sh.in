@@ -1,6 +1,6 @@
 ME=`basename "$0"`
-if [ "${ME}" = "install-hlfv1{{ENV}}.sh" ]; then
-  echo "Please re-run as >   cat install-hlfv1{{ENV}}.sh | bash"
+if [ "${ME}" = "install-hlfv1-{{ENV}}.sh" ]; then
+  echo "Please re-run as >   cat install-hlfv1-{{ENV}}.sh | bash"
   exit 1
 fi
 (cat > composer.sh; chmod +x composer.sh; exec bash composer.sh)
@@ -36,7 +36,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE="${DIR}/composer.sh"
 
 # Create a work directory for extracting files into.
-WORKDIR="$(pwd)/composer-data{{ENV}}"
+WORKDIR="$(pwd)/composer-data-{{ENV}}"
 rm -rf "${WORKDIR}" && mkdir -p "${WORKDIR}"
 cd "${WORKDIR}"
 
@@ -53,11 +53,13 @@ tail -n +${PAYLOAD_START} "${SOURCE}" | tar -xzf -
 find . -type d | xargs chmod a+rx
 find . -type f | xargs chmod a+r
 
-docker pull hyperledger/composer-cli
-docker pull hyperledger/composer-rest-server
-docker pull hyperledger/vehicle-lifecycle-vda
-docker pull hyperledger/vehicle-lifecycle-manufacturing
-docker pull hyperledger/vehicle-lifecycle-car-builder
+# Pull the latest versions of all the Docker images.
+docker pull hyperledger/composer-playground:{{ENV}}
+docker pull hyperledger/composer-cli:{{ENV}}
+docker pull hyperledger/composer-rest-server:{{ENV}}
+docker pull hyperledger/vehicle-lifecycle-vda:{{ENV}}
+docker pull hyperledger/vehicle-lifecycle-manufacturing:{{ENV}}
+docker pull hyperledger/vehicle-lifecycle-car-builder:{{ENV}}
 docker pull nodered/node-red-docker
 
 # stop all the docker containers
@@ -67,9 +69,9 @@ stop
 ./fabric-dev-servers/downloadFabric.sh
 ./fabric-dev-servers/startFabric.sh
 
-# Create the environment variables with the connection profile in.
-mkdir -p .composer-connection-profiles/hlfv1
-echo '{
+# Create the environment variables and file with the connection profile in.
+read -d '' COMPOSER_CONNECTION_PROFILE << EOF || true
+{
     "name": "hlfv1",
     "description": "Hyperledger Fabric v1.0",
     "type": "hlfv1",
@@ -89,23 +91,38 @@ echo '{
             "eventURL": "grpc://peer0.org1.example.com:7053"
         }
     ]
-}' > .composer-connection-profiles/hlfv1/connection.json
+}
+EOF
+read -d '' COMPOSER_CONFIG << EOF || true
+{
+    "defaultConnectionProfile": "hlfv1",
+    "connectionProfiles": {
+        "hlfv1": ${COMPOSER_CONNECTION_PROFILE}
+    },
+    "credentials": {
+        "hlfv1": {
+            "PeerAdmin": "NOTUSED",
+            "admin": "adminpw"
+        }
+    }
+}
+EOF
+mkdir -p .composer-connection-profiles/hlfv1
+echo ${COMPOSER_CONNECTION_PROFILE} > .composer-connection-profiles/hlfv1/connection.json
 
-# Start all composer
-docker-compose -p composer -f docker-compose-playground{{ENV}}.yml up -d
-# copy over pre-imported admin credentials
-cd fabric-dev-servers/fabric-scripts/hlfv1/composer/creds
-docker exec composer mkdir /home/composer/.composer-credentials
-tar -cv * | docker exec -i composer tar x -C /home/composer/.composer-credentials
+# Copy the credentials in.
+cp -r fabric-dev-servers/fabric-scripts/hlfv1/composer/creds .composer-credentials
 
-# Copy the creds to somewhere more convenient
-cp -r ../creds ../../../../../.composer-credentials
-
-# Change to previous directory
-cd -
-
-# Wait for playground to start
-sleep 5
+# Start the playground.
+docker run \
+  -d \
+  --network composer_default \
+  --name composer \
+  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
+  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
+  -e COMPOSER_CONFIG="${COMPOSER_CONFIG}" \
+  -p 8080:8080 \
+  hyperledger/composer-playground:{{ENV}}
 
 # Doctor the permissions on the files so Docker can pointlessly overwrite them.
 chmod a+rw .composer-connection-profiles/hlfv1/connection.json
@@ -119,7 +136,7 @@ docker run \
   -v $(pwd)/vehicle-lifecycle-network.bna:/home/composer/vehicle-lifecycle-network.bna \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
-  hyperledger/composer-cli \
+  hyperledger/composer-cli:{{ENV}} \
   composer network deploy -p hlfv1 -a vehicle-lifecycle-network.bna -i PeerAdmin -s whatever
 
 # Submit the setup transaction.
@@ -128,7 +145,7 @@ docker run \
   --network composer_default \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
-  hyperledger/composer-cli \
+  hyperledger/composer-cli:{{ENV}} \
   composer transaction submit -p hlfv1 -n org-acme-biznet -i admin -s adminpw -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
 
 # Start the REST server.
@@ -144,7 +161,7 @@ docker run \
   -e COMPOSER_ENROLLMENT_SECRET=adminpw \
   -e COMPOSER_NAMESPACES=required \
   -p 3000:3000 \
-  hyperledger/composer-rest-server
+  hyperledger/composer-rest-server:{{ENV}}
 
 # Wait for the REST server to start and initialize.
 sleep 10
@@ -162,17 +179,14 @@ docker run \
   -p 1880:1880 \
   nodered/node-red-docker
 
-# Wait for the applications and Node-RED to start and initialize.
-sleep 10
-
 # Install custom nodes
 docker exec \
   -e NPM_CONFIG_LOGLEVEL=warn \
   node-red \
-  bash -c "cd /data && npm install node-red-contrib-composer"
+  bash -c "cd /data && npm install node-red-contrib-composer@{{ENV}}"
 docker restart node-red
 
-# Wait for the applications and Node-RED to start and initialize.
+# Wait for Node-RED to start and initialize.
 sleep 10
 
 # Start the VDA application.
@@ -183,7 +197,7 @@ docker run \
 -e COMPOSER_BASE_URL=http://rest:3000 \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 6001:6001 \
-hyperledger/vehicle-lifecycle-vda
+hyperledger/vehicle-lifecycle-vda:{{ENV}}
 
 # Start the manufacturing application.
 docker run \
@@ -193,7 +207,7 @@ docker run \
 -e COMPOSER_BASE_URL=http://rest:3000 \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 6002:6001 \
-hyperledger/vehicle-lifecycle-manufacturing
+hyperledger/vehicle-lifecycle-manufacturing:{{ENV}}
 
 # Start the car-builder application.
 docker run \
@@ -202,11 +216,10 @@ docker run \
 --name car-builder \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 8100:8100 \
-hyperledger/vehicle-lifecycle-car-builder
+hyperledger/vehicle-lifecycle-car-builder:{{ENV}}
 
-# Kill and remove any running Docker containers.
-##docker-compose -p composer kill
-##docker-compose -p composer down --remove-orphans
+# Wait for the applications to start and initialize.
+sleep 10
 
 # Kill any other Docker containers.
 ##docker ps -aq | xargs docker rm -f
