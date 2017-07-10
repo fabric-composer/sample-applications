@@ -125,8 +125,8 @@ docker run \
   hyperledger/composer-playground:{{ENV}}
 
 # Doctor the permissions on the files so Docker can pointlessly overwrite them.
+chmod a+rwx .composer-connection-profiles .composer-connection-profiles/hlfv1 .composer-credentials
 chmod a+rw .composer-connection-profiles/hlfv1/connection.json
-chmod a+rwx .composer-credentials
 chmod a+rw .composer-credentials/*
 
 # Deploy the business network archive.
