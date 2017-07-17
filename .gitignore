@@ -39,3 +39,6 @@ jspm_packages
 
 # Getting started archive - created as part of thenpm install
 packages/**/digitalPropertyNetwork.bna
+
+# Fabric start tools if they are downloaded into the usual directory
+fabric-tools/**
