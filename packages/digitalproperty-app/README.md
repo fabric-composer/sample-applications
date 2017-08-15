@@ -110,7 +110,7 @@ This diagram should to clarify the order in which the scripts can be run.  Remem
 
 # Step 2: Getting the Hyperledger Composer sample application
 
-0. Make sure you've started Fabric as in Step 1 above. For example, If this is your first time for exaple
+0. Make sure you've started Fabric as in Step 1 above. For example, If this is your first time for example
 
 ```
 $ cd ~/fabric-tools
@@ -122,7 +122,7 @@ $ ./createComposerProfile.sh
 1. Clone the sample application into a directory of your choice - BUT not the same directory as in Step 1. (Assume `~/github')
 ```
 $ mkdir ~/github && cd ~/github
-$ git clone https://github.com/mbwhite/composer-sample-applications
+$ git clone https://github.com/hyperledger/composer-sample-applications
 $ cd composer-sample-applications
 $ npm install
 ```
