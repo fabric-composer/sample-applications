@@ -94,7 +94,7 @@ This diagram should to clarify the order in which the scripts can be run.
 ![](CmdOrder.png).
 
 
-# Step 2: Getting the Hyperledger Composer sample application (digital property sample) up and running
+# Step 2: Getting the Hyperledger Composer sample application (the Digital Property CLI sample application) up and running
 
 0. Make sure you've started Fabric as in Step 1 above. For example, If this is your first time for example
 
@@ -113,8 +113,7 @@ $ cd composer-sample-applications
 $
 ```
 
-To see a summary of all the sample applications, there's a simple command that will show summary details of the applications
-A useful information node.js script has been created to show the available sample applications
+OPTIONAL: To see a summary of all the sample applications, there's a simple command that will show summary details of the sample applications available in this repository. A useful information node.js script has been created to show the available sample applications - note you will need to run `npm install` from the current directory (takes about 5-10 mins) before running this command.
 ```
 $ node ~/github/composer-sample-applications/info.js
 ```
