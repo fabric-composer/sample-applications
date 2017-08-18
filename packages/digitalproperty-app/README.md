@@ -11,14 +11,14 @@ These scripts use Node v6, and bash, which are Hyperledger Composer dependencies
 1. In a directory of your choice (will assume `~/fabric-tools`) get the zip file that contains the tools.  There are both .zip and .tar.gz formats
 ```
 $ mkdir ~/fabric-tools && cd ~/fabric-tools
-$ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/fabric-dev-servers/fabric-dev-servers.zip
+$ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.zip
 $ unzip fabric-dev-servers.zip
 ```
 
 ```
 $ mkdir ~/fabric-tools && cd ~/fabric-tools
 $ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
-$ tar xvz fabric-dev-servers.tar.gz
+$ tar xvzf fabric-dev-servers.tar.gz
 
 ```
 
@@ -45,26 +45,26 @@ $ ./teardownFabric.sh
 
 ### Downloading Fabric
 
-Issue from the `fabric-tools` directory
+Issue the following command from the `fabric-tools` directory:
 ```
 $ ./downloadFabric.sh
 ```
 
 ### Starting Fabric
 
-Issue  from the `fabric-tools` directory
+Issue the following command from the `fabric-tools` directory:
 ```
 $ ./startFabric.sh
 ```
 
 ### Stop Fabric
 
-Issue from the `fabric-tools` directory
+Issue the following command from the `fabric-tools` directory:
 ```
 $ ./stopFabric.sh
 ```
 
-By default, this 'start' script will pause for 15 seconds to let Fabric start - on some systems this isn't enough. If you see fails in running `startFabric.sh` you can alter this value - its controlled by a environment variable that takes a numeric value representing the number of seconds to wait.
+By default, this 'start' script will pause for 15 seconds to let Fabric start - on some systems this may not be enough. If you see fails in running `startFabric.sh` you can alter this value - its controlled by a environment variable that takes a numeric value representing the number of seconds to wait.
 
 ```
 $ export FABRIC_START_TIMEOUT=30
@@ -96,7 +96,7 @@ This diagram should to clarify the order in which the scripts can be run.
 
 # Step 2: Getting the Hyperledger Composer sample application (the Digital Property CLI sample application) up and running
 
-0. Make sure you've started Fabric as in Step 1 above. For example, If this is your first time for example
+1. Make sure you've started Fabric as in Step 1 above. For example, If this is your first time for example
 
 ```
 $ cd ~/fabric-tools
@@ -105,7 +105,7 @@ $ ./startFabric.sh
 $ ./createComposerProfile.sh
 ```
 
-1. Clone the sample application into a directory of your choice - BUT not the same directory as in Step 1. (Assume `~/github')
+2. Clone the sample application into a directory of your choice - BUT not the same directory as in Step 1. (Assume `~/github')
 ```
 $ mkdir ~/github && cd ~/github
 $ git clone https://github.com/hyperledger/composer-sample-applications
@@ -118,10 +118,6 @@ OPTIONAL: To see a summary of all the sample applications, there's a simple comm
 $ node ~/github/composer-sample-applications/info.js
 ```
 
-2. When you started fabric you will have chosen which version to use.  
-
-*Note: this does not change the application source code or the model, purely the name of the Composer profile to use, and the Fabric's admin indentity*
-
 3. Deploy the business network (for example - deploying the Digital Property sample application)
 
 ```
@@ -130,7 +126,7 @@ $ npm install
 $ npm run deployNetwork
 ```
 
-5. Run the sample application (Digital Property sample, for example)
+4. Bootstrap Assets, Participants and run the sample application (Digital Property sample, for example)
 ```
 $ npm test
 ```
