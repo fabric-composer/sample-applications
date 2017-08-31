@@ -13,11 +13,7 @@
     "submitTransaction": "node cli.js landregistry submit && node cli.js landregistry list",
     "listAssets": "node cli.js landregistry list",
     "bootstrapAssets": "node cli.js landregistry bootstrap",
-    "submitTransaction:hlfv0.6": "NODE_ENV=hlfv0.6 node cli.js landregistry submit && NODE_ENV=hlfv0.6 node cli.js landregistry list",
-    "listAssets:hlfv0.6": "NODE_ENV=hlfv0.6 node cli.js landregistry list",
-    "bootstrapAssets:hlfv0.6": "NODE_ENV=hlfv0.6 node cli.js landregistry bootstrap",
     "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna &&  composer network deploy -p hlfv1 --archiveFile digitalPropertyNetwork.bna  --enrollId PeerAdmin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1",
-    "deployNetwork:hlfv0.6": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy --archiveFile digitalPropertyNetwork.bna  --enrollId WebAppAdmin --enrollSecret DJY27pEnl16d && composer network list -n digitalproperty-network --enrollId WebAppAdmin --enrollSecret DJY27pEnl16d",
     "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna &&  composer network update -p hlfv1 --archiveFile digitalPropertyNetwork.bna  --enrollId admin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1"
   },
   "repository": {
