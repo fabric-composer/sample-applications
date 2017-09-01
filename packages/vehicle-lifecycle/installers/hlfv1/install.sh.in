@@ -95,16 +95,16 @@ read -d '' COMPOSER_CONNECTION_PROFILE << EOF || true
 EOF
 read -d '' COMPOSER_CONFIG << EOF || true
 {
-    "defaultConnectionProfile": "hlfv1",
-    "connectionProfiles": {
-        "hlfv1": ${COMPOSER_CONNECTION_PROFILE}
-    },
-    "credentials": {
-        "hlfv1": {
-            "PeerAdmin": "NOTUSED",
-            "admin": "adminpw"
-        }
-    }
+    "cards": [{
+        "metadata": {
+            "name": "admin",
+            "enrollmentId": "admin",
+            "enrollmentSecret": "adminpw",
+            "businessNetwork": "vehicle-lifecycle-network"
+        },
+        "connectionProfile": ${COMPOSER_CONNECTION_PROFILE},
+        "credentials": null
+    }]
 }
 EOF
 mkdir -p .composer-connection-profiles/hlfv1
@@ -146,7 +146,7 @@ docker run \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   hyperledger/composer-cli:{{ENV}} \
-  composer transaction submit -p hlfv1 -n org-acme-biznet -i admin -s adminpw -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
+  composer transaction submit -p hlfv1 -n vehicle-lifecycle-network -i admin -s adminpw -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
 
 # Start the REST server.
 docker run \
@@ -156,7 +156,7 @@ docker run \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   -e COMPOSER_CONNECTION_PROFILE=hlfv1 \
-  -e COMPOSER_BUSINESS_NETWORK=org-acme-biznet \
+  -e COMPOSER_BUSINESS_NETWORK=vehicle-lifecycle-network \
   -e COMPOSER_ENROLLMENT_ID=admin \
   -e COMPOSER_ENROLLMENT_SECRET=adminpw \
   -e COMPOSER_NAMESPACES=required \
