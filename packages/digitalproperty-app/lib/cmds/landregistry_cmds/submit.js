@@ -19,21 +19,29 @@ const LandRegistry = require('./../../landRegistry.js');
 const winston = require('winston');
 const LOG = winston.loggers.get('application');
 
-exports.command = 'submit';
-exports.desc = 'Updates a fixed title in the regsitry';
-exports.builder = {};
-exports.handler = function (argv) {
 
+module.exports.command = 'submit';
+module.exports.desc = 'Updates a fixed title in the regsitry';
+module.exports.builder = function (yargs) {
 
+    return yargs
+        .option('p', { alias: 'PID', describe: 'Enter your PID.', type: 'string' })
+        .option('d', { alias: 'LID', describe: 'Add your last name to the registry.', type: 'string' })
+        .implies('PID', 'LID')
+
+};
+module.exports.handler = function (argv) {
+
+    LOG.info('Updating...' + JSON.stringify(argv));
     return LandRegistry.submitCmd(argv)
-  .then(() => {
-      LOG.info('Command completed successfully.');
-      process.exit(0);
-  })
-  .catch((error) => {
-      LOG.error(error+ '\nCommand failed.');
-      process.exit(1);
-  });
+        .then(() => {
+            LOG.info('Command completed successfully.');
+            process.exit(0);
+        })
+        .catch((error) => {
+            LOG.error(error + '\nCommand failed.');
+            process.exit(1);
+        });
 
 
 
