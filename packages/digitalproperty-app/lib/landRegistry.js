@@ -34,6 +34,7 @@ let participantId = config.get('participantId');
 let participantPwd = config.get('participantPwd');
 const LOG = winston.loggers.get('application');
 
+const util = require('Util');
 
 /** Class for the land registry*/
 class LandRegistry {
@@ -78,15 +79,6 @@ class LandRegistry {
             let options = {
                 properties: { key: 'value' }
             };
-            //  let text = evt.title['$identifier'];
-            //  console.log('Sending ' +text);
-            //  this.sendClient.send('digitalproperty-network/sale', text, options,function (err, topic,data,options) {
-            //          console.log('Topic: %s', topic);
-            //          console.log('Data: %s', data);
-            //  		      console.log('Options: %s', JSON.stringify(options));
-            //           console.log(err);
-            //
-            //        });
 
         });
     }
@@ -129,13 +121,6 @@ class LandRegistry {
         return inquirer.prompt(salesquestions)
 
 
-            .then((results) => {
-                LOG.info('Default titles added');
-
-                return this.updateForSales(results);
-
-            }
-            );
     }
 
 
@@ -149,7 +134,13 @@ class LandRegistry {
                 LOG.info(METHOD, 'Getting assest from the registry.');
                 return registry.get(composer.LID);
 
-            }).then((result) => {
+            }).then(() => {
+                return this.bizNetworkConnection.getParticipantRegistry('net.biz.digitalPropertyNetwork.Person')
+            }).then((registry) => {
+                LOG.info(METHOD, 'Getting assest from the registry.');
+                return registry.get(composer.PID);
+            })
+            .then((result) => {
 
                 let factory = this.businessNetworkDefinition.getFactory();
                 let transaction = factory.newTransaction('net.biz.digitalPropertyNetwork', 'RegisterPropertyForSale');
@@ -280,85 +271,85 @@ class LandRegistry {
             });
 
     } /**
-    * List the land titles that are stored in the Land Title Resgitry
+    * List the Sales Records that are created when a land title is submited for sale.
     * @return {Promise} resolved when fullfiled will have listed out the titles to stdout
     */
-   listSales() {
-       const METHOD = 'listSales';
+    listSales() {
+        const METHOD = 'listSales';
 
-       let salesRegistry;
+        let salesRegistry;
 
-       LOG.info(METHOD, 'Getting the asset registry');
-       // get the land title registry and then get all the files.
-       return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.SalesAgreement')
-           .then((registry) => {
-               salesRegistry = registry;
-
-            
-               LOG.info(METHOD, 'Getting all assest from the registry.');
-               return salesRegistry.resolveAll();
-
-           })
-
-           .then((aResources) => {
-               console.log(aResources);
-
-               LOG.info(METHOD, 'Current Sales Records');
-               // instantiate
-               let table = new Table({
-                   head: ['SaleID', 'OwnerID', 'TitleID']
-               });
-               let arrayLength = aResources.length;
-               for (let i = 0; i < arrayLength; i++) {
-
-                   let tableLine = [];
+        LOG.info(METHOD, 'Getting the asset registry');
+        // get the land title registry and then get all the files.
+        return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.SalesAgreement')
+            .then((registry) => {
+                salesRegistry = registry;
 
 
+                LOG.info(METHOD, 'Getting all assest from the registry.');
+                return salesRegistry.resolveAll();
 
-                   tableLine.push(aResources[i].salesId);
-                   tableLine.push(aResources[i].seller.personId);
-                   tableLine.push(aResources[i].title.titleId);
-                   
-                   table.push(tableLine);
-               }
+            })
 
-               // Put to stdout - as this is really a command line app
-               return (table);
-           })
+            .then((aResources) => {
+                console.log(aResources);
+
+                LOG.info(METHOD, 'Current Sales Records');
+                // instantiate
+                let table = new Table({
+                    head: ['SaleID', 'OwnerID', 'TitleID']
+                });
+                let arrayLength = aResources.length;
+                for (let i = 0; i < arrayLength; i++) {
+
+                    let tableLine = [];
 
 
-           // and catch any exceptions that are triggered
-           .catch(function (error) {
-               console.log(error);
-               /* potentially some code for generating an error specific message here */
-               this.log.error(METHOD, 'uh-oh', error);
-           });
 
-   }
-     /**
-     * @description - run the listtiles command
-     * @param {Object} args passed from the command line
-     * @return {Promise} resolved when the action is complete
-     */
+                    tableLine.push(aResources[i].salesId);
+                    tableLine.push(aResources[i].seller.personId);
+                    tableLine.push(aResources[i].title.titleId);
+
+                    table.push(tableLine);
+                }
+
+                // Put to stdout - as this is really a command line app
+                return (table);
+            })
+
+
+            // and catch any exceptions that are triggered
+            .catch(function (error) {
+                console.log(error);
+                /* potentially some code for generating an error specific message here */
+                this.log.error(METHOD, 'uh-oh', error);
+            });
+
+    }
+    /**
+    * @description - run the listtiles command
+    * @param {Object} args passed from the command line
+    * @return {Promise} resolved when the action is complete
+    */
     static listSalesCmd(args) {
-        
-                let lr = new LandRegistry('landRegsitryUK');
-        
-        
-                return lr.init()
-                    .then(() => {
-                        return lr.listSales();
-                    })
-        
-                    .then((results) => {
-                        LOG.info('Sales listed');
-                        LOG.info('\n' + results.toString());
-                    })
-                    .catch(function (error) {
-                        /* potentially some code for generating an error specific message here */
-                        throw error;
-                    });
-            }
+
+        let lr = new LandRegistry('landRegsitryUK');
+
+
+        return lr.init()
+            .then(() => {
+                return lr.listSales();
+            })
+
+            .then((results) => {
+                LOG.info('Sales listed');
+                LOG.info('\n' + results.toString());
+            })
+            .catch(function (error) {
+                /* potentially some code for generating an error specific message here */
+                throw error;
+            });
+    }
 
 
 
@@ -397,11 +388,7 @@ class LandRegistry {
         return lr.init()
             .then(() => {
 
-                // lr.sendClient = mqlight.createClient({service: 'amqp://127.0.0.1'});
-                // lr.sendClient.on('started', ()=> {
-                //   console.log('MQlight started');
-                //   return lr.listen();
-                // });
+           
 
 
 
@@ -443,6 +430,122 @@ class LandRegistry {
     * @return {Promise} resolved when the action is complete
     */
 
+    static addLandTitle(args) {
+
+        let lr = new LandRegistry('landRegsitryUK');
+        return lr.init()
+            .then(() => {
+                // resolved when lr has initalized
+                if (args.PID) {
+                    // all options on cmd line
+                    return {
+                        "PID": args.PID,
+                        "information": args.information
+                    };
+                } else {
+                    // interactive
+                    return lr.getLandTitleInfo();
+                }
+
+
+            })
+            .then((results) => {
+                //console.log("AAA" + results);
+                return lr.addLandTitleToRegistry(results);
+            })
+
+            .then((results) => {
+                LOG.info('Land has been created and associated with your PID.');
+            })
+            .catch(function (error) {
+                /* potentially some code for generating an error specific message here */
+                throw error;
+            });
+    }
+
+    getLandTitleInfo() {
+        let landquestions = [
+
+            {
+                name: 'PID',
+                type: 'input',
+                message: 'Enter your PID:',
+                validate: function (value) {
+                    if (value.length <= 10) {
+                        return true;
+                    } else {
+                        return 'Please enter your PID.';
+                    }
+                }
+            },
+
+            {
+                name: 'information',
+                type: 'input',
+                message: 'Enter a description of your land :',
+                validate: function (value) {
+                    if (value.length) {
+                        return true;
+                    } else {
+                        return 'Please enter a description of your land.';
+                    }
+                }
+            },
+        ]
+        return inquirer.prompt(landquestions);
+
+
+    }
+
+    addLandTitleToRegistry(args) {
+
+        const METHOD = 'getLandTitleInfo';
+
+        LOG.info(METHOD, 'Getting assest from the registry.');
+        let landID = "";
+        let titleRegistry
+        let setchar = "1234567890";
+
+        for (let y = 0; y < 4; y++){
+            landID += setchar.charAt(Math.floor(Math.random() * setchar.length));
+        }
+        console.log('land id' + ' ' + landID);
+        //console.trace('C###hecking if person exists'+util.inspect(args));
+
+
+        return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle')
+
+            .then((result) => {
+                titleRegistry = result;
+                return this.bizNetworkConnection.getParticipantRegistry('net.biz.digitalPropertyNetwork.Person')
+            })
+            .then((registry) => {
+                console.log('Checking if person exists'+util.inspect(args));
+                
+                return registry.exists(args.PID);
+            }).then(() => {
+                LOG.info('LandRegistry:getLandTitleInfo', 'getting factory and adding assets');
+                let factory = this.businessNetworkDefinition.getFactory();
+
+                /** Create a new relationship for the owner */
+                let ownerRelation = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', args.PID);
+
+                LOG.info('LandRegistry:addLandTitleToRegistry', 'Creating a land title#1');
+                let landTitle1 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', landID);
+                landTitle1.owner = ownerRelation;
+                landTitle1.information = args.information;
+
+
+                LOG.info('LandRegistry:addLandTitleToRegistry', 'Adding these to the registry');
+                return titleRegistry.addAll([landTitle1]);
+
+
+            }).catch( (error)=>{
+                console.log(error.stack);
+                throw error;
+            })
+    };
+
 
     static addTitle(args) {
 
@@ -454,8 +557,8 @@ class LandRegistry {
                     // all options on cmd line
                     return {
                         "firstName": args.firstName,
-                        "lastName": args.lastName,
-                        "information": args.information
+                        "lastName": args.lastName
+                        
                     };
                 } else {
                     // interactive
@@ -511,18 +614,6 @@ class LandRegistry {
                     }
                 }
             },
-            {
-                name: 'information',
-                type: 'input',
-                message: 'Enter a description of your land :',
-                validate: function (value) {
-                    if (value.length) {
-                        return true;
-                    } else {
-                        return 'Please enter a description of your land.';
-                    }
-                }
-            },
 
         ]
 
@@ -550,17 +641,6 @@ class LandRegistry {
 
         console.log(ID);
 
-
-
-        let landID = "";
-
-        let setchar = "1234567890";
-
-        for (let y = 0; y < 4; y++)
-            landID += setchar.charAt(Math.floor(Math.random() * setchar.length));
-
-        console.log(ID);
-
         LOG.info('about to get asset registry' + composer);
         return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle') // how do I know what this name is?
 
@@ -577,17 +657,8 @@ class LandRegistry {
                 owner.firstName = composer.firstName;
                 owner.lastName = composer.lastName;
 
-                /** Create a new relationship for the owner */
-                let ownerRelation = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', ID);
-
-                LOG.info('LandRegistry:_addTitles', 'Creating a land title#1');
-                let landTitle1 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', landID);
-                landTitle1.owner = ownerRelation;
-                landTitle1.information = composer.information;
-
-
                 LOG.info('LandRegistry:_addTitles', 'Adding these to the registry');
-                return this.titlesRegistry.addAll([landTitle1]);
+                return this.titlesRegistry.addAll;
 
 
             }).then(() => {
@@ -618,7 +689,7 @@ class LandRegistry {
     static submitCmd(args) {
 
         let lr = new LandRegistry('landRegsitryUK');
-        
+
         return lr.init()
             .then(() => {
                 // resolved when lr has initalized
