@@ -95,7 +95,7 @@ class LandRegistry {
             {
                 name: 'PID',
                 type: 'input',
-                message: 'Enter your first PID:',
+                message: 'Enter your PID:',
                 validate: function (value) {
                     if (value.length <= 10) {
                         return true;
@@ -271,7 +271,7 @@ class LandRegistry {
             });
 
     } /**
-    * List the Sales Records that are created when a land title is submited for sale.
+    * List the Sales Agreements that are created when a land title is submited for sale.
     * @return {Promise} resolved when fullfiled will have listed out the titles to stdout
     */
     listSales() {
@@ -294,7 +294,7 @@ class LandRegistry {
             .then((aResources) => {
                 console.log(aResources);
 
-                LOG.info(METHOD, 'Current Sales Records');
+                LOG.info(METHOD, 'Current Sales Agreements');
                 // instantiate
                 let table = new Table({
                     head: ['SaleID', 'OwnerID', 'TitleID']
@@ -547,7 +547,7 @@ class LandRegistry {
     };
 
 
-    static addTitle(args) {
+    static addPerson(args) {
 
         let lr = new LandRegistry('landRegsitryUK');
         return lr.init()
@@ -562,13 +562,13 @@ class LandRegistry {
                     };
                 } else {
                     // interactive
-                    return lr._addTitle();
+                    return lr.getPerson();
                 }
 
 
             })
             .then((composer) => {
-                return lr._addTitles(composer);
+                return lr.addPersonToRegistry(composer);
             })
 
             .then((results) => {
@@ -580,7 +580,7 @@ class LandRegistry {
             });
     }
 
-    _addTitle(args) {
+    getPerson(args) {
 
 
 
@@ -627,8 +627,8 @@ class LandRegistry {
     * @return {Promise} resolved when the assests have been created
  
   */
-    _addTitles(composer) {
-        LOG.info('LandRegistry:_addTitles', 'getting asset registry for "net.biz.digitalPropertyNetwork.LandTitle"');
+    addPersonToRegistry(composer) {
+        LOG.info('LandRegistry:addPersonToRegistry', 'getting asset registry for "net.biz.digitalPropertyNetwork.LandTitle"');
         let owner;
         let ID;
 
@@ -646,18 +646,18 @@ class LandRegistry {
 
             .then((result) => {
                 // got the assest registry for land titles
-                LOG.info('LandRegistry:_addTitles', 'got asset registry');
+                LOG.info('LandRegistry:addPersonToRegistry', 'got asset registry');
                 this.titlesRegistry = result;
             }).then(() => {
-                LOG.info('LandRegistry:_addTitles', 'getting factory and adding assets');
+                LOG.info('LandRegistry:addPersonToRegistry', 'getting factory and adding assets');
                 let factory = this.businessNetworkDefinition.getFactory();
 
-                LOG.info('LandRegistry:_addTitles', 'Creating a person');
+                LOG.info('LandRegistry:addPersonToRegistry', 'Creating a person');
                 owner = factory.newResource('net.biz.digitalPropertyNetwork', 'Person', ID);
                 owner.firstName = composer.firstName;
                 owner.lastName = composer.lastName;
 
-                LOG.info('LandRegistry:_addTitles', 'Adding these to the registry');
+                LOG.info('LandRegistry:addPersonToRegistry', 'Adding these to the registry');
                 return this.titlesRegistry.addAll;
 
 

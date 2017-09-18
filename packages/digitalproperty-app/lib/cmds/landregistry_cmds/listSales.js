@@ -19,7 +19,7 @@ const LandRegistry = require('./../../landRegistry.js');
 const winston = require('winston');
 const LOG = winston.loggers.get('application');
 
-exports.command = 'records';
+exports.command = 'agreement';
 exports.desc = 'Lists all the sales held in the Sales Regsitry';
 exports.builder = {};
 exports.handler = function (argv) {

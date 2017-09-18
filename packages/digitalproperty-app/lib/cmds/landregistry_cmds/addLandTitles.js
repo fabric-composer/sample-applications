@@ -18,33 +18,24 @@ const LandRegistry = require('./../../landRegistry.js');
 const winston = require('winston');
 const LOG = winston.loggers.get('application');
 
-
-
-
-
 module.exports.command = 'addLandTitle [options]';
 module.exports.desc = 'Add a land title to the registry.';
-module.exports.builder = function(yargs) {
+module.exports.builder = function (yargs) {
 
     return yargs
-    
-    .option('p', { alias: 'PID', describe: 'Please type in your PersonID.', type: 'string'})
-    .option('i', { alias: 'information', describe: 'Add a description of your land to the registry.', type: 'string'})
-    .implies('owner','information')
-    
-
+        .option('p', { alias: 'PID', describe: 'Add your PersonID.', type: 'string' })
+        .option('i', { alias: 'information', describe: 'Add a description of your land to the registry.', type: 'string' })
+        .implies('owner', 'information')
 };
-
-
 module.exports.handler = function (argv) {
-    LOG.info('Adding land titles to the asset registry' +JSON.stringify(argv));
+    LOG.info('Adding land titles to the asset registry' + JSON.stringify(argv));
     return LandRegistry.addLandTitle(argv)
-.then(() => {
-    LOG.info ('Command completed successfully.');
-    process.exit(0);
-})
-.catch((error) => {
-    LOG.error(error+ '\nCommand failed.');
-    process.exit(1);
-});
+        .then(() => {
+            LOG.info('Command completed successfully.');
+            process.exit(0);
+        })
+        .catch((error) => {
+            LOG.error(error + '\nCommand failed.');
+            process.exit(1);
+        });
 }

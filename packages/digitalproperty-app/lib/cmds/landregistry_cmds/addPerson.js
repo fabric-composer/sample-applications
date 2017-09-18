@@ -22,20 +22,21 @@ const LOG = winston.loggers.get('application');
 
 
 
-module.exports.command = 'addTitle [options]';
-module.exports.desc = 'Add a set of land titles';
+module.exports.command = 'addPerson [options]';
+module.exports.desc = 'Add a Person to the registry. If no options are specified then the interactive questions will  be prompted.'; //Edit desc
 module.exports.builder = function(yargs) {
 
     return yargs
     .option('f', { alias: 'firstName', describe: 'Add your first name to the registry.', type: 'string'})
     .option('l', { alias: 'lastName', describe: 'Add your last name to the registry.', type: 'string'})
+    // Uses .implies here rather than requires so that if no options are specified, then the interactive will be prompted. 
     .implies('firstName','lastName')
 };
 
 
 module.exports.handler = function (argv) {
-    LOG.info('Adding land titles to the asset registry' +JSON.stringify(argv));
-    return LandRegistry.addTitle(argv)
+    LOG.info('Adding person to the participant registry' +JSON.stringify(argv));
+    return LandRegistry.addPerson(argv)
 .then(() => {
     LOG.info ('Command completed successfully.');
     process.exit(0);
