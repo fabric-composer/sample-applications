@@ -97,8 +97,8 @@ read -d '' COMPOSER_CONFIG << EOF || true
 {
     "cards": [{
         "metadata": {
-            "name": "admin",
-            "enrollmentId": "admin",
+            "version": 1,
+            "userName": "admin",
             "enrollmentSecret": "adminpw",
             "businessNetwork": "vehicle-lifecycle-network"
         },
