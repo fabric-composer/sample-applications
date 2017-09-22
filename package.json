@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "author": "Hyperledger Composer",
   "license": "Apache-2.0",
@@ -18,7 +18,9 @@
     "prettyjson": "^1.2.1"
   },
   "devDependencies": {
-    "lerna": "^2.0.0"
+    "colors": "^1.1.2",
+    "lerna": "^2.0.0",
+    "semver": "^5.4.1"
   },
   "repository": {
     "type": "git",

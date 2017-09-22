@@ -39,7 +39,7 @@
     "typescript": "~2.2.1",
     "zone.js": "^0.8.4"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Vehicle Lifecycle - A mobile application for the customers view",
   "license": "Apache-2.0"
 }
