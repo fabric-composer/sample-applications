@@ -2,7 +2,7 @@ var request = require('request');
 var config = require('config');
 
 var composerBaseURL = process.env.COMPOSER_BASE_URL || config.get('composerRestServerBaseURL');
-var endpoint = composerBaseURL + '/api/system/transactions'
+var endpoint = composerBaseURL + '/api/system/historian'
 
 var get = (req, res) => {
   request.get({

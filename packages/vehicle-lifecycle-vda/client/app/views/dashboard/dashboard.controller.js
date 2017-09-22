@@ -5,16 +5,17 @@ angular.module('bc-vda')
   $scope.chain = [];
   $scope.transactions = [];
 
-  $http.get('transactions').then(function(response, err) {
+  $http.get('transactions')
+  .then(function(response, err) {
     if (err) {
       console.log(err);
     } else if (Array.isArray(response.data)) {
       var i = 138;
 
       $scope.chain = response.data.map(function(transaction) {
-        var split = transaction.$class.split('.');
+        var split = transaction.transactionType.split('.');
         var type = split[split.length - 1];
-        var time = Date.parse(transaction.timestamp);
+        var time = Date.parse(transaction.transactionTimestamp);
 
         $scope.transactions.push({
           timestamp: time,

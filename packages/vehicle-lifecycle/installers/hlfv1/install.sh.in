@@ -225,12 +225,12 @@ sleep 10
 ##docker ps -aq | xargs docker rm -f
 
 # Open the playground in a web browser.
-URLS="http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100"
+URLS="http://localhost:8100 http://localhost:6002 http://localhost:6001 http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880"
 case "$(uname)" in
 "Darwin") open ${URLS}
           ;;
 "Linux")  if [ -n "$BROWSER" ] ; then
-	       	        $BROWSER http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100
+	       	        $BROWSER http://localhost:8100 http://localhost:6002 http://localhost:6001 http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880
 	        elif    which x-www-browser > /dev/null ; then
                   nohup x-www-browser ${URLS} < /dev/null > /dev/null 2>&1 &
           elif    which xdg-open > /dev/null ; then
@@ -238,7 +238,7 @@ case "$(uname)" in
                           xdg-open ${URL}
 	                done
           elif  	which gnome-open > /dev/null ; then
-	                gnome-open http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880 http://localhost:6001 http://localhost:6002 http://localhost:8100
+	                gnome-open http://localhost:8100 http://localhost:6002 http://localhost:6001 http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880
           #elif other types blah blah
 	        else
     	            echo "Could not detect web browser to use - please launch Composer Playground URL using your chosen browser ie: <browser executable name> http://localhost:8080 or set your BROWSER variable to the browser launcher in your PATH"
