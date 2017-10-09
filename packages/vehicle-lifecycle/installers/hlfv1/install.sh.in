@@ -137,7 +137,7 @@ docker run \
   -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
   -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
   hyperledger/composer-cli:{{ENV}} \
-  composer network deploy -p hlfv1 -a vehicle-lifecycle-network.bna -i PeerAdmin -s whatever
+  composer network deploy -p hlfv1 -a vehicle-lifecycle-network.bna -i PeerAdmin -s randomString -A admin -S
 
 # Submit the setup transaction.
 docker run \
@@ -221,9 +221,6 @@ hyperledger/vehicle-lifecycle-car-builder:{{ENV}}
 # Wait for the applications to start and initialize.
 sleep 10
 
-# Kill any other Docker containers.
-##docker ps -aq | xargs docker rm -f
-
 # Open the playground in a web browser.
 URLS="http://localhost:8100 http://localhost:6002 http://localhost:6001 http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880"
 case "$(uname)" in
@@ -239,7 +236,6 @@ case "$(uname)" in
 	                done
           elif  	which gnome-open > /dev/null ; then
 	                gnome-open http://localhost:8100 http://localhost:6002 http://localhost:6001 http://localhost:8080 http://localhost:3000/explorer/ http://localhost:1880
-          #elif other types blah blah
 	        else
     	            echo "Could not detect web browser to use - please launch Composer Playground URL using your chosen browser ie: <browser executable name> http://localhost:8080 or set your BROWSER variable to the browser launcher in your PATH"
 	        fi
