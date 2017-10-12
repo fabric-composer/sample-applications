@@ -1,6 +1,6 @@
 {
   "name": "digitalproperty-app",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Hyperledger Composer - Digital Property console application",
   "bin": {
     "digitalproperty": "cli.js"
@@ -13,8 +13,8 @@
     "submitTransaction": "node cli.js landregistry submit && node cli.js landregistry list",
     "listAssets": "node cli.js landregistry list",
     "bootstrapAssets": "node cli.js landregistry bootstrap",
-    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna &&  composer network deploy -p hlfv1 --archiveFile digitalPropertyNetwork.bna  --enrollId PeerAdmin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1",
-    "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna &&  composer network update -p hlfv1 --archiveFile digitalPropertyNetwork.bna  --enrollId admin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1"
+    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy -p hlfv1 --archiveFile digitalPropertyNetwork.bna --enrollId PeerAdmin --enrollSecret adminpw -A admin -S && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1",
+    "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network update -p hlfv1 --archiveFile digitalPropertyNetwork.bna --enrollId admin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cli-table": "^0.3.1",
-    "composer-cli": "^0.13.0",
-    "composer-client": "^0.13.0",
+    "composer-cli": "^0.14.0",
+    "composer-client": "^0.14.0",
     "config": "^1.24.0",
     "digitalproperty-network": "^0.1.2",
     "jsonfile": "^2.4.0",
