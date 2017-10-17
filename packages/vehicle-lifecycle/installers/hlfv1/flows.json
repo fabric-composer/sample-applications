@@ -43,8 +43,8 @@
         "z": "",
         "connectionProfile": "hlfv1",
         "businessNetworkIdentifier": "vehicle-lifecycle-network",
-        "userID": "PeerAdmin",
-        "userSecret": "whatever"
+        "userID": "admin",
+        "userSecret": "randomString"
     },
     {
         "id": "22d020e3.5e7388",
