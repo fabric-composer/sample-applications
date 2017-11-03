@@ -28,7 +28,6 @@ docker --version
 # Grab the parent (root) directory.
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
-npm install -g npm@4
 npm install -g @alrra/travis-scripts
 npm install -g cordova
 
