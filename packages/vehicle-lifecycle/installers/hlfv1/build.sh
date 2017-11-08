@@ -8,7 +8,11 @@ cd $ROOT
 npm install
 
 cd "${DIR}"
-cat install.sh.in | sed 's/{{ENV}}/latest/g' > install.sh
+cat install.sh.in | sed \
+    -e 's/{{COMPOSER-VERSION}}/0.14.2/g' \
+    -e 's/{{VEHICLE-LIFECYCLE-VERSION}}/latest/g' \
+    -e 's/{{NODE-RED-VERSION}}/latest/g' \
+    > install.sh
 echo "PAYLOAD:" >> install.sh
 tar czf - -C $ROOT/node_modules/vehicle-lifecycle-network/dist vehicle-lifecycle-network.bna -C $DIR flows.json fabric-dev-servers >> install.sh
 
@@ -16,6 +20,10 @@ cd $ROOT
 npm install vehicle-lifecycle-network@unstable
 
 cd "${DIR}"
-cat install.sh.in | sed 's/{{ENV}}/unstable/g' > install-unstable.sh
+cat install.sh.in | sed \
+    -e 's/{{COMPOSER-VERSION}}/unstable/g' \
+    -e 's/{{VEHICLE-LIFECYCLE-VERSION}}/unstable/g' \
+    -e 's/{{NODE-RED-VERSION}}/unstable/g' \
+    > install-unstable.sh
 echo "PAYLOAD:" >> install-unstable.sh
 tar czf - -C $ROOT/node_modules/vehicle-lifecycle-network/dist vehicle-lifecycle-network.bna -C $DIR flows.json fabric-dev-servers >> install-unstable.sh
