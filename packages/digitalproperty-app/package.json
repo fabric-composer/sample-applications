@@ -13,8 +13,8 @@
     "submitTransaction": "node cli.js landregistry submit && node cli.js landregistry list",
     "listAssets": "node cli.js landregistry list",
     "bootstrapAssets": "node cli.js landregistry bootstrap",
-    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy -p hlfv1 --archiveFile digitalPropertyNetwork.bna --enrollId PeerAdmin --enrollSecret adminpw -A admin -S && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1",
-    "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network update -p hlfv1 --archiveFile digitalPropertyNetwork.bna --enrollId admin --enrollSecret adminpw && composer network list -n digitalproperty-network --enrollId admin --enrollSecret adminpw -p hlfv1"
+    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy --archiveFile ./digitalPropertyNetwork.bna --card PeerAdmin@hlfv1 -A admin -S adminpw -l INFO && composer card import --file ./admin@digitalproperty-network.card && composer network list --card admin@digitalproperty-network",
+    "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network update --archiveFile ./digitalPropertyNetwork.bna --card admin@digitalproperty-network && composer network list --card admin@digitalproperty-network"
   },
   "repository": {
     "type": "git",
