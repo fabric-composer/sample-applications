@@ -29,8 +29,8 @@ let config = require('config').get('digitalproperty-app');
 const prettyjson = require('prettyjson');
 
 // these are the credentials to use to connect to the Hyperledger Fabric
-let participantId = config.get('participantId');
-let participantPwd = config.get('participantPwd');
+let cardname = config.get('cardname');
+
 const LOG = winston.loggers.get('application');
 
 
@@ -45,16 +45,14 @@ class LandRegistry {
     constructor() {
 
         this.bizNetworkConnection = new BusinessNetworkConnection();
-        this.CONNECTION_PROFILE_NAME = config.get('connectionProfile');
-        this.businessNetworkIdentifier = config.get('businessNetworkIdentifier');
     }
 
   /** @description Initalizes the LandRegsitry by making a connection to the Composer runtime
    * @return {Promise} A promise whose fullfillment means the initialization has completed
    */
     init() {
-
-        return this.bizNetworkConnection.connect(this.CONNECTION_PROFILE_NAME, this.businessNetworkIdentifier, participantId, participantPwd)
+        console.log(cardname);
+        return this.bizNetworkConnection.connect(cardname)
       .then((result) => {
           this.businessNetworkDefinition = result;
           LOG.info('LandRegistry:<init>', 'businessNetworkDefinition obtained', this.businessNetworkDefinition.getIdentifier());
