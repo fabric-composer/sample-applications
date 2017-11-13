@@ -51,7 +51,6 @@ class LandRegistry {
    * @return {Promise} A promise whose fullfillment means the initialization has completed
    */
     init() {
-        console.log(cardname);
         return this.bizNetworkConnection.connect(cardname)
       .then((result) => {
           this.businessNetworkDefinition = result;
