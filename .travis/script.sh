@@ -31,7 +31,7 @@ curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/pack
 unzip fabric-dev-servers.zip
 ./downloadFabric.sh
 ./startFabric.sh
-./createComposerProfile.sh
+./createPeerAdminCard.sh
 
 # change into the repo directory
 cd "${DIR}"
@@ -44,6 +44,7 @@ npm test
 cd "${DIR}"/fabric-tools
 ./stopFabric.sh
 ./teardownFabric.sh
+
 
 # Build the car builder application.
 cd "${DIR}/packages/vehicle-lifecycle-car-builder"
