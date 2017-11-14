@@ -7,7 +7,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo
 
+which composer 
 composer --version
+
+echo $PATH
 
 # check that the composer command exists at a version >v0.14
 if hash composer 2>/dev/null; then
