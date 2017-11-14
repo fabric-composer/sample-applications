@@ -27,9 +27,11 @@ curl --output "${DIR}"/fabric-tools/fabric-dev-servers.zip https://raw.githubuse
 
 unzip "${DIR}"/fabric-tools/fabric-dev-servers.zip -d "${DIR}"/fabric-tools
 npm install -g composer-cli@latest
+export PATH=$(npm bin -g):$PATH
+
 "${DIR}"/fabric-tools/downloadFabric.sh
 "${DIR}"/fabric-tools/startFabric.sh
-"${DIR}"/.travis/createPeerAdminCard.sh
+"${DIR}"/fabric-tools/createPeerAdminCard.sh
 
 # change into the repo directory
 cd "${DIR}"
