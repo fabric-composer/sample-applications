@@ -26,6 +26,7 @@ mkdir "${DIR}"/fabric-tools
 curl --output "${DIR}"/fabric-tools/fabric-dev-servers.zip https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.zip
 
 unzip "${DIR}"/fabric-tools/fabric-dev-servers.zip -d "${DIR}"/fabric-tools
+npm install -g composer-cli@latest
 "${DIR}"/fabric-tools/downloadFabric.sh
 "${DIR}"/fabric-tools/startFabric.sh
 "${DIR}"/.travis/createPeerAdminCard.sh
