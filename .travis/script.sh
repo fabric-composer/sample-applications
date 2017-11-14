@@ -18,20 +18,17 @@ echo ${ME} `date`
 #  exit ${ABORT_CODE}
 #fi
 
-#cd ${DIR} && pwd
+cd ${DIR} && pwd
 
-
-cd "${DIR}"
-
-mkdir ./fabric-tools && cd ./fabric-tools
+mkdir "${DIR}"/fabric-tools 
 
 # this should be moved to a better location
-curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.zip
+curl --output "${DIR}"/fabric-tools/fabric-dev-servers.zip https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.zip
 
-unzip fabric-dev-servers.zip
-./downloadFabric.sh
-./startFabric.sh
-./createPeerAdminCard.sh
+unzip "${DIR}"/fabric-tools/fabric-dev-servers.zip -d "${DIR}"/fabric-tools
+"${DIR}"/fabric-tools/downloadFabric.sh
+"${DIR}"/fabric-tools/startFabric.sh
+"${DIR}"/.travis/createPeerAdminCard.sh
 
 # change into the repo directory
 cd "${DIR}"
