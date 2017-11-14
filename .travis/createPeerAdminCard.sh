@@ -7,6 +7,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo
 
+export PATH=$(npm bin -g):$PATH
+
 which composer 
 composer --version
 
