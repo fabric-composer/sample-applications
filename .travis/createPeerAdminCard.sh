@@ -6,18 +6,21 @@ set -ev
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo
+
+composer --version
+
 # check that the composer command exists at a version >v0.14
 if hash composer 2>/dev/null; then
-    composer --version | awk -F. '{if ($2<15) exit 1}'
-    if [ $? -eq 1 ]; then
+    composer --version | awk -F. '{if ($2<15) exit 2}'
+    if [ $? -eq 2 ]; then
         echo 'Sorry, Use createConnectionProfile for versions before v0.15.0' 
-        exit 1
+        exit 3
     else
         echo Using composer-cli at $(composer --version)
     fi
 else
     echo 'Need to have composer-cli installed at v0.15 or greater'
-    exit 1
+    exit 4
 fi
 # need to get the certificate 
 
