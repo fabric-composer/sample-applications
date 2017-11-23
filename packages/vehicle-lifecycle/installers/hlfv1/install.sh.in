@@ -69,13 +69,17 @@ stop
 ./fabric-dev-servers/downloadFabric.sh
 ./fabric-dev-servers/startFabric.sh
 
-# Create the environment variables and file with the connection profile in.
-read -d '' COMPOSER_CONNECTION_PROFILE << EOF || true
-{
+# create a card store on the local file system to be shared by the demo
+rm -fr $(pwd)/.vld-card-store  
+mkdir $(pwd)/.vld-card-store
+
+# Create the environment variables with the connection profile in.
+rm -fr $(pwd)/vldstage
+mkdir $(pwd)/vldstage
+echo '{
     "name": "hlfv1",
     "description": "Hyperledger Fabric v1.0",
     "type": "hlfv1",
-    "keyValStore": "/home/composer/.composer-credentials",
     "timeout": 300,
     "orderers": [
         {
@@ -91,81 +95,84 @@ read -d '' COMPOSER_CONNECTION_PROFILE << EOF || true
             "eventURL": "grpc://peer0.org1.example.com:7053"
         }
     ]
-}
-EOF
-read -d '' COMPOSER_CONFIG << EOF || true
-{
-    "cards": [{
-        "metadata": {
-            "version": 1,
-            "userName": "admin",
-            "enrollmentSecret": "adminpw",
-            "businessNetwork": "vehicle-lifecycle-network"
-        },
-        "connectionProfile": ${COMPOSER_CONNECTION_PROFILE},
-        "credentials": null
-    }]
-}
-EOF
-mkdir -p .composer-connection-profiles/hlfv1
-echo ${COMPOSER_CONNECTION_PROFILE} > .composer-connection-profiles/hlfv1/connection.json
+}' > $(pwd)/vldstage/connection.json
 
-# Copy the credentials in.
-cp -r fabric-dev-servers/fabric-scripts/hlfv1/composer/creds .composer-credentials
+# build the PeerAdmin card and import it
+docker run \
+  --rm \
+  --network composer_default \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
+  -v $(pwd)/vldstage:/home/composer/vldstage \
+  -v $(pwd)/fabric-dev-servers/fabric-scripts/hlfv1/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp:/home/composer/PeerAdmin \
+  hyperledger/composer-cli:{{COMPOSER-VERSION}} \
+  card create -p vldstage/connection.json -u PeerAdmin -r PeerAdmin -r ChannelAdmin -f /home/composer/vldstage/PeerAdmin.card -c PeerAdmin/signcerts/Admin@org1.example.com-cert.pem -k PeerAdmin/keystore/114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk
 
-# Start the playground.
+docker run \
+  --rm \
+  --network composer_default \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
+  -v $(pwd)/vldstage:/home/composer/vldstage \
+  -v $(pwd)/fabric-dev-servers/fabric-scripts/hlfv1/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp:/home/composer/PeerAdmin \
+  hyperledger/composer-cli:{{COMPOSER-VERSION}} \
+  card import -f /home/composer/vldstage/PeerAdmin.card
+
+
+# Start playground
 docker run \
   -d \
   --network composer_default \
   --name composer \
-  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
-  -e COMPOSER_CONFIG="${COMPOSER_CONFIG}" \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
   -p 8080:8080 \
   hyperledger/composer-playground:{{COMPOSER-VERSION}}
 
+# Wait for playground to start
+sleep 5
+
 # Doctor the permissions on the files so Docker can pointlessly overwrite them.
-chmod a+rwx .composer-connection-profiles .composer-connection-profiles/hlfv1 .composer-credentials
-chmod a+rw .composer-connection-profiles/hlfv1/connection.json
-chmod a+rw .composer-credentials/*
+#chmod a+rw .composer-connection-profiles/hlfv1/connection.json
+#chmod a+rwx .composer-wallet
+#chmod a+rw .composer-wallet/*
 
 # Deploy the business network archive.
 docker run \
   --rm \
   --network composer_default \
   -v $(pwd)/vehicle-lifecycle-network.bna:/home/composer/vehicle-lifecycle-network.bna \
-  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
+  -v $(pwd)/vldstage:/home/composer/vldstage \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
   hyperledger/composer-cli:{{COMPOSER-VERSION}} \
-  composer network deploy -p hlfv1 -a vehicle-lifecycle-network.bna -i PeerAdmin -s randomString -A admin -S
+  network deploy -c PeerAdmin@hlfv1 -a vehicle-lifecycle-network.bna -A admin -S adminpw -f /home/composer/vldstage/bnaadmin.card
+
+docker run \
+  --rm \
+  --network composer_default \
+  -v $(pwd)/vldstage:/home/composer/vldstage \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
+  hyperledger/composer-cli:{{COMPOSER-VERSION}} \
+  card import -f /home/composer/vldstage/bnaadmin.card
+
 
 # Submit the setup transaction.
 docker run \
   --rm \
   --network composer_default \
-  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
   hyperledger/composer-cli:{{COMPOSER-VERSION}} \
-  composer transaction submit -p hlfv1 -n vehicle-lifecycle-network -i admin -s adminpw -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
+  transaction submit -c admin@vehicle-lifecycle-network -d '{"$class": "org.acme.vehicle.lifecycle.SetupDemo"}'
 
-# correct the admin credential permissions
-docker run \
-  --rm \
-  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
-  hyperledger/composer-cli:{{COMPOSER-VERSION}} \
-  find /home/composer/.composer-credentials -name "*" -exec chmod 777 {} \;
+# correct permissions so that node-red can read cardstore and node-sdk can write to client-data
+docker exec \
+  composer \
+  find /home/composer/.composer -name "*" -exec chmod 777 {} \;
 
 # Start the REST server.
 docker run \
   -d \
   --network composer_default \
   --name rest \
-  -v $(pwd)/.composer-connection-profiles:/home/composer/.composer-connection-profiles \
-  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
-  -e COMPOSER_CONNECTION_PROFILE=hlfv1 \
-  -e COMPOSER_BUSINESS_NETWORK=vehicle-lifecycle-network \
-  -e COMPOSER_ENROLLMENT_ID=admin \
-  -e COMPOSER_ENROLLMENT_SECRET=adminpw \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
+  -e COMPOSER_CARD=admin@vehicle-lifecycle-network \
   -e COMPOSER_NAMESPACES=required \
   -p 3000:3000 \
   hyperledger/composer-rest-server:{{COMPOSER-VERSION}}
@@ -178,9 +185,7 @@ docker run \
   -d \
   --network composer_default \
   --name node-red \
-  -v $(pwd)/.composer-connection-profiles:/usr/src/node-red/.composer-connection-profiles \
-  -v $(pwd)/.composer-credentials:/usr/src/node-red/.composer-credentials \
-  -v $(pwd)/.composer-credentials:/home/composer/.composer-credentials \
+  -v $(pwd)/.vld-card-store:/usr/src/node-red/.composer \
   -e COMPOSER_BASE_URL=http://rest:3000 \
   -v $(pwd)/flows.json:/data/flows.json \
   -p 1880:1880 \
