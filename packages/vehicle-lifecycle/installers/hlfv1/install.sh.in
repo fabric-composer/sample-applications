@@ -129,11 +129,6 @@ docker run \
 # Wait for playground to start
 sleep 5
 
-# Doctor the permissions on the files so Docker can pointlessly overwrite them.
-#chmod a+rw .composer-connection-profiles/hlfv1/connection.json
-#chmod a+rwx .composer-wallet
-#chmod a+rw .composer-wallet/*
-
 # Deploy the business network archive.
 docker run \
   --rm \
