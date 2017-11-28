@@ -72,10 +72,12 @@ stop
 # create a card store on the local file system to be shared by the demo
 rm -fr $(pwd)/.vld-card-store  
 mkdir $(pwd)/.vld-card-store
+chmod 777 $(pwd)/.vld-card-store
 
 # Create the environment variables with the connection profile in.
 rm -fr $(pwd)/vldstage
 mkdir $(pwd)/vldstage
+chmod 777 $(pwd)/vldstage
 echo '{
     "name": "hlfv1",
     "description": "Hyperledger Fabric v1.0",
