@@ -20,16 +20,13 @@
 
 'use strict';
 
-
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const Table = require('cli-table');
 const winston = require('winston');
-let config = require('config').get('digitalproperty-app');
-// const mqlight = require('mqlight');
 const prettyjson = require('prettyjson');
 
 // these are the credentials to use to connect to the Hyperledger Fabric
-let cardname = config.get('cardname');
+let cardname = 'admin@digitalproperty-network';
 
 const LOG = winston.loggers.get('application');
 
@@ -37,299 +34,195 @@ const LOG = winston.loggers.get('application');
 /** Class for the land registry*/
 class LandRegistry {
 
-  /**
-   * Need to have the mapping from bizNetwork name to the URLs to connect to.
-   * bizNetwork nawme will be able to be used by Composer to get the suitable model files.
-   *
-   */
+   /**
+    * Need to have the mapping from bizNetwork name to the URLs to connect to.
+    * bizNetwork nawme will be able to be used by Composer to get the suitable model files.
+    *
+    */
     constructor() {
-
         this.bizNetworkConnection = new BusinessNetworkConnection();
     }
 
-  /** @description Initalizes the LandRegsitry by making a connection to the Composer runtime
-   * @return {Promise} A promise whose fullfillment means the initialization has completed
-   */
-    init() {
-        return this.bizNetworkConnection.connect(cardname)
-      .then((result) => {
-          this.businessNetworkDefinition = result;
-          LOG.info('LandRegistry:<init>', 'businessNetworkDefinition obtained', this.businessNetworkDefinition.getIdentifier());
-      })
-      // and catch any exceptions that are triggered
-      .catch(function (error) {
-          throw error;
-      });
-
+   /** 
+    * @description Initalizes the LandRegsitry by making a connection to the Composer runtime
+    * @return {Promise} A promise whose fullfillment means the initialization has completed
+    */
+    async init() {
+        this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardname);
+        LOG.info('LandRegistry:<init>', 'businessNetworkDefinition obtained', this.businessNetworkDefinition.getIdentifier());
     }
 
-    /** Listen for the sale transaction events
+   /** 
+    * Listen for the sale transaction events
+    */
+    listen() {
+        this.bizNetworkConnection.on('event', (evt) => {
+            console.log(chalk.blue.bold('New Event'));
+            console.log(evt);
 
-     */
-     listen(){
-       this.bizNetworkConnection.on('event',(evt)=>{
-         console.log(chalk.blue.bold('New Event'));
-         console.log(evt);
+            let options = {
+                properties: { key:'value'}
+            };
+        });
+    }
 
-         let options = {
-           properties: { key:'value'}
-         };
-        //  let text = evt.title['$identifier'];
-        //  console.log('Sending ' +text);
-        //  this.sendClient.send('digitalproperty-network/sale', text, options,function (err, topic,data,options) {
-        //          console.log('Topic: %s', topic);
-        //          console.log('Data: %s', data);
-        //  		      console.log('Options: %s', JSON.stringify(options));
-        //           console.log(err);
-         //
-        //        });
-
-       });
-     }
-
-  /** Updates a fixes asset for selling..
-  @return {Promise} resolved when this update has compelted
-  */
-    updateForSale() {
+  
+   /** 
+    * Updates a fixes asset for selling..
+    * @return {Promise} resolved when this update has completed
+    */
+    async updateForSale() {
         const METHOD = 'updateForSale';
+        let registry = await this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle');
+        LOG.info(METHOD, 'Getting assest from the registry.');
+        let result = registry.get('LID:1148');
+        let factory        = this.businessNetworkDefinition.getFactory();
+        let transaction    = factory.newTransaction('net.biz.digitalPropertyNetwork','RegisterPropertyForSale');
+        transaction.title  = factory.newRelationship('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
+        transaction.seller = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
 
-
-        return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle')
-      .then((registry) => {
-
-          LOG.info(METHOD, 'Getting assest from the registry.');
-          return registry.get('LID:1148');
-
-      }).then((result) => {
-
-	      let factory        = this.businessNetworkDefinition.getFactory();
-	      let transaction    = factory.newTransaction('net.biz.digitalPropertyNetwork','RegisterPropertyForSale');
-		  transaction.title  = factory.newRelationship('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
-		  transaction.seller = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
-
-          LOG.info(METHOD, 'Submitting transaction');
-
-          return this.bizNetworkConnection.submitTransaction(transaction);
-      }) // and catch any exceptions that are triggered
-      .catch(function (error) {
-          LOG.error('LandRegsitry:updateForSale', error);
-          throw error;
-      });
+        LOG.info(METHOD, 'Submitting transaction');
+        await this.bizNetworkConnection.submitTransaction(transaction);
     }
 
-  /** bootstrap into the resgitry a few example land titles
-    * @return {Promise} resolved when the assests have been created
-
-  */
-    _bootstrapTitles() {
+   /** 
+    * bootstrap into the resgitry a few example land titles
+    * @return {Promise} resolved when the assets have been created
+    */
+    async _bootstrapTitles() {
         LOG.info('LandRegistry:_bootstrapTitles', 'getting asset registry for "net.biz.digitalPropertyNetwork.LandTitle"');
         let owner;
         LOG.info('about to get asset registry');
-        return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle') // how do I know what this name is?
 
-    .then((result) => {
-        // got the assest registry for land titles
-        LOG.info('LandRegistry:_bootstrapTitles', 'got asset registry');
-        this.titlesRegistry = result;
-    }).then(() => {
-        LOG.info('LandRegistry:_bootstrapTitles', 'getting factory and adding assets');
-        let factory = this.businessNetworkDefinition.getFactory();
+        try {
+            this.titlesRegistry = await this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle');
+            // got the assest registry for land titles
+            LOG.info('LandRegistry:_bootstrapTitles', 'got asset registry');
+            LOG.info('LandRegistry:_bootstrapTitles', 'getting factory and adding assets');
+            let factory = this.businessNetworkDefinition.getFactory();
 
-        LOG.info('LandRegistry:_bootstrapTitles', 'Creating a person');
-        owner = factory.newResource('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
-        owner.firstName = 'Fred';
-        owner.lastName = 'Bloggs';
+            LOG.info('LandRegistry:_bootstrapTitles', 'Creating a person');
+            owner = factory.newResource('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
+            owner.firstName = 'Fred';
+            owner.lastName = 'Bloggs';
 
-        /** Create a new relationship for the owner */
-        let ownerRelation = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
+            // Create a new relationship for the owner
+            let ownerRelation = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
 
-        LOG.info('LandRegistry:_bootstrapTitles', 'Creating a land title#1');
-        let landTitle1 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
-        landTitle1.owner = ownerRelation;
-        landTitle1.information = 'A nice house in the country';
+            LOG.info('LandRegistry:_bootstrapTitles', 'Creating a land title#1');
+            let landTitle1 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
+            landTitle1.owner = ownerRelation;
+            landTitle1.information = 'A nice house in the country';
 
-        LOG.info('LandRegistry:_bootstrapTitles', 'Creating a land title#2');
-        let landTitle2 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:6789');
-        landTitle2.owner = ownerRelation;
-        landTitle2.information = 'A small flat in the city';
+            LOG.info('LandRegistry:_bootstrapTitles', 'Creating a land title#2');
+            let landTitle2 = factory.newResource('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:6789');
+            landTitle2.owner = ownerRelation;
+            landTitle2.information = 'A small flat in the city';
 
-        LOG.info('LandRegistry:_bootstrapTitles', 'Adding these to the registry');
-        return this.titlesRegistry.addAll([landTitle1, landTitle2]);
-
-    }).then(() => {
-        return this.bizNetworkConnection.getParticipantRegistry('net.biz.digitalPropertyNetwork.Person');
-    })
-      .then((personRegistry) => {
-          return personRegistry.add(owner);
-      }) // and catch any exceptions that are triggered
-      .catch(function (error) {
-          console.log(error);
-          LOG.error('LandRegsitry:_bootstrapTitles', error);
-          throw error;
-      });
+            LOG.info('LandRegistry:_bootstrapTitles', 'Adding these to the registry');
+            await this.titlesRegistry.addAll([landTitle1, landTitle2]);
+            let personRegistry = await this.bizNetworkConnection.getParticipantRegistry('net.biz.digitalPropertyNetwork.Person');
+            await personRegistry.add(owner);
+        } catch(error) {
+            console.log(error);
+            LOG.error('LandRegsitry:_bootstrapTitles', error);
+            throw error;
+        }
 
     }
 
-  /**
-   * List the land titles that are stored in the Land Title Resgitry
-   * @return {Promise} resolved when fullfiled will have listed out the titles to stdout
-   */
-    listTitles() {
+   /**
+    * List the land titles that are stored in the Land Title Resgitry
+    * @return {Table} returns a table of the land titles.
+    */
+    async listTitles() {
         const METHOD = 'listTitles';
 
         let landTitleRegistry;
         let personRegistry;
 
         LOG.info(METHOD, 'Getting the asset registry');
-    // get the land title registry and then get all the files.
-        return this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle')
-      .then((registry) => {
-          landTitleRegistry = registry;
+        // get the land title registry and then get all the files.
 
-          return this.bizNetworkConnection.getParticipantRegistry('net.biz.digitalPropertyNetwork.Person');
-        }).then((registry)  => {
-          personRegistry = registry;
+        try {
+            let landTitleRegistry = await this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle');
+            let personRegistry = await this.bizNetworkConnection.getParticipantRegistry('net.biz.digitalPropertyNetwork.Person');
+            LOG.info(METHOD, 'Getting all assest from the registry.');
+            let aResources = await landTitleRegistry.resolveAll();
+            LOG.info(METHOD, 'Current Land Titles');
+            let table = new Table({
+                head: ['TitleID', 'OwnerID', 'First Name', 'Surname', 'Description', 'ForSale']
+            });
+            let arrayLength = aResources.length;
 
-          LOG.info(METHOD, 'Getting all assest from the registry.');
-          return landTitleRegistry.resolveAll();
+            for (let i = 0; i < arrayLength; i++) {
 
-        })
+                let tableLine = [];
+                tableLine.push(aResources[i].titleId);
+                tableLine.push(aResources[i].owner.personId);
+                tableLine.push(aResources[i].owner.firstName);
+                tableLine.push(aResources[i].owner.lastName);
+                tableLine.push(aResources[i].information);
+                tableLine.push(aResources[i].forSale ? 'Yes' : 'No');
+                table.push(tableLine);
+            }
 
-    .then((aResources) => {
-
-        LOG.info(METHOD, 'Current Land Titles');
-      // instantiate
-        let table = new Table({
-            head: ['TitleID', 'OwnerID', 'First Name', 'Surname', 'Description', 'ForSale']
-        });
-        let arrayLength = aResources.length;
-        for(let i = 0; i < arrayLength; i++) {
-
-            let tableLine = [];
-
-
-
-            tableLine.push(aResources[i].titleId);
-            tableLine.push(aResources[i].owner.personId);
-            tableLine.push(aResources[i].owner.firstName);
-            tableLine.push(aResources[i].owner.lastName);
-            tableLine.push(aResources[i].information);
-            tableLine.push(aResources[i].forSale ? 'Yes' : 'No');
-            table.push(tableLine);
+            // Put to stdout - as this is really a command line app
+            return table;
+        } catch(error) {
+            console.log(error);
+            this.log.error(METHOD, 'uh-oh', error);
         }
 
-      // Put to stdout - as this is really a command line app
-        return(table);
-    })
-
-
-    // and catch any exceptions that are triggered
-    .catch(function (error) {
-        console.log(error);
-      /* potentially some code for generating an error specific message here */
-        this.log.error(METHOD, 'uh-oh', error);
-    });
-
     }
 
-  /**
-   * @description - run the listtiles command
-   * @param {Object} args passed from the command line
-   * @return {Promise} resolved when the action is complete
-   */
-    static listCmd(args) {
+   /**
+    * @description - run the listtiles command
+    * @param {Object} args passed from the command line
+    * @return {Promise} resolved when the action is complete
+    */
+    static async listCmd(args) {
 
         let lr = new LandRegistry('landRegsitryUK');
 
-
-        return lr.init()
-    .then(() => {
-        return lr.listTitles();
-    })
-
-    .then((results) => {
+        await lr.init();
+        let results = await lr.listTitles();
         LOG.info('Titles listed');
         LOG.info('\n'+results.toString());
-    })
-      .catch(function (error) {
-        /* potentially some code for generating an error specific message here */
-          throw error;
-      });
     }
 
-    /**
-     * @description - run the listtiles command
-     * @param {Object} args passed from the command line
-     * @return {Promise} resolved when the action is complete
-     */
-      static listen(args) {
+   /**
+    * @description - run the listtiles command
+    * @param {Object} args passed from the command line
+    * @return {Promise} resolved when the action is complete
+    */
+    static async listen(args) {
         let lr = new LandRegistry('landRegsitryUK');
-        return lr.init()
-        .then(() => {
-
-            // lr.sendClient = mqlight.createClient({service: 'amqp://127.0.0.1'});
-            // lr.sendClient.on('started', ()=> {
-            //   console.log('MQlight started');
-            //   return lr.listen();
-            // });
-
-
-
-         })
-        .catch(function (error) {
-          /* potentially some code for generating an error specific message here */
-            throw error;
-         });
-      }
+        await lr.init();
+    }
 
   /**
    * @description - run the add default assets command
    * @param {Object} args passed from the command line
    * @return {Promise} resolved when complete
    */
-    static addDefaultCmd(args) {
-
+    static async addDefaultCmd(args) {
         let lr = new LandRegistry('landRegsitryUK');
-
-
-        return lr.init()
-
-    .then(() => {
-        return lr._bootstrapTitles();
-    })
-
-    .then((results) => {
+        await lr.init();
+        let results = await lr._bootstrapTitles();
         LOG.info('Default titles added');
-    })
-      .catch(function (error) {
-        /* potentially some code for generating an error specific message here */
-          throw error;
-      });
     }
 
-  /**
-   * @description - run the listtiles command
-   * @param {Object} args passed from the command line
-   * @return {Promise} resolved when the action is complete
-   */
-    static submitCmd(args) {
-
+   /**
+    * @description - run the listtiles command
+    * @param {Object} args passed from the command line
+    * @return {Promise} resolved when the action is complete
+    */
+    static async submitCmd(args) {
         let lr = new LandRegistry('landRegsitryUK');
-
-
-        return lr.init()
-
-    .then(() => {
-        return lr.updateForSale();
-    })
-
-    .then((results) => {
+        await lr.init();
+        let results = await lr.updateForSale();
         LOG.info('Transaction Submitted');
-    })
-      .catch(function (error) {
-        /* potentially some code for generating an error specific message here */
-          throw error;
-      });
     }
 }
 module.exports = LandRegistry;

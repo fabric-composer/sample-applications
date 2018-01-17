@@ -1,0 +1,80 @@
+page-login {
+  ion-content.content > .scroll-content {
+    padding: 0 !important;
+  }
+
+  .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("../assets/background.png");
+    background-size: cover;
+
+    .map {
+      position: absolute;
+      z-index: 5;
+      opacity: 0.2;
+      height: 100%;
+    }
+
+    .login-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .details {
+        flex: 66;
+        padding-top: 10vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        .logo {
+          display: block;
+          margin-bottom: 5vh;
+        }
+
+        .logo {
+          height: 50px;
+        }
+        
+        h2 {
+          color: #FFF;
+          margin: 0;
+          margin-bottom: 25px;
+        }
+      }
+
+      .holder {
+        flex: 33;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 56vh;
+        max-width: 80%;
+        align-items: center;
+
+        #buildCar {
+          width: 100%;
+          max-width: 400px;
+          min-width: 190px;
+          height: 11vh;
+          max-height: 5em;
+
+          img {
+            height: 0.8em;
+          }
+        }
+      }
+    }
+
+  }
+}

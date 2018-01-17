@@ -1,0 +1,247 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-man-dashboard {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 42px 52px;
+
+  h1 {
+    margin: 0 0 60px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      align-items: center;
+
+      input {
+        height: 33px;
+        width: 315px;
+        margin-right: 23px;
+        background-image: url('../../../../../assets/images/search.svg');
+        background-repeat: no-repeat;
+        background-position: 15px center;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      img {
+        height: 36px;
+        width: 36px;
+      }
+    }
+  }
+
+  h5 {
+    margin: 48px 0 30px 0;
+  }
+
+  .report-section {
+    .left {
+      float: left;
+      width: ~"calc(100% - 305px)";
+      min-width: 400px;
+      margin-bottom: 25px;
+    }
+    .right {
+      float: right;
+
+      .status {
+        margin-bottom: 15px!important;
+      }
+
+
+    }
+
+    .card {
+
+      .order-summary {
+        display: flex;
+        justify-content: space-between;
+
+        .status {
+          width: 100%!important;
+          margin-top: 25px;
+        }
+      }
+
+      h5 {
+        margin: 0 0 3px 0;
+      }
+
+      p:first-of-type {
+        margin: 12px 0 8px;
+      }
+
+      p {
+        margin: 8px 0;
+      }
+
+      .swatch {
+        background: red;
+        width: 68px;
+        height: 86px;
+        border-radius: 5px;
+
+        &.orange {
+          background-image: linear-gradient(-180deg, #ffa047 0%, #d97122 100%);
+        }
+  
+        &.red {
+          background-image: linear-gradient(-180deg, #f5515f 0%, #9f031b 100%);
+        }
+  
+        &.purple {
+          background-image: linear-gradient(-134deg, #3023ae 0%, #c96dd8 100%);
+        }
+  
+        &.green {
+          background-image: linear-gradient(-180deg, #b4ed50 0%, #429321 100%);
+        }
+  
+        &.blue {
+          background-image: linear-gradient(-180deg, #51f5eb 0%, #03939f 100%);
+        }
+  
+        &.grape {
+          background-image: linear-gradient(-134deg, #ae2358 0%, #c96dd8 100%);
+        }
+      }
+
+      .status-green::before {
+        background: @green;
+      }
+
+      .status-red::before {
+        background: @red;
+      }
+
+      .status-yellow::before {
+        background: @yellow;
+      }
+
+      .status::before {
+        content: '';
+        border-radius: 5px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        margin-top: 5px;
+      }
+      .status {
+
+        width: 100%;
+        display: inline-block;
+
+        .field
+        {
+          margin-left: 35px;
+        }
+        .data
+        {
+          float: right;
+          opacity: 0.5;
+        }
+      }
+
+      .conf-data {
+
+        width: 100%;
+        display: inline-block;
+
+        .field {
+          text-transform: capitalize;
+        }
+
+        .data
+        {
+          float: right;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .card:not(:first-child)
+    {
+      margin-top: 15px;
+    }
+
+    .not-shown
+    {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .bottom-holder
+    {
+      position: relative;
+      .card-secondary
+      {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        margin-top: 15px;
+        padding-top: 29px;
+        padding-bottom: 29px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        box-sizing: border-box;
+
+        button {
+          margin-top: 15px;
+          max-width: -moz-fit-content;
+          max-width: -webkit-fit-content;
+          max-width: fit-content;
+        }
+      }
+    }
+
+    .big-card {
+      overflow: hidden;
+      margin-right: 20px;
+      width: ~"calc(100% - 50px)";
+
+      .card-block
+      {
+        justify-content: flex-start;
+
+        &:last-of-type {
+          padding-bottom: 25px;
+        }
+
+        .status:nth-child(even){
+          margin-right: 50px;
+        }
+
+        .status {
+          width: ~'calc(50% - 30px)';
+        }
+
+        .column {
+          display: inline-flex;
+          flex-direction: column;
+          width: ~'calc(50% - 30px)';
+
+          &:nth-child(odd) {
+            margin-left: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .report-section {
+
+    .left {
+      width: 100%!important;
+    }
+
+    .right {
+      display: none;
+    }
+  }
+}

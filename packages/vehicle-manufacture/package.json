@@ -1,0 +1,15 @@
+{
+  "name": "vehicle-manufacture",
+  "private": true,
+  "version": "0.0.6",
+  "description": "## Installation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vehicle-manufacture-network": "~0.1.14-20180301124701"
+  }
+}
