@@ -32,16 +32,16 @@ winston.loggers.add('application', {
 const LOG = winston.loggers.get('application');
 
 LOG.info('Hyperledger Composer: Digital Property console application');
-try{
-require('yargs')
-  .usage ('node cli.js  <participant> <action>')
-  .commandDir('lib/cmds')
-  .demand(1,'Please specify a partipant, for example:  digitalproperty landregistry <action>')
-  .help()
-  .strict()
-  .recommendCommands()
-  .epilogue('For more information visit us at https://hyperledger.github.io/composer')
-  .argv;
-} catch (err){
+try {
+    require('yargs')
+    .usage ('node cli.js  <participant> <action>')
+    .commandDir('lib/cmds')
+    .demand(1,'Please specify a partipant, for example:  digitalproperty landregistry <action>')
+    .help()
+    .strict()
+    .recommendCommands()
+    .epilogue('For more information visit us at https://hyperledger.github.io/composer')
+    .argv;
+} catch (err) {
   console.log(err);
 }

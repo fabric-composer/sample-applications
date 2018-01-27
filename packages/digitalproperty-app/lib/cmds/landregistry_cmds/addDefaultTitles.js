@@ -22,15 +22,14 @@ exports.command = 'bootstrap';
 exports.desc = 'Add a set of default land titiles';
 exports.builder = {};
 
-exports.handler = function (argv) {
+exports.handler = async function (argv) {
     LOG.info('Adding default land titles to the asset registry');
-    return LandRegistry.addDefaultCmd(argv)
-.then(() => {
-    LOG.info ('Command completed successfully.');
-    process.exit(0);
-})
-.catch((error) => {
-    LOG.error(error+ '\nCommand failed.');
-    process.exit(1);
-});
+    try {
+        await LandRegistry.addDefaultCmd(argv);
+        LOG.info ('Command completed successfully.');
+        process.exit(0);
+    } catch(error) {
+        LOG.error(error+ '\nCommand failed.');
+        process.exit(1);
+    }
 };

@@ -22,18 +22,12 @@ const LOG = winston.loggers.get('application');
 exports.command = 'listen';
 exports.desc = 'Listen for all events';
 exports.builder = {};
-exports.handler = function (argv) {
+exports.handler = async function (argv) {
 
-
-    return LandRegistry.listen(argv)
-  .then(() => {
-      LOG.info('Command completed successfully.');
-  })
-  .catch((error) => {
+    try {
+        await LandRegistry.listen(argv);
+        LOG.info('Command completed successfully.');
+    } catch(error) {
       LOG.error(error+ '\nCommand failed.');
-  });
-
-
-
-
+    }
 };

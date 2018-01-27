@@ -22,20 +22,14 @@ const LOG = winston.loggers.get('application');
 exports.command = 'submit';
 exports.desc = 'Updates a fixed title in the regsitry';
 exports.builder = {};
-exports.handler = function (argv) {
+exports.handler = async function (argv) {
 
-
-    return LandRegistry.submitCmd(argv)
-  .then(() => {
-      LOG.info('Command completed successfully.');
-      process.exit(0);
-  })
-  .catch((error) => {
-      LOG.error(error+ '\nCommand failed.');
-      process.exit(1);
-  });
-
-
-
-
+    try {
+        await LandRegistry.submitCmd(argv);
+        LOG.info('Command completed successfully.');
+        process.exit(0);
+    } catch(error) {
+        LOG.error(error+ '\nCommand failed.');
+        process.exit(1);
+    }
 };

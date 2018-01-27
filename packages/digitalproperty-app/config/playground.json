@@ -1,8 +1,0 @@
-{
-  "digitalproperty-app": {
-       "participantId" : "admin",
-       "participantPwd" :"adminpw",
-       "businessNetworkIdentifier" : "org.acme.biznet",
-       "connectionProfile" :"hlfv1"
-    }
-}

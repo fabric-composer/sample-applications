@@ -22,20 +22,14 @@ const LOG = winston.loggers.get('application');
 exports.command = 'list';
 exports.desc = 'Lists all the land titles held in the Land Regsitry';
 exports.builder = {};
-exports.handler = function (argv) {
+exports.handler = async function (argv) {
 
-
-    return LandRegistry.listCmd(argv)
-  .then(() => {
-      LOG.info('Command completed successfully.');
-      process.exit(0);
-  })
-  .catch((error) => {
-      LOG.error(error+ '\nCommand failed.');
-      process.exit(1);
-  });
-
-
-
-
+    try {
+        await LandRegistry.listCmd(argv);
+        LOG.info('Command completed successfully.');
+        process.exit(0);
+    } catch(error) {
+        LOG.error(error+ '\nCommand failed.');
+        process.exit(1);
+    }
 };
