@@ -48,7 +48,7 @@ class LandRegistry {
     * @return {Promise} A promise whose fullfillment means the initialization has completed
     */
     async init() {
-        let his.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardname);
+        this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardname);
         LOG.info('LandRegistry:<init>', 'businessNetworkDefinition obtained', this.businessNetworkDefinition.getIdentifier());
     }
 
