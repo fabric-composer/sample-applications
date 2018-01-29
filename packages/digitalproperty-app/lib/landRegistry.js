@@ -69,28 +69,25 @@ class LandRegistry {
   
    /** 
     * Updates a fixes asset for selling..
-    * @return {Promise} resolved when this update has compelted
+    * @return {Promise} resolved when this update has completed
     */
     async updateForSale() {
         const METHOD = 'updateForSale';
-        try {
-            let registry = await this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle');
-            LOG.info(METHOD, 'Getting assest from the registry.');
-            let result = registry.get('LID:1148');
-            let factory        = this.businessNetworkDefinition.getFactory();
-	        let transaction    = factory.newTransaction('net.biz.digitalPropertyNetwork','RegisterPropertyForSale');
-		    transaction.title  = factory.newRelationship('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
-		    transaction.seller = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
+        let registry = await this.bizNetworkConnection.getAssetRegistry('net.biz.digitalPropertyNetwork.LandTitle');
+        LOG.info(METHOD, 'Getting assest from the registry.');
+        let result = registry.get('LID:1148');
+        let factory        = this.businessNetworkDefinition.getFactory();
+        let transaction    = factory.newTransaction('net.biz.digitalPropertyNetwork','RegisterPropertyForSale');
+        transaction.title  = factory.newRelationship('net.biz.digitalPropertyNetwork', 'LandTitle', 'LID:1148');
+        transaction.seller = factory.newRelationship('net.biz.digitalPropertyNetwork', 'Person', 'PID:1234567890');
 
-            LOG.info(METHOD, 'Submitting transaction');
-            await this.bizNetworkConnection.submitTransaction(transaction);
-        } catch(error) {
-        }
+        LOG.info(METHOD, 'Submitting transaction');
+        await this.bizNetworkConnection.submitTransaction(transaction);
     }
 
    /** 
     * bootstrap into the resgitry a few example land titles
-    * @return {Promise} resolved when the assests have been created
+    * @return {Promise} resolved when the assets have been created
     */
     async _bootstrapTitles() {
         LOG.info('LandRegistry:_bootstrapTitles', 'getting asset registry for "net.biz.digitalPropertyNetwork.LandTitle"');
@@ -136,7 +133,7 @@ class LandRegistry {
 
    /**
     * List the land titles that are stored in the Land Title Resgitry
-    * @return {Promise} resolved when fullfiled will have listed out the titles to stdout
+    * @return {Table} returns a table of the land titles.
     */
     async listTitles() {
         const METHOD = 'listTitles';
@@ -171,7 +168,7 @@ class LandRegistry {
             }
 
             // Put to stdout - as this is really a command line app
-            return(table);
+            return table;
         } catch(error) {
             console.log(error);
             this.log.error(METHOD, 'uh-oh', error);
