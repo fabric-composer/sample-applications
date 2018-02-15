@@ -17,7 +17,7 @@ echo "PAYLOAD:" >> install.sh
 tar czf - -C $ROOT/node_modules/vehicle-lifecycle-network/dist vehicle-lifecycle-network.bna -C $DIR flows.json fabric-dev-servers >> install.sh
 
 cd $ROOT
-npm install vehicle-lifecycle-network@unstable
+npm install vehicle-lifecycle-network@unstable --no-save
 
 cd "${DIR}"
 cat install.sh.in | sed \

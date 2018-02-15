@@ -60,7 +60,7 @@ docker pull hyperledger/composer-rest-server:{{COMPOSER-VERSION}}
 docker pull hyperledger/vehicle-lifecycle-vda:{{VEHICLE-LIFECYCLE-VERSION}}
 docker pull hyperledger/vehicle-lifecycle-manufacturing:{{VEHICLE-LIFECYCLE-VERSION}}
 docker pull hyperledger/vehicle-lifecycle-car-builder:{{VEHICLE-LIFECYCLE-VERSION}}
-docker pull nodered/node-red-docker
+docker pull sstone1/node-red-docker
 
 # stop all the docker containers
 stop
@@ -186,7 +186,7 @@ docker run \
   -e COMPOSER_BASE_URL=http://rest:3000 \
   -v $(pwd)/flows.json:/data/flows.json \
   -p 1880:1880 \
-  nodered/node-red-docker
+  sstone1/node-red-docker
 
 # Install custom nodes
 docker exec \
