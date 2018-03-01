@@ -186,7 +186,7 @@ docker run \
   -e COMPOSER_BASE_URL=http://rest:3000 \
   -v $(pwd)/flows.json:/data/flows.json \
   -p 1880:1880 \
-  nodered/node-red-docker
+  sstone1/node-red-docker
 
 # Install custom nodes
 docker exec \

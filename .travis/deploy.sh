@@ -50,7 +50,7 @@ git ls-remote
 docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
 
 # This is the list of Docker images to build.
-export DOCKER_IMAGES="vehicle-lifecycle-car-builder vehicle-lifecycle-manufacturing vehicle-lifecycle-vda"
+export DOCKER_IMAGES="vehicle-manufacture-car-builder vehicle-manufacture-manufacturing vehicle-manufacture-vda"
 
 # Push the code to npm.
 if [ -z "${TRAVIS_TAG}" ]; then

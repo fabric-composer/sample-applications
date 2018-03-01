@@ -47,11 +47,11 @@ cd "${DIR}"/fabric-tools
 
 
 # Build the car builder application.
-cd "${DIR}/packages/vehicle-lifecycle-car-builder"
+cd "${DIR}/packages/vehicle-manufacture-car-builder"
 npm run build
 
-# Build the install.sh script for vehicle-lifecycle quick install
-cd "${DIR}/packages/vehicle-lifecycle"
+# Build the install.sh script for vehicle-manufacture quick install
+cd "${DIR}/packages/vehicle-manufacture"
 ./build.sh
 
 exit 0
