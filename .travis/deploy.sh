@@ -59,6 +59,11 @@ if [ -z "${TRAVIS_TAG}" ]; then
     npm run pkgstamp
     export VERSION=$(node -e "console.log(require('${DIR}/package.json').version)")
 
+
+    # Publish with unstable tag. These are development builds.
+    echo "Pushing with tag unstable"
+    lerna exec --ignore '@(digitalproperty-app|vehicle-manufacture)' -- npm publish --tag=unstable 2>&1 | tee
+
     # Build, tag, and publish Docker images.
     for i in ${DOCKER_IMAGES}; do
         
@@ -76,6 +81,11 @@ else
 
     # Grab the current version.
     export VERSION=$(node -e "console.log(require('${DIR}/package.json').version)")
+
+    # Publish with latest tag (default). These are release builds.
+    echo "Pushing with tag latest"
+    lerna exec --ignore '@(digitalproperty-app|vehicle-manufacture)' -- npm publish 2>&1 | tee
+
 
     # Build, tag, and publish Docker images.
     for i in ${DOCKER_IMAGES}; do

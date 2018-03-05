@@ -1,6 +1,6 @@
 {
   "name": "vehicle-manufacture-car-builder",
-  "private": true,
+  "private": false,
   "author": "Hyperledger Composer",
   "homepage": "http://ionicframework.com/",
   "scripts": {
