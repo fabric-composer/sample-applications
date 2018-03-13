@@ -1,6 +1,6 @@
 angular.module('bc-vda')
 
-.directive('bcView', [function () {
+.directive('bcView', ['$window', function ($window) {
   return {
     restrict: 'E',
     replace: true,
@@ -24,6 +24,21 @@ angular.module('bc-vda')
         height: 145,
         padding: 30
       };
+
+      function debouncer( func , timeout ) {
+        var timeoutID , timeout = timeout || 200;
+        return function () {
+           var scope = this , args = arguments;
+           clearTimeout( timeoutID );
+           timeoutID = setTimeout( function () {
+               func.apply( scope , Array.prototype.slice.call( args ) );
+           } , timeout );
+        }
+     }
+
+      angular.element($window).bind('resize', debouncer (function(){
+        updateChart();
+      }));
 
       function updateChart() {
         // calculate width of chain
