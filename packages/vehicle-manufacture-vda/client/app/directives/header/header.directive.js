@@ -37,8 +37,8 @@ angular.module('bc-vda')
         return route === location.path();
       }
 
-      let destroyed = false;
-      let websocket;
+      var destroyed = false;
+      var websocket;
 
       function openWebSocket() {
         var wsUri = '';
