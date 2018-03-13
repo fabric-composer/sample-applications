@@ -1,3 +1,16 @@
+/*
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 var express = require('express'),
   path = require('path'),
   WebSocket = require('ws'),
@@ -10,18 +23,31 @@ var express = require('express'),
 var app = express();
 var server = http.createServer(app);
 
-var restServerConfig = Object.assign({}, config.get('restServer'));
+var restServerConfig;
+
+try {
+  restServerConfig = Object.assign({}, config.get('restServer'));
+} catch (err) {
+  if (!process.env.REST_SERVER_CONFIG) {
+    throw new Error('Cannot get restServer from config, the config file may not exist. Provide this file or a value for REST_SERVER_CONFIG');
+  }
+  restServerConfig = {};
+}
+
+if (process.env.REST_SERVER_CONFIG ) {
+  try {
+    var restServerEnv = JSON.parse(process.env.REST_SERVER_CONFIG);
+    restServerConfig = Object.assign(restServerConfig, restServerEnv); // allow for them to only specify some fields
+  } catch (err) {
+    throw new Error('REST_SERVER_CONFIG invalid');
+  }
+}
+
+if (!restServerConfig.hasOwnProperty('webSocketURL') || !restServerConfig.hasOwnProperty('httpURL')) {
+  throw new Error('The configuration for the rest server is invalid.')
+}
 
 app.get('/assets/config.json', (req, res, next) => {
-  if (process.env.REST_SERVER_CONFIG ) {
-    try {
-      var restServerEnv = JSON.parse(process.env.REST_SERVER_CONFIG);
-      restServerConfig = Object.assign(restServerConfig, restServerEnv); // allow for them to only specify some fields
-      restServerConfig = restServerEnv;
-    } catch (err) {
-      res.status(500)
-    }
-  }
   res.json({
     restServer: restServerConfig
   });

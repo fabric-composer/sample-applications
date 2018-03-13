@@ -1,3 +1,16 @@
+/*
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 angular.module('bc-vda')
 
 .controller('DashboardCtrl', ['$scope', '$http', function ($scope, $http) {
@@ -84,9 +97,16 @@ angular.module('bc-vda')
 
   // Websockets
   var destroyed = false;
-  let websocket;
+  var websocket;
   function openWebSocket() {
-    var webSocketURL = 'ws://' + location.host;
+    var wsUri = '';
+    if (location.protocol === 'https:') {
+      wsUri = 'wss://' + location.host;
+    } else {
+      wsUri = 'ws://' + location.hostname + ':' + location.port;
+    }
+    console.log(' Connecting to websocket', wsUri);
+    var webSocketURL = wsUri;
     websocket = new WebSocket(webSocketURL);
 
     websocket.onopen = function () {

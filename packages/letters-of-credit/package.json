@@ -1,0 +1,29 @@
+{
+  "name": "letters-of-credit",
+  "version": "0.0.7",
+  "private": true,
+  "author": "Erin Hughes, Hannah Rayner, Nikola Ignatov, Jackson Ross, Andrew Hurt",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "letters-of-credit-network": "^0.2.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "react-stepper-horizontal": "^1.0.10",
+    "react-toggle": "^4.0.2",
+    "redux": "^3.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deployNetwork": "composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName letters-of-credit-network && composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile *.bna --file networkadmin.card && composer-rest-server -c admin@letters-of-credit-network -n never -w true && composer-rest-server -c admin@letters-of-credit-network -n never -w true"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.2.1"
+  }
+}

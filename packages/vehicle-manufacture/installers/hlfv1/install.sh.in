@@ -1,3 +1,15 @@
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 ME=`basename "$0"`
 if [ "${ME}" = "install-hlfv1-{{VEHICLE-MANUFACTURE-VERSION}}.sh" ]; then
   echo "Please re-run as >   cat install-hlfv1-{{VEHICLE-MANUFACTURE-VERSION}}.sh | bash"
@@ -203,7 +215,7 @@ docker run \
 -d \
 --network composer_default \
 --name vda \
--e COMPOSER_BASE_URL=http://rest:3000 \
+-e REST_SERVER_CONFIG='{"webSocketURL": "ws://rest:3000", "httpURL": "http://rest:3000/api"}' \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 6001:6001 \
 hyperledger/vehicle-manufacture-vda:{{VEHICLE-MANUFACTURE-VERSION}}
@@ -213,7 +225,7 @@ docker run \
 -d \
 --network composer_default \
 --name manufacturing \
--e COMPOSER_BASE_URL=http://rest:3000 \
+-e REST_SERVER_CONFIG='{"webSocketURL": "ws://rest:3000", "httpURL": "http://rest:3000/api"}' \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 6002:6001 \
 hyperledger/vehicle-manufacture-manufacturing:{{VEHICLE-MANUFACTURE-VERSION}}
@@ -223,6 +235,7 @@ docker run \
 -d \
 --network composer_default \
 --name car-builder \
+-e REST_SERVER_CONFIG='{"webSocketURL": "ws://rest:3000", "httpURL": "http://rest:3000/api"}' \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 8100:8100 \
 hyperledger/vehicle-manufacture-car-builder:{{VEHICLE-MANUFACTURE-VERSION}}

@@ -1,0 +1,105 @@
+.alicePageContainer {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../resources/backgrounds/BACKGROUND3.svg");
+  background-repeat: no-repeat;
+  background-color: #3B51DC;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingSpan {
+  margin: auto;
+  color: white;
+}
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.aliceHeaderDiv {
+  width: 100%;
+  height: 100px;
+}
+
+.aliceUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.aliceUsername {
+  float: left;
+  margin: 30px;
+  font-weight: 300;
+  font-size: 90%;
+  color: white;
+  text-decoration: none;
+}
+
+.aliceUsernameIcon {
+  margin-right: 5px;
+}
+
+.aliceMenuItems {
+  position: absolute;
+  right: 0;
+  margin-top: 30px;
+  > span {
+    margin: 30px;
+    color: white;
+    font-weight: 300;
+    font-size: 10pt;
+  }
+}
+
+.aliceWelcomeDiv {
+  > h1 {
+    margin-left: 60px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    color: white;
+  }
+}
+
+.aliceWelcomeMessage {
+  font-weight: 300;
+  font-size:44px;
+  color:#ffffff;
+  letter-spacing:0;
+}
+
+.alertsDiv {
+  display: flex;
+  flex-direction: column;
+  float: right;
+}
+
+.locDiv {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.currentBalance {
+  margin-top: 5px;
+  margin-left: -5px;
+  border: 1px solid #273ec6;
+  border-radius: 20px;
+  background-color: #273ec6;
+  color: white;
+  padding: 8px 20px;
+}
+
+.cardSpace {
+  display: inline-block;
+  margin-left: 60px;
+}

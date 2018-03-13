@@ -1,15 +1,40 @@
 {
   "name": "vehicle-manufacture",
   "private": true,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "## Installation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "licchk": "license-check-and-add",
+    "test": "npm run licchk"
   },
-  "author": "",
-  "license": "ISC",
+  "license-check-and-add-config": {
+    "folder": ".",
+    "license": "LICENSE.txt",
+    "exact_paths_method": "EXCLUDE",
+    "exact_paths": [
+      "node_modules"
+    ],
+    "file_type_method": "EXCLUDE",
+    "file_types": [
+      ".md"
+    ],
+    "insert_license": false,
+    "license_formats": {
+      "in": {
+        "append": "\n",
+        "eachLine": {
+          "prepend": "# "
+        }
+      }
+    }
+  },
+  "author": "Hyperledger Composer",
+  "license": "Apache-2.0",
   "dependencies": {
     "vehicle-manufacture-network": "~0.1.14-20180301124701"
+  },
+  "devDependencies": {
+    "license-check-and-add": "~2.3.0"
   }
 }

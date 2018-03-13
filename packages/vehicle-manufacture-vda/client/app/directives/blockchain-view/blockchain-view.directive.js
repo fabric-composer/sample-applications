@@ -1,6 +1,19 @@
+/*
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 angular.module('bc-vda')
 
-.directive('bcView', [function () {
+.directive('bcView', ['$window', function ($window) {
   return {
     restrict: 'E',
     replace: true,
@@ -24,6 +37,21 @@ angular.module('bc-vda')
         height: 145,
         padding: 30
       };
+
+      function debouncer( func , timeout ) {
+        var timeoutID , timeout = timeout || 200;
+        return function () {
+           var scope = this , args = arguments;
+           clearTimeout( timeoutID );
+           timeoutID = setTimeout( function () {
+               func.apply( scope , Array.prototype.slice.call( args ) );
+           } , timeout );
+        }
+     }
+
+      angular.element($window).bind('resize', debouncer (function(){
+        updateChart();
+      }));
 
       function updateChart() {
         // calculate width of chain
