@@ -97,7 +97,14 @@ angular.module('bc-manufacturer')
   var destroyed = false;
 
   function openWebSocket() {
-    var webSocketURL = 'ws://' + location.host;
+    var wsUri = '';
+    if (location.protocol === 'https:') {
+      wsUri = 'wss://' + location.host;
+    } else {
+      wsUri = 'ws://' + location.hostname + ':' + location.port;
+    }
+    console.log(' Connecting to websocket', wsUri);
+    var webSocketURL = wsUri;
     let websocket = new WebSocket(webSocketURL);
     websocket.onopen = function () {
       console.log('Websocket is open');
