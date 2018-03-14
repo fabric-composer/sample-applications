@@ -84,9 +84,16 @@ angular.module('bc-vda')
 
   // Websockets
   var destroyed = false;
-  let websocket;
+  var websocket;
   function openWebSocket() {
-    var webSocketURL = 'ws://' + location.host;
+    var wsUri = '';
+    if (location.protocol === 'https:') {
+      wsUri = 'wss://' + location.host;
+    } else {
+      wsUri = 'ws://' + location.hostname + ':' + location.port;
+    }
+    console.log(' Connecting to websocket', wsUri);
+    var webSocketURL = wsUri;
     websocket = new WebSocket(webSocketURL);
 
     websocket.onopen = function () {

@@ -105,7 +105,7 @@ angular.module('bc-manufacturer')
     }
     console.log(' Connecting to websocket', wsUri);
     var webSocketURL = wsUri;
-    let websocket = new WebSocket(webSocketURL);
+    var websocket = new WebSocket(webSocketURL);
     websocket.onopen = function () {
       console.log('Websocket is open');
     }
