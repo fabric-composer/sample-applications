@@ -42,3 +42,4 @@ packages/**/digitalPropertyNetwork.bna
 
 # Fabric start tools if they are downloaded into the usual directory
 fabric-tools/**
+package-lock.json

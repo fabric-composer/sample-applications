@@ -29,8 +29,8 @@
       }
     }
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Hyperledger Composer",
+  "license": "Apache-2.0",
   "dependencies": {
     "vehicle-manufacture-network": "~0.1.14-20180301124701"
   },

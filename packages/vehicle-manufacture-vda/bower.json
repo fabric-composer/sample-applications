@@ -1,14 +1,9 @@
 {
-  "name": "bc-vda",
-  "description": "",
+  "name": "vehicle-manufacture-vda",
+  "description": "Vehicle Lifecycle - A regulators view",
   "main": "index.js",
-  "authors": [
-    "Anna Thomas <annaet@uk.ibm.com>",
-    "Dan Cunnington <dancunnington@uk.ibm.com>",
-    "Joe Pavitt <joepavit@uk.ibm.com>"
-  ],
-  "license": "ISC",
-  "homepage": "",
+  "author": "Hyperledger Composer",
+  "license": "Apache-2.0",
   "private": true,
   "ignore": [
     "**/.*",
