@@ -13,8 +13,8 @@
     "submitTransaction": "node cli.js landregistry submit && node cli.js landregistry list",
     "listAssets": "node cli.js landregistry list",
     "bootstrapAssets": "node cli.js landregistry bootstrap",
-    "deployNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network deploy --archiveFile ./digitalPropertyNetwork.bna --card PeerAdmin@hlfv1 -A admin -S adminpw -l INFO && composer card import --file ./admin@digitalproperty-network.card && composer network list --card admin@digitalproperty-network",
-    "updateNetwork": "composer archive create --sourceName digitalproperty-network --sourceType module --archiveFile digitalPropertyNetwork.bna && composer network update --archiveFile ./digitalPropertyNetwork.bna --card admin@digitalproperty-network && composer network list --card admin@digitalproperty-network"
+    "deployNetwork": "./deployNetwork.sh",
+    "updateNetwork": "./updateNetwork.sh"
   },
   "repository": {
     "type": "git",
@@ -31,9 +31,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cli-table": "^0.3.1",
-    "composer-cli": "^0.16.3",
-    "composer-client": "^0.16.3",
-    "digitalproperty-network": "^0.1.2",
+    "composer-cli": "^0.19.0",
+    "composer-client": "^0.19.0",
+    "digitalproperty-network": "^0.2.2",
     "jsonfile": "^2.4.0",
     "lodash": "^4.17.4",
     "prettyjson": "^1.2.1",
