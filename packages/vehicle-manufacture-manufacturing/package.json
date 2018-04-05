@@ -7,6 +7,7 @@
   "scripts": {
     "licchk": "license-check-and-add",
     "postinstall": "bower install",
+    "test": "npm run licchk",
     "start": "node server/app.js"
   },
   "license-check-and-add-config": {
@@ -39,6 +40,6 @@
   },
   "devDependencies": {
     "bower": "^1.8.0",
-    "license-check-and-add": "2.0.3"
+    "license-check-and-add": "~2.3.0"
   }
 }

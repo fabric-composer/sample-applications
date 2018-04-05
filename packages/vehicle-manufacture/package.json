@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "licchk": "license-check-and-add",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run licchk"
   },
   "license-check-and-add-config": {
     "folder": ".",
@@ -35,6 +35,6 @@
     "vehicle-manufacture-network": "~0.1.14-20180301124701"
   },
   "devDependencies": {
-    "license-check-and-add": "2.0.3"
+    "license-check-and-add": "~2.3.0"
   }
 }

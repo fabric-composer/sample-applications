@@ -9,6 +9,7 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "licchk": "license-check-and-add",
+    "test": "npm run licchk",
     "start": "node app.js"
   },
   "license-check-and-add-config": {
@@ -59,7 +60,7 @@
     "@ionic/storage": "2.0.1",
     "ionic-angular": "3.0.1",
     "ionicons": "3.0.0",
-    "license-check-and-add": "2.0.3",
+    "license-check-and-add": "~2.3.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.4.0",
     "typescript": "~2.2.1",
