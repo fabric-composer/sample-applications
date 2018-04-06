@@ -22,7 +22,7 @@ cd "${DIR}"
 cat install.sh.in | sed \
     -e 's/{{COMPOSER-VERSION}}/next/g' \
     -e 's/{{VEHICLE-MANUFACTURE-VERSION}}/latest/g' \
-    -e 's/{{NODE-RED-VERSION}}/next/g' \
+    -e 's/{{NODE-RED-VERSION}}/latest/g' \
     > install.sh
 echo "PAYLOAD:" >> install.sh
 tar czf - -C $ROOT/node_modules/vehicle-manufacture-network/dist vehicle-manufacture-network.bna -C $DIR flows.json fabric-dev-servers >> install.sh
