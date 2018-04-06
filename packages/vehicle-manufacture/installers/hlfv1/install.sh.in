@@ -78,6 +78,7 @@ docker pull nodered/node-red-docker
 stop
 
 # run the fabric-dev-scripts to get a running fabric
+export FABRIC_VERSION=hlfv1
 ./fabric-dev-servers/downloadFabric.sh
 ./fabric-dev-servers/startFabric.sh
 
