@@ -8,6 +8,8 @@ This command creates a `install.sh` script (inside of installers/hlfv1) containi
 
 2. Run `cat installers/hlfv1/install.sh | bash` from within the `vehicle-manufacture` package
 
+*To run the demo with Fabric version 1.1.0: set the DEMO\_FABRIC\_VERSION env variable to hlfv11 using `export DEMO_FABRIC_VERSION=hlfv11`. Then run `./build.sh` and `cat installers/hlfv11/install.sh | bash`*
+
 This executes the script (and payload) starting up several Docker images for each vehicle-lifecycle demo element as well as setting up Hyperledger Fabric and Composer.
 Running this command will teardown any other running Docker images.
 
