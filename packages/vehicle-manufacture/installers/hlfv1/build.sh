@@ -20,7 +20,7 @@ npm install
 
 cd "${DIR}"
 cat install.sh.in | sed \
-    -e 's/{{COMPOSER-VERSION}}/latest/g' \
+    -e 's/{{COMPOSER-VERSION}}/0.16.5/g' \
     -e 's/{{VEHICLE-MANUFACTURE-VERSION}}/latest/g' \
     -e 's/{{NODE-RED-VERSION}}/latest/g' \
     > install.sh
