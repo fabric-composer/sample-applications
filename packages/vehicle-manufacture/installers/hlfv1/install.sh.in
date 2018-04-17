@@ -91,24 +91,61 @@ rm -fr $(pwd)/vldstage
 mkdir $(pwd)/vldstage
 chmod 777 $(pwd)/vldstage
 echo '{
-    "name": "hlfv1",
-    "description": "Hyperledger Fabric v1.0",
-    "type": "hlfv1",
-    "timeout": 300,
-    "orderers": [
-        {
-            "url": "grpc://orderer.example.com:7050"
-        }
-    ],
-    "channel": "composerchannel",
-    "mspID": "Org1MSP",
-    "ca": {"url": "http://ca.org1.example.com:7054", "name": "ca.org1.example.com"},
-    "peers": [
-        {
-            "requestURL": "grpc://peer0.org1.example.com:7051",
-            "eventURL": "grpc://peer0.org1.example.com:7053"
-        }
-    ]
+	"name": "hlfv1",
+	"version": "1.0.0",
+	"client": {
+		"organization": "Org1",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300",
+					"eventHub": "300",
+					"eventReg": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"orderers": {
+		"orderer.example.com": {
+			"url": "grpc://orderer.example.com:7050",
+			"grpcOptions": {}
+		}
+	},
+	"peers": {
+		"peer0.org1.example.com": {
+			"url": "grpc://peer0.org1.example.com:7051",
+			"eventUrl": "grpc://peer0.org1.example.com:7053",
+			"grpcOptions": {},
+			"endorsingPeer": true,
+			"chaincodeQuery": true,
+			"ledgerQuery": true,
+			"eventSource": true
+		}
+	},
+	"channels": {
+		"composerchannel": {
+			"orderers": ["orderer.example.com"],
+			"peers": {
+				"peer0.org1.example.com": {}
+			}
+		}
+	},
+	"certificateAuthorities": {
+		"ca.org1.example.com": {
+			"url": "http://ca.org1.example.com:7054",
+			"caName": "ca.org1.example.com"
+		}
+	},
+	"organizations": {
+		"Org1": {
+			"mspid": "Org1MSP",
+			"peers": ["peer0.org1.example.com"],
+			"certificateAuthorities": ["ca.org1.example.com"]
+		}
+	},
+	"x-type": "hlfv1",
+	"x-commitTimeout": 100
 }' > $(pwd)/vldstage/connection.json
 
 # build the PeerAdmin card and import it
@@ -143,7 +180,7 @@ docker run \
 # Wait for playground to start
 sleep 5
 
-# Deploy the business network archive.
+# Install the business network archive.
 docker run \
   --rm \
   --network composer_default \
@@ -151,7 +188,17 @@ docker run \
   -v $(pwd)/vldstage:/home/composer/vldstage \
   -v $(pwd)/.vld-card-store:/home/composer/.composer \
   hyperledger/composer-cli:{{COMPOSER-VERSION}} \
-  network deploy -c PeerAdmin@hlfv1 -a vehicle-manufacture-network.bna -A admin -S adminpw -f /home/composer/vldstage/bnaadmin.card
+  network install -c PeerAdmin@hlfv1 -a vehicle-manufacture-network.bna
+
+# Start the network
+docker run \
+  --rm \
+  --network composer_default \
+  -v $(pwd)/vehicle-manufacture-network.bna:/home/composer/vehicle-manufacture-network.bna \
+  -v $(pwd)/vldstage:/home/composer/vldstage \
+  -v $(pwd)/.vld-card-store:/home/composer/.composer \
+  hyperledger/composer-cli:{{COMPOSER-VERSION}} \
+  network start -n vehicle-manufacture-network -V {{NETWORK-VERSION}} -c PeerAdmin@hlfv1 -A admin -S adminpw -f /home/composer/vldstage/bnaadmin.card
 
 docker run \
   --rm \

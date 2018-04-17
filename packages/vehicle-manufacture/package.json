@@ -32,7 +32,7 @@
   "author": "Hyperledger Composer",
   "license": "Apache-2.0",
   "dependencies": {
-    "vehicle-manufacture-network": "~0.1.14-20180301124701"
+    "vehicle-manufacture-network": "^0.2.3"
   },
   "devDependencies": {
     "license-check-and-add": "2.0.3"
