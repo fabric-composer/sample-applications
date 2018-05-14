@@ -1,0 +1,58 @@
+.ellaPageContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ellaLoadingSpan {
+  margin: auto;
+}
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.ellaHeaderDiv {
+  background-color: #28293c;
+  width: 100%;
+  color: white;
+}
+
+.ellaUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.ellaUsername {
+  float: left;
+  margin: 15px 0 0 30px;
+  font-weight: 300;
+  font-size: 90%;
+}
+
+.ellaWelcomeDiv {
+  background-color: #28293c;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px #4e3747;
+  padding-top: 24px;
+}
+
+.ellaWelcomeDiv > span {
+  font-weight: 500;
+  font-size: 70%;
+  text-transform: uppercase;
+}
+
+.ellaWelcomeDiv > h1 {
+  text-align: center;
+  font-weight: 300;
+}

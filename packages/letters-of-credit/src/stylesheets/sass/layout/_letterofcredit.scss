@@ -1,0 +1,164 @@
+body {
+  background-color: #f5f6fa;
+}
+
+.LCcontainer {
+  background-color: #f5f6fa;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  > br {
+    clear: left;
+  }
+}
+
+.waitText {
+  position: absolute;
+  margin-left: 47.5%;
+  margin-top: 28%;
+  color: black;
+}
+
+.LCHeader {
+  height: 50px;
+  background-color: white;
+  border-bottom: 1px solid #ebeef5;
+
+  > div {
+    position: relative;
+    height: 100%;
+    width: 50px;
+    border-right: 1px solid #ebeef5;
+  }
+
+  > p {
+    font-size: 10pt;
+    line-height: 25px;
+  }
+}
+
+.loc-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.username-txt {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  margin-right: 70px;
+}
+
+.cardsContainer {
+  width: 60%;
+
+  > div > span {
+    margin-bottom: 10px;
+  }
+}
+
+.contentTable {
+  height: 1px;
+  max-height: 500px;
+  margin: 20px;
+  margin-left: 200px;
+  position: relative;
+  left: 50%;
+  margin-left: -597.5px;
+  top: 15px;
+}
+
+tr:nth-child(1) {
+  td {
+    &:not(.blockchainCell) {
+      min-width: 275px;
+    }
+  }
+}
+
+td > h1 {
+  font-weight: 300;
+}
+
+td {
+  vertical-align: top;
+  padding: 12.5px;
+}
+
+.blockchainCell {
+  width: 250px;
+  height: 100%;
+}
+
+.actions {
+  padding-right: 15px;
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    border-radius: 30px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+    z-index: 99999999;
+  }
+
+  > button:enabled {
+    background-color: #4880ff;
+    color: #fff;
+    border: 1px solid #4880ff;
+  }
+
+  > button:disabled {
+    cursor: not-allowed;
+    background-color: transparent;
+    border-color: black;
+    color: black;
+    opacity: 0.3;
+  }
+
+  > button:enabled:hover {
+    border: 1px solid #4880ff;
+    background-color: transparent;
+    color: #4880ff;
+  }
+}
+
+.statusMessage {
+  margin: 2.5%;
+}
+
+.backButton {
+  cursor: pointer;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 50%;
+  margin-left: -7.5px;
+  z-index: 999999999;
+}
+
+.userInfo {
+  display: inline-block;
+  padding: 2% 0 0 2%;
+}
+
+.header {
+  display: flex;
+}
+
+.stepper {
+  width: 50%;
+  margin: 0 auto;
+}

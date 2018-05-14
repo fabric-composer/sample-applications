@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="570px" height="850px" viewBox="0 0 570 850" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1280" height="850"></rect>
+        <linearGradient x1="89.1570602%" y1="70.1034853%" x2="40.9106888%" y2="18.219082%" id="linearGradient-3">
+            <stop stop-color="#3B51DC" offset="0%"></stop>
+            <stop stop-color="#344BD3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="52.9078941%" y1="38.5962188%" x2="3.25631239%" y2="124.14773%" id="linearGradient-4">
+            <stop stop-color="#3B51DC" offset="0%"></stop>
+            <stop stop-color="#142CAE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2">
+            <g id="Group">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g mask="url(#mask-2)">
+                    <g transform="translate(-418.000000, -192.000000)">
+                        <polygon id="Triangle-Copy" fill="url(#linearGradient-3)" transform="translate(499.845514, 632.672741) rotate(-167.000000) translate(-499.845514, -632.672741) " points="499.845514 71.9028892 883.375098 1193.44259 116.315931 1193.44259"></polygon>
+                        <polygon id="Triangle" fill="url(#linearGradient-4)" transform="translate(451.002375, 446.772032) rotate(-161.000000) translate(-451.002375, -446.772032) " points="451.002375 64.9702244 610.502375 828.573839 291.502375 828.573839"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

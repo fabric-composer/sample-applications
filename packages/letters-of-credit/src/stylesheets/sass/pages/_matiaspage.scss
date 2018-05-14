@@ -1,0 +1,65 @@
+.matiasPageContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.matiasLoadingSpan {
+  margin: auto;
+}
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.matiasHeaderDiv {
+  width: 100%;
+  height: 80px;
+  background-color: #3b34c4;
+  color: white;
+  position: relative;
+
+  > span:nth-child(2) {
+    margin-top: 22px;
+    margin-right: 35px;
+    font-weight: 300;
+    font-size: 10pt;
+    position: absolute;
+    right: 0;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 8px 20px 8px 20px;
+  }
+
+}
+
+.matiasUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.matiasUsername {
+  float: left;
+  margin: 30px 0 0 55px;
+  font-weight: 300;
+  font-size: 90%;
+  text-decoration: none;
+}
+
+.matiasWelcomeDiv {
+  background-color: #3b34c4;
+  color: white;
+}
+
+.matiasWelcomeDiv > h1 {
+  margin-left: 55px;
+  font-weight: 300;
+}

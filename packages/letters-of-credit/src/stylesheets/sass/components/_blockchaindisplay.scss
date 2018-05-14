@@ -1,0 +1,29 @@
+.BlockChainDisplay {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 200px;
+  height: 0px;
+  min-height: 100%;
+}
+
+.greyBlock {
+  padding-left: 5px;
+  padding-top: 10px;
+  align-items: center;
+  margin: 0;
+}
+
+.greyBlockLine {
+  background-color: #ddd;
+  box-shadow: 0 0 5px #d1d1d1;
+  width: 2px;
+  height: 25px;
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.greyBlockNumber {
+  display: inline-block;
+  opacity: 0;
+}

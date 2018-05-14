@@ -1,0 +1,88 @@
+.bobPageContainer {
+  width: 100%;
+  height: 100vh;
+  background-color: #28293c;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingSpan {
+  margin: auto;
+  color: white;
+}
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.bobHeaderDiv {
+  width: 100%;
+  height: 10vh;
+}
+
+.bobUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.bobUsername {
+  float: left;
+  margin: 30px;
+  font-weight: 300;
+  font-size: 90%;
+  color: white;
+  text-decoration: none;
+}
+
+.infoDivBob {
+  height: 30vh;
+}
+
+.bobWelcomeDiv {
+  text-align: center;
+  margin-left: 0;
+  margin-top: 0;
+  color: white;
+  font-size: 20px
+}
+
+.bobDetailsDiv  {
+  margin-top: 1vh;
+  color: white;
+}
+
+.alertsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.locDivBob {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.LoCCardConnector {
+  border: 5px solid #7646c0;
+  width: 10px;
+  height: 10px;
+}
+
+#welcomeMessage {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+#accountBalance {
+  font-size: 55px;
+  font-weight: 300;
+}
