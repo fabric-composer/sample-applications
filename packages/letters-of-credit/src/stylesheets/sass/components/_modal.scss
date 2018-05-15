@@ -12,10 +12,9 @@
     flex-direction: column;
     display: flex;
     margin: auto;
-    height: 32%;
-    width: 20%;
+    height: 300px;
+    width: 300px;
 		background-color: white;
-		font-family: Helvetica Neue, sans-serif;
     justify-content: space-between;
 
     > div {
@@ -43,7 +42,7 @@
 }
 
 .textMargins {
-    margin: 5% 10% 5% 10%;
+  margin: 30px;
 }
 
 .buttonsRow {
@@ -62,9 +61,9 @@
 }
 
 .yesButton:enabled {
-  border: 1px solid #4880ff;
-  color: #4880ff;
-  background-color: transparent;
+  background-color: #4880ff;
+  color: #fff;
+  border: 1px solid #4880ff
 }
 
 .yesButton:disabled {
@@ -72,8 +71,10 @@
 }
 
 .yesButton:hover:enabled {
-	background-color: #4880ff;
-  color: #fff;
+	
+  border: 1px solid #4880ff;
+  color: #4880ff;
+  background-color: transparent;
 }
 
 .cancelButton {

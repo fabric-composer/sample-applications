@@ -72,7 +72,6 @@ class BlockChainDisplay extends React.Component {
     return (
         <div className="BlockChainDisplay">
           <div className="greyBlock">
-            <div className="greyBlockNumber">x</div>
             <div className="greyBlockLine"/>
           </div>
           {blocks}

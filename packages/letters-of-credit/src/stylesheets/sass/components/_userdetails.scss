@@ -5,12 +5,16 @@
   color: white;
   font-weight: lighter;
   > h1 {
-    font-family:HelveticaNeue-Bold, sans-serif;
     font-size: 19px;
+    font-weight: 400;
   }
-  > p {
-    margin: 0;
-    font-family:HelveticaNeue, sans-serif;
+
+  > div {
+    margin-bottom: 5px;
+
+    > b {
+      font-weight: 500;
+    }
   }
 }
 

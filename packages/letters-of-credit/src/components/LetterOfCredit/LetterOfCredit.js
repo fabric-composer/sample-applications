@@ -373,6 +373,12 @@ class LetterOfCredit extends Component {
       );
     }
 
+    let username = (this.state.user.charAt(3) === 'i') ? 'Matías' : this.state.user.charAt(0).toUpperCase() + this.state.user.slice(1);
+    if (username === 'Alice') username += ' - Applicant';
+    else if (username === 'Matías') username += ' - Issuing Bank';
+    else if (username === 'Ella') username += ' - Exporting Bank';
+    else username += ' - Beneficiary';
+
     return (
       <div class="LCcontainer">
         <Modal show={this.state.showModal} modalType={this.state.modalType} user={this.state.user} cancelCallback={()=>{this.hideModal()}} yesCallback={this.state.modalFunction}/>
@@ -381,7 +387,7 @@ class LetterOfCredit extends Component {
             <img class="backButton" src={backButtonIcon} alt="go back" onClick={() => {if(!this.state.disableButtons){this.handleOnClick(this.state.user)}}}/>
           </div>
           <p class="loc-text">Letter of Credit</p>
-          <p class="username-txt">{(this.state.user.charAt(3) === 'i') ? 'Matías' : this.state.user.charAt(0).toUpperCase() + this.state.user.slice(1)}</p>
+          <p class="username-txt">{username}</p>
         </div>
         <div class="header">
           <div class="stepper">

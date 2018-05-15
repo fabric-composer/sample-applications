@@ -60,7 +60,16 @@ body {
   height: 1px;
   max-height: 500px;
   width: 95%;
-  margin: 2.5%;
+  margin: 20px;
+  margin-left: 200px;
+
+  tr:nth-child(1) {
+    td {
+      &:not(.blockchainCell) {
+        min-width: 275px;
+      }
+    }
+  }
 
   td {
     vertical-align: top;
@@ -68,7 +77,7 @@ body {
   }
 
   .blockchainCell {
-    width: 200px;
+    width: 99%;
     height: 100%;
   }
 
@@ -79,12 +88,6 @@ body {
   text-align: left;
   width: 76.5%;
   margin: 2%;
-
-  > ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
 }
 
 .actions {
@@ -94,8 +97,8 @@ body {
 
   > button {
     border-radius: 30px;
-    padding: 0.7% 1.2% 0.7% 1.2%;
-    margin: 0 1% 1% 0;
+    padding: 10px 20px;
+    margin: 0 10px 10px 0;
     font-weight: 500;
     white-space: nowrap;
     text-align: center;
@@ -103,18 +106,23 @@ body {
   }
 
   > button:enabled {
+    background-color: #4880ff;
+    color: #fff;
     border: 1px solid #4880ff;
-    background-color: transparent;
-    color: #4880ff;
   }
 
   > button:disabled {
     cursor: not-allowed;
+    background-color: transparent;
+    border-color: black;
+    color: black;
+    opacity: 0.3;
   }
 
   > button:enabled:hover {
-    background-color: #4880ff;
-    color: #fff;
+    border: 1px solid #4880ff;
+    background-color: transparent;
+    color: #4880ff;
   }
 }
 
@@ -124,12 +132,13 @@ body {
 
 .backButton {
   cursor: pointer;
-  height: 20px;
+  height: 15px;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 25%;
   margin: auto;
+  left: 50%;
+  margin-left: -7.5px;
   z-index: 999999999;
 }
 

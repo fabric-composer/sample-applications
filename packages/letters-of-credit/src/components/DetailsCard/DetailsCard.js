@@ -85,7 +85,7 @@ class DetailsCard extends Component {
         );
         break;
       case 'Rules':
-        mainHeadingTxt = "Terms and Conditions";
+        mainHeadingTxt = "Terms of Letter of Credit";
         if(this.state.editable) {
           jsx = (
             <ul>
