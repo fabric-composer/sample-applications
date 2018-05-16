@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../../../stylesheets/css/main.css';
-import { Redirect } from 'react-router-dom';
 import Config from '../../../utils/config';
 
 class TutorialPage extends Component {

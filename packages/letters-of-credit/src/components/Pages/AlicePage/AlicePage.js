@@ -123,7 +123,7 @@ class AlicePage extends Component {
     		  <div id="infoDiv" className="flexDiv infoDiv">
     		    <div id="aliceWelcomeDiv" className="aliceWelcomeDiv">
     		      <h1 className = "aliceWelcomeMessage"> Welcome back {this.state.userDetails.name} </h1>
-    		      <UserDetails name={this.state.userDetails.name} companyName={this.state.userDetails.companyName} IBAN={'AR22 9876 5321 9090'} swiftCode={'PNBNAR22'}/>
+    		      <UserDetails name={this.state.userDetails.name} companyName={this.state.userDetails.companyName} IBAN={'AR22 9876 5321 9090'} swiftCode={'BKDOAR22'}/>
 						</div>
 					</div>
     		  <div className="locDiv">

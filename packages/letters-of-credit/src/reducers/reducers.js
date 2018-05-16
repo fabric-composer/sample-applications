@@ -6,15 +6,15 @@ const initialState = {
     name: 'Alice Hamilton',
     companyName: 'QuickFix IT',
     IBAN: 'AR22 9876 5321 9090',
-    swiftCode: 'PNBNAR22',
-    bankName: 'Penguin Banking'
+    swiftCode: 'BKDOAR22',
+    bankName: 'Bank of Dinero'
   },
   beneficiary: {
     name: 'Bob Appleton',
     companyName: 'Conga Computers',
     IBAN: 'BE05 1234 5678 0101',
-    swiftCode: 'BOHUBE05',
-    bankName: 'Bank of Hursley'
+    swiftCode: 'EWBKBE05',
+    bankName: 'Eastwood Banking'
   },
   productDetails: {
     type: "",

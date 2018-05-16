@@ -40,7 +40,7 @@ class Modal extends Component {
     let message = "";
     if (this.props.modalType === 'CREATE' || this.props.modalType === 'APPROVE') {
       message = "By clicking 'Yes' you are agreeing to the Terms and Conditions of this Letter of Credit.";
-      if (this.props.user != 'bob') {
+      if (this.props.user !== 'bob') {
         message += " The letter will now be sent to the next participant for approval.";
       }
     } else if (this.props.modalType === 'REJECT') {
