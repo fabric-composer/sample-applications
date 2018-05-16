@@ -5,17 +5,27 @@ class Alert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      alertType: this.props.alertType,
-      alertMessage: this.props.alertMessage
+      amount: this.props.amount,
+      show: this.props.show
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  render()
-  {
+  handleClick() {
+    this.setState({
+      show: false
+    });
+  }
+
+  render() {
+    let containerStyle = (this.state.show) ? "alertContainer" : "alertContainer invisible";
     return (
-      <div className="Alert">
-        <p>{this.state.alertType}</p>
-        <p>{this.state.alertMessage}</p>
+      <div className={containerStyle}>
+        <div className="tick"/>
+        <div className="alert">
+          <p>Your balance has increased by <b>{"€" + this.state.amount}</b>.</p>
+          <button onClick={this.handleClick} disabled={!this.state.show}>×</button>
+        </div>
       </div>
     );
   }
