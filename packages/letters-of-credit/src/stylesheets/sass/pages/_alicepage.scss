@@ -1,9 +1,10 @@
 .alicePageContainer {
   width: 100%;
   height: 100vh;
-  background-image: url("../../resources/backgrounds/smallbackgroundslice.png"), url("../../resources/backgrounds/largebackgroundslice.png");
-  background-repeat: no-repeat, no-repeat;
+  background-image: url("../../resources/backgrounds/BACKGROUND3.svg");
+  background-repeat: no-repeat;
   background-color: #3B51DC;
+  background-size: contain;
   display: flex;
   flex-direction: column;
 }
@@ -21,6 +22,17 @@
 .aliceHeaderDiv {
   width: 100%;
   height: 10vh;
+}
+
+.aliceUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .aliceUsername {
@@ -46,10 +58,6 @@
     font-weight: lighter;
     font-size: 90%;
   }
-}
-
-.infoDiv {
-  height: 50vh;
 }
 
 .aliceWelcomeDiv {
@@ -88,5 +96,5 @@
   border-radius: 20px;
   background-color: #273ec6;
   color: white;
-  padding: 12px;
+  padding: 8px 20px;
 }

@@ -379,36 +379,43 @@ class LetterOfCredit extends Component {
     else if (username === 'Ella') username += ' - Exporting Bank';
     else username += ' - Beneficiary';
 
-    return (
-      <div class="LCcontainer">
-        <Modal show={this.state.showModal} modalType={this.state.modalType} user={this.state.user} cancelCallback={()=>{this.hideModal()}} yesCallback={this.state.modalFunction}/>
-        <div class="LCHeader">
-          <div>
-            <img class="backButton" src={backButtonIcon} alt="go back" onClick={() => {if(!this.state.disableButtons){this.handleOnClick(this.state.user)}}}/>
+    if (!this.state.disableButtons) {
+      return (
+        <div class="LCcontainer">
+          <Modal show={this.state.showModal} modalType={this.state.modalType} user={this.state.user} cancelCallback={()=>{this.hideModal()}} yesCallback={this.state.modalFunction}/>
+          <div class="LCHeader">
+            <div>
+              <img class="backButton" src={backButtonIcon} alt="go back" onClick={() => {if(!this.state.disableButtons){this.handleOnClick(this.state.user)}}}/>
+            </div>
+            <p class="loc-text">Letter of Credit</p>
+            <p class="username-txt">{username}</p>
           </div>
-          <p class="loc-text">Letter of Credit</p>
-          <p class="username-txt">{username}</p>
+          <table className="contentTable">
+            <tr>
+              <td> <h1>Contract Details</h1> </td>
+              <td colspan="2"> <Stepper steps={ [{title: 'Letter Application'}, {title: 'BoD\'s Approval'}, {title: 'EB\'s Approval'}, {title: 'Bob\'s Approval'}, {title: 'Goods Shipped'}, {title: 'Shipment Accepted'}, {title: 'Payment Made'}, {title: 'Letter Closed'}] } activeStep={activeStep} circleFontSize={12} titleFontSize={12} completeColor={"#4880ff"} activeColor={"#b3d5ff"} completeBarColor={"#4880ff"} size={24}/> </td>  
+            </tr>
+            <tr>
+              <td> <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/> </td>
+              <td> <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/> </td>
+              <td> <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.state.isApply} user={this.state.user}/> </td>
+              <td className="blockchainCell" rowspan="2"> <BlockChainDisplay transactions={this.state.transactions}/> </td>
+            </tr>
+            <tr>
+              <td colspan="3"> <DetailsCard type="Rules" data={rules} canEdit={this.state.isApply}/> </td>
+            </tr>
+          </table>
+          {buttonJSX}
+          { this.state.disableButtons && <div class="statusMessage"> Please wait... </div> }
         </div>
-        <div class="header">
-          <div class="stepper">
-            <Stepper steps={ [{title: 'Letter Application'}, {title: 'BoD\'s Approval'}, {title: 'EB\'s Approval'}, {title: 'Bob\'s Approval'}, {title: 'Goods Shipped'}, {title: 'Shipment Accepted'}, {title: 'Payment Made'}, {title: 'Letter Closed'}] } activeStep={activeStep} circleFontSize={12} titleFontSize={12} completeColor={"#4880ff"} activeColor={"#b3d5ff"} completeBarColor={"#4880ff"} size={24}/>
-          </div>
+      );
+    } else {
+      return (
+        <div class="LCcontainer">
+          <span className="waitText">Please wait...</span>
         </div>
-        <table className="contentTable">
-          <tr>
-            <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/> </td>
-            <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/> </td>
-            <td className="editable"> <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.state.isApply} user={this.state.user}/> </td>
-            <td className="blockchainCell" rowspan="2">  <BlockChainDisplay transactions={this.state.transactions}/> </td>
-          </tr>
-          <tr>
-            <td colspan="3"> <DetailsCard type="Rules" data={rules} canEdit={this.state.isApply}/> </td>
-          </tr>
-        </table>
-        {buttonJSX}
-        { this.state.disableButtons && <div class="statusMessage"> Please wait... </div> }
-      </div>
-    );
+      );
+    }
   }
 }
 

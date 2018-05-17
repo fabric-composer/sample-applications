@@ -9,10 +9,6 @@
   margin: auto;
 }
 
-.matiasUsernameIcon {
-  margin-right: 5px;
-}
-
 .flexDiv {
   display: flex;
   flex-direction: row;
@@ -23,6 +19,17 @@
   height: 10vh;
   background-color: #3b34c4;
   color: white;
+}
+
+.matiasUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .matiasUsername {

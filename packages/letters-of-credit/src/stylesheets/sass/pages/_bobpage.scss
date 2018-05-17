@@ -21,6 +21,17 @@
   height: 10vh;
 }
 
+.bobUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .bobUsername {
   float: left;
   margin: 3vh;
@@ -69,6 +80,7 @@
   flex-direction: row;
   width: 100%;
   overflow-x: auto;
+  padding: 10px 0;
 }
 
 .LoCCardConnector {
@@ -84,6 +96,5 @@
 
 #accountBalance {
   font-size: 55px;
-  font-weight: lighter;
-  margin-bottom: 15px;
+  font-weight: 100;
 }

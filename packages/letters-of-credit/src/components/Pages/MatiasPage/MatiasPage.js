@@ -160,10 +160,7 @@ class MatiasPage extends Component {
       return (
         <div id="matiasPageContainer" className="matiasPageContainer">
           <div id="matiasHeaderDiv" className="flexDiv matiasHeaderDiv">
-            <span className="matiasUsername">
-              <img src={matiasUsernameIcon} alt="" className="matiasUsernameIcon"/>
-              {username}
-            </span>
+            <span className="matiasUsername">{username}</span>
             <div id="matiasMenu" className="matiasMenuItems">
               <span>Change Account Details</span>
               <span>View Transaction History</span>

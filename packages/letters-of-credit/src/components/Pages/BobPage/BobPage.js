@@ -105,19 +105,13 @@ class BobPage extends Component {
     }
   }
 
-  getBalance() {
-    let balance = 12399;
-    this.state.letters.map(i => {
-      balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 0.8 : 0;
-    });
-    return balance;
-  }
-
-  getBalanceIncrease() {
-    let closedLetter = this.state.letters[0];
-    let increase = (closedLetter.productDetails.quantity * closedLetter.productDetails.pricePerUnit * 0.8);
-    return increase;
-  }
+	getBalance() {
+		let balance = 12000;
+		this.state.letters.map(i => {
+			balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 0.8 : 0;
+		});
+		return balance.toLocaleString();
+	}
 
   render() {
     if (this.state.redirect) {

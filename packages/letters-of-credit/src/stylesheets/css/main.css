@@ -1,9 +1,10 @@
 .alicePageContainer {
   width: 100%;
   height: 100vh;
-  background-image: url("../../resources/backgrounds/smallbackgroundslice.png"), url("../../resources/backgrounds/largebackgroundslice.png");
-  background-repeat: no-repeat, no-repeat;
+  background-image: url("../../resources/backgrounds/BACKGROUND3.svg");
+  background-repeat: no-repeat;
   background-color: #3B51DC;
+  background-size: contain;
   display: flex;
   flex-direction: column; }
 
@@ -18,6 +19,16 @@
 .aliceHeaderDiv {
   width: 100%;
   height: 10vh; }
+
+.aliceUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px; }
 
 .aliceUsername {
   float: left;
@@ -39,9 +50,6 @@
     color: white;
     font-weight: lighter;
     font-size: 90%; }
-
-.infoDiv {
-  height: 50vh; }
 
 .aliceWelcomeDiv > h1 {
   margin-left: 6vh;
@@ -73,7 +81,7 @@
   border-radius: 20px;
   background-color: #273ec6;
   color: white;
-  padding: 12px; }
+  padding: 8px 20px; }
 
 .bobPageContainer {
   width: 100%;
@@ -93,6 +101,16 @@
 .bobHeaderDiv {
   width: 100%;
   height: 10vh; }
+
+.bobUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px; }
 
 .bobUsername {
   float: left;
@@ -134,7 +152,8 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  overflow-x: auto; }
+  overflow-x: auto;
+  padding: 10px 0; }
 
 .LoCCardConnector {
   border: 5px solid #7646c0;
@@ -147,8 +166,7 @@
 
 #accountBalance {
   font-size: 55px;
-  font-weight: lighter;
-  margin-bottom: 15px; }
+  font-weight: 100; }
 
 .ellaPageContainer {
   width: 100%;
@@ -164,21 +182,29 @@
   flex-direction: row; }
 
 .ellaHeaderDiv {
-  background-color: #a0066f;
+  background-color: #28293c;
   width: 100%;
   color: white; }
+
+.ellaUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px; }
 
 .ellaUsername {
   float: left;
   margin: 2vh 0 2vh 3vh;
   font-weight: lighter;
   font-size: 90%;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 0.5%; }
 
 .ellaWelcomeDiv {
-  background-color: #a0066f;
+  background-color: #28293c;
   color: white;
   text-align: center;
   text-shadow: 0 1px #4e3747;
@@ -202,9 +228,6 @@
 .matiasLoadingSpan {
   margin: auto; }
 
-.matiasUsernameIcon {
-  margin-right: 5px; }
-
 .flexDiv {
   display: flex;
   flex-direction: row; }
@@ -214,6 +237,16 @@
   height: 10vh;
   background-color: #3b34c4;
   color: white; }
+
+.matiasUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px; }
 
 .matiasUsername {
   float: left;
@@ -268,9 +301,16 @@ body {
 .LCcontainer {
   background-color: #f5f6fa;
   width: 100%;
-  height: 100%; }
+  height: 100vh;
+  position: relative; }
   .LCcontainer > br {
     clear: left; }
+
+.waitText {
+  position: absolute;
+  margin-left: 47.5%;
+  margin-top: 28%;
+  color: black; }
 
 .LCHeader {
   height: 50px;
@@ -309,17 +349,25 @@ body {
 .contentTable {
   height: 1px;
   max-height: 500px;
-  width: 95%;
   margin: 20px;
-  margin-left: 200px; }
-  .contentTable tr:nth-child(1) td:not(.blockchainCell) {
-    min-width: 275px; }
-  .contentTable td {
-    vertical-align: top;
-    padding: 12.5px; }
-  .contentTable .blockchainCell {
-    width: 99%;
-    height: 100%; }
+  margin-left: 200px;
+  position: relative;
+  left: 50%;
+  margin-left: -597.5px; }
+
+tr:nth-child(1) td:not(.blockchainCell) {
+  min-width: 275px; }
+
+td > h1 {
+  font-weight: 100; }
+
+td {
+  vertical-align: top;
+  padding: 12.5px; }
+
+.blockchainCell {
+  width: 250px;
+  height: 100%; }
 
 .rules {
   display: block;
@@ -545,48 +593,86 @@ body {
   width: unset; }
 
 .LoCCard {
-  padding: 20px 20px 40px 30px;
+  padding: 20px 10px 5px 35px;
   margin-left: 6vh;
   border: 1px solid white;
+  border-radius: 2px;
   text-align: left;
   color: white;
-  font-weight: lighter;
-  min-width: 21%;
-  max-width: 21%; }
-  .LoCCard > h3 {
-    font-weight: lighter; }
+  font-weight: 100;
+  width: 250px; }
+  .LoCCard > h2 {
+    font-weight: 100;
+    font-size: 10pt; }
+  .LoCCard > h2 {
+    font-weight: 100;
+    font-size: 19px; }
+  .LoCCard > div {
+    font-size: 10pt; }
+    .LoCCard > div > h2 {
+      font-weight: 100;
+      font-size: 10pt; }
+    .LoCCard > div > h2:first-of-type {
+      font-weight: 100;
+      font-size: 19px; }
+    .LoCCard > div > p > b {
+      font-weight: 500; }
 
 .noBorder {
   border: none;
   padding-left: 0; }
+  .noBorder > p {
+    font-size: 10pt;
+    line-height: 1.8; }
 
 .viewButton {
   margin-top: 5px;
   margin-left: -5px;
-  border: 1px solid #273ec6;
-  border-radius: 20px;
-  background-color: #273ec6;
   color: white;
   padding-top: 12px;
   padding-bottom: 12px;
-  display: flex; }
-  .viewButton > p {
-    margin: 0;
-    padding-right: 8px; }
+  padding-left: 0px;
+  display: flex;
+  font-size: 10pt;
+  background: none;
+  border: none; }
+
+.buttonText:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px; }
+
+.buttonText {
+  margin: 0; }
+  .buttonText > span {
+    border-bottom: 1px solid white; }
 
 .LoCCardBob {
-  padding: 20px 20px 40px 30px;
-  margin-left: 6vh;
+  padding: 8px 20px 30px 30px;
+  margin-left: 40px;
+  margin-top: 8px;
   border: 5px solid #7646c0;
-  box-shadow: 0 2px 22px 2px #7646c0;
   text-align: left;
   color: white;
-  font-weight: lighter;
-  font-size: 15px;
-  min-width: 14%;
-  max-width: 14%; }
-  .LoCCardBob > h3 {
-    font-weight: lighter; }
+  font-weight: 100;
+  width: 220px;
+  font-size: 10pt;
+  height: 180px; }
+  .LoCCardBob > div > h2 {
+    font-weight: 100;
+    font-size: 10pt; }
+  .LoCCardBob > div > h2:first-of-type {
+    font-weight: 100;
+    font-size: 19px; }
+  .LoCCardBob > div > b {
+    font-weight: 500; }
+  .LoCCardBob > div > p > b {
+    font-weight: 500; }
   .LoCCardBob > .background {
     position: absolute;
     top: 50%;
@@ -599,7 +685,8 @@ body {
   padding-top: 12px;
   padding-bottom: 12px;
   float: right;
-  width: 7%; }
+  width: 7%;
+  transform: rotate(180deg); }
 
 .viewButtonBob:hover {
   cursor: pointer; }
@@ -610,8 +697,11 @@ body {
 
 .applyButton {
   background-color: #fc6a66;
-  border-color: #fc6a66;
-  padding-left: 10px; }
+  border: 1px solid #fc6a66;
+  padding: 8px 20px;
+  margin-top: 23px;
+  border-radius: 20px;
+  text-decoration: none; }
 
 .shipButtonDiv {
   display: flex;
@@ -649,7 +739,71 @@ body {
   margin-left: 10px; }
 
 #LoCCardBobAccepted {
-  background: linear-gradient(-90deg, rgba(118, 70, 192, 0.27) 0%, rgba(190, 79, 131, 0.68) 100%); }
+  background: linear-gradient(90deg, #7a3cbc 0%, #ae4581 100%);
+  border: none;
+  padding: 13px 25px 35px 35px;
+  box-shadow: none; }
+
+.customToggle .react-toggle-track {
+  height: 20px;
+  margin-top: 5px;
+  background-color: #1b1b28 !important;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5); }
+
+.customToggle .react-toggle-thumb {
+  height: 28px;
+  width: 28px;
+  left: 0;
+  border: 2px solid #dcdcdc;
+  background-color: #f4f4f4; }
+
+.customToggle .react-toggle-thumb:after {
+  content: "\D7";
+  color: #9b9b9b;
+  font-weight: 500;
+  font-size: 13pt;
+  width: 0px;
+  height: 0px;
+  margin-left: 6.5px; }
+
+.customToggle .react-toggle-checked {
+  left: 20px; }
+
+.customToggle .react-toggle-track-check {
+  display: none; }
+
+.customToggle .react-toggle-track-x {
+  display: none; }
+
+.customToggle.react-toggle--disabled {
+  opacity: 1; }
+
+.customToggle.react-toggle--checked .react-toggle-track {
+  background-color: #9b65c3 !important; }
+
+.customToggle.react-toggle--checked .react-toggle-thumb {
+  background-color: #953ea5 !important;
+  border-color: #953ea5;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15); }
+
+.customToggle.react-toggle--checked .react-toggle-thumb:after {
+  content: "";
+  height: 5px;
+  width: 8px;
+  border-left: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+  transform: rotate(-45deg);
+  display: inline-block; }
+
+.customToggleAlice .react-toggle-track {
+  background-color: #d6e1f6 !important; }
+
+.customToggleAlice.react-toggle--checked .react-toggle-track {
+  background-color: #d6e1f6 !important; }
+
+.customToggleAlice.react-toggle--checked .react-toggle-thumb {
+  background-color: #6464e8 !important;
+  border-color: #6464e8; }
 
 .background {
   display: flex;
@@ -737,16 +891,17 @@ body {
   text-align: center; }
 
 .UserDetails {
+  font-size: 10pt;
   text-align: left;
   padding-left: 6vh;
   padding-bottom: 50px;
   color: white;
   font-weight: lighter; }
-  .UserDetails > h1 {
+  .UserDetails > h2 {
     font-size: 19px;
-    font-weight: 400; }
+    font-weight: 100; }
   .UserDetails > div {
-    margin-bottom: 5px; }
+    margin-bottom: 10px; }
     .UserDetails > div > b {
       font-weight: 500; }
 

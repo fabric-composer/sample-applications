@@ -5,11 +5,19 @@ body {
 .LCcontainer {
   background-color: #f5f6fa;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  position: relative;
 
   > br {
     clear: left;
   }
+}
+
+.waitText {
+  position: absolute;
+  margin-left: 47.5%;
+  margin-top: 28%;
+  color: black;
 }
 
 .LCHeader {
@@ -59,28 +67,33 @@ body {
 .contentTable {
   height: 1px;
   max-height: 500px;
-  width: 95%;
   margin: 20px;
   margin-left: 200px;
+  position: relative;
+  left: 50%;
+  margin-left: -597.5px;
+}
 
-  tr:nth-child(1) {
-    td {
-      &:not(.blockchainCell) {
-        min-width: 275px;
-      }
+tr:nth-child(1) {
+  td {
+    &:not(.blockchainCell) {
+      min-width: 275px;
     }
   }
+}
 
-  td {
-    vertical-align: top;
-    padding: 12.5px;
-  }
+td > h1 {
+  font-weight: 100;
+}
 
-  .blockchainCell {
-    width: 99%;
-    height: 100%;
-  }
+td {
+  vertical-align: top;
+  padding: 12.5px;
+}
 
+.blockchainCell {
+  width: 250px;
+  height: 100%;
 }
 
 .rules {
