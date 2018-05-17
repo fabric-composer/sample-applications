@@ -148,7 +148,8 @@
 
 #accountBalance {
   font-size: 55px;
-  font-weight: lighter; }
+  font-weight: lighter;
+  margin-bottom: 15px; }
 
 .ellaPageContainer {
   width: 100%;
@@ -374,17 +375,54 @@ body {
   width: 50%;
   margin: 0 auto; }
 
-.Alert {
-  width: 35%;
+.alertContainer {
+  margin-top: -12px;
+  font-size: 10pt; }
+
+.invisible {
+  opacity: 0;
+  cursor: default; }
+
+.tick {
+  margin: auto;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 6px 10px 6px;
+  border-color: transparent transparent #4d4f75 transparent;
+  z-index: 100; }
+
+.alert {
+  display: flex;
+  margin: auto;
+  height: 35px;
+  width: 300px;
   line-height: 1;
-  margin-left: 87vh;
-  margin-bottom: 1vh;
-  padding-left: 15px;
-  border: 1px solid white;
-  border-radius: 15px; }
-  .Alert > p {
+  border-radius: 5px;
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.15);
+  background-color: #4d4f75; }
+  .alert > p {
     color: white;
-    font-weight: lighter; }
+    font-weight: lighter;
+    font-size: small;
+    margin: auto;
+    margin-right: 5px;
+    font-size: 10pt; }
+    .alert > p > b {
+      font-weight: 500; }
+  .alert > button {
+    padding: 0;
+    padding-bottom: 3px;
+    height: 25px;
+    width: 25px;
+    margin: auto;
+    margin-left: 0px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: large; }
+  .alert > button:disabled {
+    cursor: default; }
 
 .Block {
   padding-left: 5px;
