@@ -40,9 +40,7 @@ class Modal extends Component {
     let message = "";
     if (this.props.modalType === 'CREATE' || this.props.modalType === 'APPROVE') {
       message = "By clicking 'Yes' you are agreeing to the Terms and Conditions of this Letter of Credit.";
-      if (this.props.user !== 'bob') {
-        message += " The letter will now be sent to the next participant for approval.";
-      }
+      message += this.props.user !== 'bob' ? " The letter will now be sent to the next participant for approval." : ""
     } else if (this.props.modalType === 'REJECT') {
       message = "By clicking 'Yes' you are rejecting this application and the Letter of Credit will be closed. Once rejected, you will be unable to reopen this Letter of Credit.";
     } else if (this.props.modalType === 'PAY') {
@@ -63,16 +61,22 @@ class Modal extends Component {
       if(this.props.modalType === 'SHIP') {
         content = (
           <div>
-            <h3 id="titleText" className="textMargins title">Upload a File</h3>
+            <h4 id="titleText" className="textMargins title">Upload an Invoice</h4>
             <table className="files-table">
               <tr>
-                <td><input id="checkBox" type="checkbox" checked={this.state.isChecked} onChange={this.handleChange}/>shipping-invoice.pdf</td>
+                <td>
+                  <label class="checkboxContainer">
+                    <input type="checkbox" checked={this.state.isChecked} onChange={this.handleChange}/>
+                    <span class="checkmark"></span>
+                    shipping-invoice.pdf
+                  </label>
+                </td>
               </tr>
             </table>
             { this.state.isLoading && <p class="loadingMessage">Please wait... </p> }
-            <div id="buttonRow" className="buttonsRow">
-              <button className="cancelButton" onClick={this.cancelShipCallback}>Cancel</button>
+            <div id="buttonsRow" className="shipButtonsRow">
               <button disabled={!this.state.isChecked || this.state.isLoading} className="yesButton" onClick={this.uploadInvoiceCallback}>Upload</button>
+              <button className="cancelButton" onClick={this.cancelShipCallback}>Cancel</button>
             </div>
           </div>
         );
@@ -82,9 +86,9 @@ class Modal extends Component {
           <div>
             <h4 id="titleText" className="textMargins title">Are you sure you want to {this.props.modalType.toLowerCase()} this letter?</h4>
             <p id="messageBody" className="textMargins message">{message}</p>
-            <div id="buttonRow" className="textMargins">
-              <button className="cancelButton" onClick={this.props.cancelCallback}>Cancel</button>
+            <div id="buttonsRow" className="buttonsRow">
               <button className="yesButton" onClick={this.props.yesCallback}>Yes</button>
+              <button className="cancelButton" onClick={this.props.cancelCallback}>Cancel</button>
             </div>
           </div>
         );

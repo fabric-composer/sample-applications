@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
 .alicePageContainer {
   width: 100%;
   height: 100vh;
@@ -18,7 +19,7 @@
 
 .aliceHeaderDiv {
   width: 100%;
-  height: 10vh; }
+  height: 100px; }
 
 .aliceUsername:before {
   content: "";
@@ -32,8 +33,8 @@
 
 .aliceUsername {
   float: left;
-  margin: 3vh;
-  font-weight: lighter;
+  margin: 30px;
+  font-weight: 300;
   font-size: 90%;
   color: white;
   text-decoration: none; }
@@ -44,21 +45,21 @@
 .aliceMenuItems {
   position: absolute;
   right: 0;
-  margin-top: 3vh; }
+  margin-top: 30px; }
   .aliceMenuItems > span {
-    margin: 3vh;
+    margin: 30px;
     color: white;
-    font-weight: lighter;
-    font-size: 90%; }
+    font-weight: 300;
+    font-size: 10pt; }
 
 .aliceWelcomeDiv > h1 {
-  margin-left: 6vh;
-  margin-top: 5vh;
-  margin-bottom: 4vh;
+  margin-left: 60px;
+  margin-top: 45px;
+  margin-bottom: 40px;
   color: white; }
 
 .aliceWelcomeMessage {
-  font-weight: lighter;
+  font-weight: 300;
   font-size: 44px;
   color: #ffffff;
   letter-spacing: 0; }
@@ -82,6 +83,10 @@
   background-color: #273ec6;
   color: white;
   padding: 8px 20px; }
+
+.cardSpace {
+  display: inline-block;
+  margin-left: 60px; }
 
 .bobPageContainer {
   width: 100%;
@@ -114,21 +119,11 @@
 
 .bobUsername {
   float: left;
-  margin: 3vh;
-  font-weight: lighter;
+  margin: 30px;
+  font-weight: 300;
   font-size: 90%;
   color: white;
   text-decoration: none; }
-
-.bobMenuItems {
-  margin-top: 3vh;
-  margin-left: 20%; }
-
-.bobMenuItems > span {
-  margin: 3vh;
-  color: white;
-  font-weight: lighter;
-  font-size: 90%; }
 
 .infoDivBob {
   height: 30vh; }
@@ -162,11 +157,11 @@
 
 #welcomeMessage {
   font-size: 20px;
-  font-weight: lighter; }
+  font-weight: 300; }
 
 #accountBalance {
   font-size: 55px;
-  font-weight: 100; }
+  font-weight: 300; }
 
 .ellaPageContainer {
   width: 100%;
@@ -198,17 +193,16 @@
 
 .ellaUsername {
   float: left;
-  margin: 2vh 0 2vh 3vh;
-  font-weight: lighter;
-  font-size: 90%;
-  padding-bottom: 0.5%; }
+  margin: 15px 0 0 30px;
+  font-weight: 300;
+  font-size: 90%; }
 
 .ellaWelcomeDiv {
   background-color: #28293c;
   color: white;
   text-align: center;
   text-shadow: 0 1px #4e3747;
-  padding-top: 1%; }
+  padding-top: 24px; }
 
 .ellaWelcomeDiv > span {
   font-weight: 500;
@@ -217,7 +211,7 @@
 
 .ellaWelcomeDiv > h1 {
   text-align: center;
-  font-weight: lighter; }
+  font-weight: 300; }
 
 .matiasPageContainer {
   width: 100%;
@@ -234,9 +228,20 @@
 
 .matiasHeaderDiv {
   width: 100%;
-  height: 10vh;
+  height: 80px;
   background-color: #3b34c4;
-  color: white; }
+  color: white;
+  position: relative; }
+  .matiasHeaderDiv > span:nth-child(2) {
+    margin-top: 22px;
+    margin-right: 35px;
+    font-weight: 300;
+    font-size: 10pt;
+    position: absolute;
+    right: 0;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 8px 20px 8px 20px; }
 
 .matiasUsername:before {
   content: "";
@@ -250,29 +255,18 @@
 
 .matiasUsername {
   float: left;
-  margin-left: 6vh;
-  margin-top: 3vh;
-  font-weight: lighter;
+  margin: 30px 0 0 55px;
+  font-weight: 300;
   font-size: 90%;
   text-decoration: none; }
 
-.matiasMenuItems {
-  margin-top: 3vh;
-  margin-left: 20%; }
-
-.matiasMenuItems > span {
-  margin: 3vh;
-  font-weight: lighter;
-  font-size: 90%; }
-
 .matiasWelcomeDiv {
   background-color: #3b34c4;
-  color: white;
-  border-bottom: 1px solid #e8e9eb; }
+  color: white; }
 
 .matiasWelcomeDiv > h1 {
-  margin-left: 6vh;
-  font-weight: 500; }
+  margin-left: 55px;
+  font-weight: 300; }
 
 .tutorialPageContainer {
   position: absolute;
@@ -293,7 +287,7 @@ body {
 
 .Username {
   float: right;
-  margin: 3vh; }
+  margin: 30px; }
 
 body {
   background-color: #f5f6fa; }
@@ -339,7 +333,7 @@ body {
   top: 0;
   right: 0;
   text-align: center;
-  margin-right: 5%; }
+  margin-right: 70px; }
 
 .cardsContainer {
   width: 60%; }
@@ -353,13 +347,14 @@ body {
   margin-left: 200px;
   position: relative;
   left: 50%;
-  margin-left: -597.5px; }
+  margin-left: -597.5px;
+  top: 15px; }
 
 tr:nth-child(1) td:not(.blockchainCell) {
   min-width: 275px; }
 
 td > h1 {
-  font-weight: 100; }
+  font-weight: 300; }
 
 td {
   vertical-align: top;
@@ -369,20 +364,14 @@ td {
   width: 250px;
   height: 100%; }
 
-.rules {
-  display: block;
-  text-align: left;
-  width: 76.5%;
-  margin: 2%; }
-
 .actions {
-  padding-right: 1%;
+  padding-right: 15px;
   display: flex;
   justify-content: flex-end; }
   .actions > button {
     border-radius: 30px;
     padding: 10px 20px;
-    margin: 0 10px 10px 0;
+    margin-right: 10px;
     font-weight: 500;
     white-space: nowrap;
     text-align: center;
@@ -455,9 +444,10 @@ td {
   background-color: #4d4f75; }
   .alert > p {
     color: white;
-    font-weight: lighter;
+    font-weight: 300;
     font-size: small;
     margin: auto;
+    margin-left: 7.5px;
     margin-right: 5px;
     font-size: 10pt; }
     .alert > p > b {
@@ -532,6 +522,7 @@ td {
 
 .cardContainer {
   background-color: white;
+  width: 215px;
   padding: 20px;
   border-radius: 4px;
   display: flex;
@@ -539,7 +530,8 @@ td {
   border: 1px solid #e4e4e4;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05); }
   .cardContainer input {
-    width: 75%; }
+    width: 99%;
+    height: 13px; }
   .cardContainer > ul {
     margin: 0;
     padding: 0;
@@ -547,12 +539,18 @@ td {
     .cardContainer > ul > li {
       font-size: 10pt;
       margin: 10px 0px; }
+      .cardContainer > ul > li > input {
+        width: 99%;
+        height: 10px; }
   .cardContainer > h5 {
     margin-top: 0;
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 11px;
     font-weight: 600; }
+
+.rules > div {
+  width: unset; }
 
 .editButton {
   width: 130px;
@@ -571,6 +569,9 @@ td {
     width: 50px;
     float: left;
     padding: 3px; }
+
+.right {
+  float: right; }
 
 .disabled {
   background: transparent;
@@ -594,26 +595,27 @@ td {
 
 .LoCCard {
   padding: 20px 10px 5px 35px;
-  margin-left: 6vh;
+  margin-left: 60px;
   border: 1px solid white;
   border-radius: 2px;
   text-align: left;
   color: white;
-  font-weight: 100;
-  width: 250px; }
+  font-weight: 300;
+  min-width: 250px;
+  max-width: 250px; }
   .LoCCard > h2 {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 10pt; }
   .LoCCard > h2 {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 19px; }
   .LoCCard > div {
     font-size: 10pt; }
     .LoCCard > div > h2 {
-      font-weight: 100;
+      font-weight: 300;
       font-size: 10pt; }
     .LoCCard > div > h2:first-of-type {
-      font-weight: 100;
+      font-weight: 300;
       font-size: 19px; }
     .LoCCard > div > p > b {
       font-weight: 500; }
@@ -637,6 +639,13 @@ td {
   background: none;
   border: none; }
 
+.applyButton {
+  background-color: #fc6a66;
+  border: 1px solid #fc6a66;
+  padding: 8px 20px;
+  margin-top: 23px;
+  border-radius: 20px; }
+
 .buttonText:before {
   content: "";
   height: 7.5px;
@@ -659,15 +668,15 @@ td {
   border: 5px solid #7646c0;
   text-align: left;
   color: white;
-  font-weight: 100;
-  width: 220px;
+  font-weight: 300;
+  min-width: 220px;
   font-size: 10pt;
   height: 180px; }
   .LoCCardBob > div > h2 {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 10pt; }
   .LoCCardBob > div > h2:first-of-type {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 19px; }
   .LoCCardBob > div > b {
     font-weight: 500; }
@@ -685,7 +694,7 @@ td {
   padding-top: 12px;
   padding-bottom: 12px;
   float: right;
-  width: 7%;
+  width: 15px;
   transform: rotate(180deg); }
 
 .viewButtonBob:hover {
@@ -695,48 +704,13 @@ td {
   padding-right: 8px;
   padding-left: 8px; }
 
-.applyButton {
-  background-color: #fc6a66;
-  border: 1px solid #fc6a66;
-  padding: 8px 20px;
-  margin-top: 23px;
-  border-radius: 20px;
-  text-decoration: none; }
-
-.shipButtonDiv {
+.toggleContainer {
   display: flex;
   margin-top: 25px; }
 
-.shipButton {
-  width: 25px;
-  margin: auto;
-  color: #BC5184;
-  border-color: #BC5184;
-  background: none;
-  border-radius: 20px;
-  padding: 5px 0px; }
-
-.shipButton:disabled {
-  background-color: white;
-  color: #28293c;
-  border-color: white; }
-
-.acceptButton {
-  width: 25px;
-  margin: auto;
-  border-color: white;
-  background: none;
-  border-radius: 20px;
-  padding: 5px 8px; }
-
-.acceptButton:disabled {
-  background-color: white;
-  color: #3b34c4;
-  border-color: white; }
-
 .shipText {
-  margin: auto;
-  margin-left: 10px; }
+  margin-left: 10px;
+  margin-top: 6px; }
 
 #LoCCardBobAccepted {
   background: linear-gradient(90deg, #7a3cbc 0%, #ae4581 100%);
@@ -811,7 +785,7 @@ td {
   width: 100%;
   height: 100%;
   position: fixed;
-  background-color: rgba(204, 205, 206, 0.75);
+  background-color: rgba(204, 205, 206, 0.6);
   z-index: 100000000; }
 
 .container {
@@ -825,13 +799,14 @@ td {
   .container > div {
     height: 100%;
     position: relative; }
-    .container > div > h3 {
-      text-align: center;
-      color: #2e3e4f; }
+    .container > div > h4 {
+      text-align: left;
+      color: #2e3e4f;
+      margin-left: 25px; }
 
 .shipContainer {
-  height: 50%;
-  width: 50%; }
+  height: 195px;
+  width: 500px; }
 
 .title {
   color: black; }
@@ -843,10 +818,22 @@ td {
   margin: 30px; }
 
 .buttonsRow {
-  width: 90%;
   position: absolute;
-  bottom: 0;
-  margin: 0 0 5% 5%; }
+  bottom: 20px;
+  right: 30px;
+  display: inline;
+  vertical-align: middle; }
+  .buttonsRow > button:first-of-type {
+    margin-left: 10px; }
+
+.shipButtonsRow {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  display: inline;
+  vertical-align: middle; }
+  .shipButtonsRow > button:first-of-type {
+    margin-left: 10px; }
 
 .yesButton {
   border-radius: 30px;
@@ -869,37 +856,63 @@ td {
   background-color: transparent; }
 
 .cancelButton {
-  padding: 0;
+  padding-top: 2.5px;
   border: none;
   background: none;
   font-size: 85%;
   text-decoration: underline;
-  color: #4880ff; }
+  color: #4880ff;
+  float: right;
+  vertical-align: middle; }
 
 .files-table {
-  margin: 0 0 0 5%;
+  margin: 0 0 0 25px;
   width: 90%; }
   .files-table td {
-    margin-left: 5%;
-    border-bottom: 1px solid #ccc;
+    padding: 10px 10px 10px 0;
+    font-weight: normal;
     color: #2e3e4f; }
-  .files-table tr :hover {
-    background-color: #fafafa; }
 
 .loadingMessage {
   color: black;
-  text-align: center; }
+  text-align: left;
+  padding-left: 25px; }
+
+.checkboxContainer input {
+  visibility: hidden;
+  /* <-- hide the default checkbox, the rest is to hide and alllow tabbing, which display:none prevents */
+  display: block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  overflow: hidden; }
+
+.checkboxContainer span {
+  /* <-- style the artificial checkbox */
+  height: 10px;
+  width: 10px;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #ccc;
+  display: inline-block;
+  border-radius: 50px;
+  cursor: pointer; }
+
+[type=checkbox]:checked + span {
+  /* <-- style its checked state */
+  background: #4880ff; }
+
+.checkmark {
+  margin-right: 8px; }
 
 .UserDetails {
   font-size: 10pt;
   text-align: left;
-  padding-left: 6vh;
+  padding-left: 60px;
   padding-bottom: 50px;
   color: white;
-  font-weight: lighter; }
+  font-weight: 300; }
   .UserDetails > h2 {
     font-size: 19px;
-    font-weight: 100; }
+    font-weight: 300; }
   .UserDetails > div {
     margin-bottom: 10px; }
     .UserDetails > div > b {
@@ -909,56 +922,181 @@ td {
   font-weight: bold;
   display: inline; }
 
-.headerBar {
-  height: 5vh;
+.ellaTable > .headerBar {
   border: 1px solid #e8e9eb;
   background-color: #f6f8fb;
-  line-height: 2.5; }
+  line-height: 3; }
+  .ellaTable > .headerBar > .locOrdersText {
+    margin-left: 55px; }
 
-.locOrdersText {
-  margin-left: 6vh; }
-
-.viewAllText {
-  margin-left: 50%; }
-
-.bankTable {
-  width: 80%;
-  margin: 3vh 0 3vh 6vh;
+.ellaTable > .bankTable {
+  width: 100%;
+  margin: 30px 0;
   border-collapse: collapse; }
-  .bankTable th {
-    text-align: left;
-    height: 5vh; }
-  .bankTable th:nth-child(2) {
-    padding-left: 2%; }
-  .bankTable .row:hover {
+  .ellaTable > .bankTable > tbody > tr:not(:first-of-type):hover {
     cursor: pointer;
-    background-color: #f6f8fb; }
-  .bankTable td {
-    height: 5vh;
-    font-weight: 500;
-    font-size: 12pt;
-    color: #999; }
-  .bankTable td:nth-child(2) {
-    padding-left: 2%; }
-  .bankTable td span {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 5%; }
+    background-color: #f6f8fb;
+    outline-color: #e8e9eb; }
+    .ellaTable > .bankTable > tbody > tr:not(:first-of-type):hover > td {
+      color: #a0066f; }
+  .ellaTable > .bankTable > tbody > tr {
+    outline: 1px solid transparent; }
+    .ellaTable > .bankTable > tbody > tr > th {
+      text-align: left;
+      height: 50px; }
+    .ellaTable > .bankTable > tbody > tr > th:nth-child(1) {
+      padding-left: 55px; }
+    .ellaTable > .bankTable > tbody > tr > td {
+      padding-left: 0;
+      font-weight: 500;
+      font-size: 12pt;
+      color: #999; }
+    .ellaTable > .bankTable > tbody > tr > td:nth-child(1) {
+      font-weight: 500;
+      text-decoration: underline;
+      padding-left: 55px; }
 
-.blueText {
-  color: #4d48da;
-  border-right: 1px solid grey;
-  font-weight: bold; }
+.matiasTable > .headerBar {
+  border: 1px solid #e8e9eb;
+  background-color: #f6f8fb;
+  line-height: 3; }
+  .matiasTable > .headerBar > .locOrdersText {
+    margin-left: 55px; }
 
-.purpleText {
-  color: #a0066f;
-  border-right: 1px solid grey;
-  font-weight: bold; }
+.matiasTable > .bankTable {
+  width: 100%;
+  margin: 30px 0;
+  border-collapse: collapse; }
+  .matiasTable > .bankTable > tbody > tr:not(:first-of-type):hover {
+    cursor: pointer;
+    background-color: #f6f8fb;
+    outline-color: #e8e9eb; }
+    .matiasTable > .bankTable > tbody > tr:not(:first-of-type):hover > td {
+      color: #3b34c4; }
+  .matiasTable > .bankTable > tbody > tr {
+    outline: 1px solid transparent; }
+    .matiasTable > .bankTable > tbody > tr > th {
+      text-align: left;
+      height: 50px; }
+    .matiasTable > .bankTable > tbody > tr > th:nth-child(1) {
+      padding-left: 55px; }
+    .matiasTable > .bankTable > tbody > tr > td {
+      padding-left: 0;
+      font-weight: 500;
+      font-size: 12pt;
+      color: #999; }
+    .matiasTable > .bankTable > tbody > tr > td:nth-child(1) {
+      font-weight: 500;
+      text-decoration: underline;
+      padding-left: 55px; }
+
+.stepContainer {
+  position: relative; }
+  .stepContainer:first-child .stepInfo {
+    left: -62px; }
+
+.activeStep {
+  box-sizing: border-box;
+  border: 6px solid #ffffff;
+  background-color: #477fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0px 10px #989898;
+  z-index: 2; }
+
+.completedStep {
+  background-color: #477fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0px 4px #989898;
+  z-index: 2;
+  border: 3px solid transparent;
+  box-sizing: border-box; }
+
+.uncompletedStep {
+  box-sizing: border-box;
+  border: 3px solid #e4e4e4;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  z-index: 2; }
+
+.stepInfo {
+  height: 70px;
+  width: 145px;
+  margin: 0 auto;
+  z-index: 10;
+  text-align: center;
+  position: absolute;
+  top: -55px;
+  left: -35px; }
+
+.stepInfoMessage {
+  position: relative;
+  border: 2px solid #e4e4e4;
+  background-color: #ffffff;
+  height: 55px;
+  width: 145px;
+  margin-bottom: 30px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(220, 220, 220, 0.5);
+  border-radius: 4px;
+  z-index: 1;
+  line-height: 25px; }
+
+.stepInfoTick {
+  position: relative;
+  bottom: 2px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid #ffffff;
+  margin-left: 66.5px;
+  margin-bottom: 26px;
+  z-index: 2; }
+
+.nodeContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 14px; }
+
+.stepConnector {
+  height: 3px;
+  background-color: #e4e4e4;
+  width: 27px;
+  z-index: 1; }
+
+.blankStepConnector {
+  display: none; }
+
+.blankStepInfo {
+  display: none; }
+
+.stepNumberText {
+  position: relative;
+  top: 3px;
+  display: inline;
+  color: #c7c7c7;
+  font-family: 'Open Sans';
+  font-size: 10pt; }
+
+.stepMessageText {
+  display: inline;
+  font-family: 'Open Sans';
+  font-size: 10pt; }
+
+.Stepper {
+  display: flex;
+  margin-top: 20px; }
 
 body {
-  font-family: Open Sans; }
+  font-family: 'Open Sans'; }
 
 button {
-  font-family: Open Sans; }
+  font-family: 'Open Sans'; }

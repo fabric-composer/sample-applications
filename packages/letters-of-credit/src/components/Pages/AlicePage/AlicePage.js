@@ -30,6 +30,7 @@ class AlicePage extends Component {
   }
 
 	componentDidMount() {
+		document.title = "Alice - Bank of Dinero";
 		// open a websocket
 		this.connection = new WebSocket(this.config.restServer.webSocketURL);
 		this.connection.onmessage = ((evt) => {
@@ -104,6 +105,7 @@ class AlicePage extends Component {
 				for(let i = 0; i < this.state.letters.length; i++) {
 					cardsJSX.push(this.generateCard(i));
 				}
+				cardsJSX.push(<div className="cardSpace">&nbsp;</div>);
 			}
 
 			return (
@@ -114,7 +116,7 @@ class AlicePage extends Component {
     		      <span> Change account details </span>
     		      <span> View Transaction History </span>
     		      <span> Make Transaction </span>
-    		      <span className="currentBalance"> Current Balance: $15,276 </span>
+    		      <span className="currentBalance"> Current Balance: $15,276.00 </span>
     		    </div>
     		  </div>
     		  <div id="infoDiv" className="flexDiv infoDiv">

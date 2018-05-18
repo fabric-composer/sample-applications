@@ -33,10 +33,9 @@
 
 .ellaUsername {
   float: left;
-  margin: 2vh 0 2vh 3vh;
-  font-weight: lighter;
+  margin: 15px 0 0 30px;
+  font-weight: 300;
   font-size: 90%;
-  padding-bottom: 0.5%;
 }
 
 .ellaWelcomeDiv {
@@ -44,7 +43,7 @@
   color: white;
   text-align: center;
   text-shadow: 0 1px #4e3747;
-  padding-top: 1%;
+  padding-top: 24px;
 }
 
 .ellaWelcomeDiv > span {
@@ -55,5 +54,5 @@
 
 .ellaWelcomeDiv > h1 {
   text-align: center;
-  font-weight: lighter;
+  font-weight: 300;
 }

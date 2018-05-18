@@ -1,28 +1,30 @@
 .LoCCard {
   padding: 20px 10px 5px 35px;
-  margin-left: 6vh;
+  margin-left: 60px;
   border: 1px solid white;
   border-radius: 2px;
   text-align: left;
   color: white;
-  font-weight: 100;
-  width: 250px;
+  font-weight: 300;
+  min-width: 250px;
+  max-width: 250px;
+
   > h2 {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 10pt;
   }
   > h2 {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 19px;
   }
   > div {
     font-size: 10pt;
     > h2 {
-      font-weight: 100;
+      font-weight: 300;
       font-size: 10pt;
     }
     > h2:first-of-type {
-      font-weight: 100;
+      font-weight: 300;
       font-size: 19px;
     }
     > p > b {
@@ -55,6 +57,14 @@
   border: none;
 }
 
+.applyButton {
+  background-color: #fc6a66;
+  border: 1px solid #fc6a66;
+  padding: 8px 20px;
+  margin-top: 23px;
+  border-radius: 20px;
+}
+
 .buttonText:before {
   content: "";
   height: 7.5px;
@@ -81,18 +91,18 @@
     border: 5px solid #7646c0;
     text-align: left;
     color: white;
-    font-weight: 100;
-    width: 220px;
+    font-weight: 300;
+    min-width: 220px;
     font-size: 10pt;
     height: 180px;
 
   > div {
     > h2 {
-      font-weight: 100;
+      font-weight: 300;
       font-size: 10pt;
     }
     > h2:first-of-type {
-      font-weight: 100;
+      font-weight: 300;
       font-size: 19px;
     }
     > b {
@@ -117,7 +127,7 @@
   padding-top: 12px;
   padding-bottom: 12px;
   float: right;
-  width: 7%;
+  width: 15px;
   transform: rotate(180deg);
 }
 
@@ -130,54 +140,14 @@
   padding-left: 8px;
 }
 
-.applyButton {
-  background-color: #fc6a66;
-  border: 1px solid #fc6a66;
-  padding: 8px 20px;
-  margin-top: 23px;
-  border-radius: 20px;
-  text-decoration: none;
-}
-
-.shipButtonDiv {
+.toggleContainer {
   display: flex;
   margin-top: 25px;
 }
 
-.shipButton {
-  width: 25px;
-  margin: auto;
-  color: #BC5184;
-  border-color: #BC5184;
-  background: none;
-  border-radius: 20px;
-  padding: 5px 0px;
-}
-
-.shipButton:disabled {
-  background-color: white;
-  color: #28293c;
-  border-color: white;
-}
-
-.acceptButton {
-  width: 25px;
-  margin: auto;
-  border-color: white;
-  background: none;
-  border-radius: 20px;
-  padding: 5px 8px;
-}
-
-.acceptButton:disabled {
-  background-color: white;
-  color: #3b34c4;
-  border-color: white;
-}
-
 .shipText {
-  margin: auto;
   margin-left: 10px;
+  margin-top: 6px
 }
 
 #LoCCardBobAccepted {

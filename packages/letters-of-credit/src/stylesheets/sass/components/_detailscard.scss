@@ -4,6 +4,7 @@
 
 .cardContainer {
   background-color: white;
+  width: 215px;
   padding: 20px;
   border-radius: 4px;
   display: flex;
@@ -12,7 +13,8 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 
   input {
-    width: 75%;
+    width: 99%;
+    height: 13px;
   }
 
   > ul {
@@ -23,6 +25,11 @@
     > li {
       font-size: 10pt;
       margin: 10px 0px;
+
+      > input {
+        width: 99%;
+        height: 10px;
+      }
     }
   }
 
@@ -32,6 +39,12 @@
     margin-left: 0;
     margin-bottom: 11px;
     font-weight: 600;
+  }
+}
+
+.rules {
+  > div {
+    width: unset;
   }
 }
 
@@ -54,6 +67,10 @@
     float: left;
     padding: 3px;
   }
+}
+
+.right {
+  float: right;
 }
 
 .disabled {

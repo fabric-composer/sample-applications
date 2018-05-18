@@ -34,23 +34,11 @@
 
 .bobUsername {
   float: left;
-  margin: 3vh;
-  font-weight: lighter;
+  margin: 30px;
+  font-weight: 300;
   font-size: 90%;
   color: white;
   text-decoration: none;
-}
-
-.bobMenuItems {
-  margin-top: 3vh;
-  margin-left: 20%;
-}
-
-.bobMenuItems > span {
-  margin: 3vh;
-  color: white;
-  font-weight: lighter;
-  font-size: 90%;
 }
 
 .infoDivBob {
@@ -91,10 +79,10 @@
 
 #welcomeMessage {
   font-size: 20px;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 #accountBalance {
   font-size: 55px;
-  font-weight: 100;
+  font-weight: 300;
 }

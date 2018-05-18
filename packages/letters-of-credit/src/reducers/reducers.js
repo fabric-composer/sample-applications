@@ -17,7 +17,7 @@ const initialState = {
     bankName: 'Eastwood Banking'
   },
   productDetails: {
-    type: "",
+    type: "None",
     quantity: 0,
     pricePerUnit: 0,
     total: 0

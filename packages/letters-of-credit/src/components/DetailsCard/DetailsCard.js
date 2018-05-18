@@ -78,9 +78,9 @@ class DetailsCard extends Component {
             <span class="subheadingSpan, topHeading">QUANTITY</span>
             { (this.state.editable) ? <input class="subheadingSpan" type="number" min="0" onChange={this.handleChange.bind(this, 2)} defaultValue={this.state.data[2]} /> : <span class="subheadingSpan">{this.state.data[2] ? this.state.data[2] : "0"}</span> }
             <span class="subheadingSpan, topHeading">PRICE PER UNIT</span>
-            { (this.state.editable) ? <input class="subheadingSpan" type="number" min="0" onChange={this.handleChange.bind(this, 3)} defaultValue={this.state.data[3]} /> : <span class="subheadingSpan">{currency + (this.state.data[3] ? amount : "0")}</span> }
+            { (this.state.editable) ? <input class="subheadingSpan" type="number" min="0" onChange={this.handleChange.bind(this, 3)} defaultValue={this.state.data[3]} /> : <span class="subheadingSpan">{currency + (this.state.data[3] ? amount.toLocaleString(undefined, {minimumFractionDigits: 2}) : "0.00")}</span> }
             <span class="subheadingSpan, topHeading">TOTAL</span>
-            <span class="subheadingSpan">{currency + (this.state.data[2]*amount)}</span>
+            <span class="subheadingSpan">{currency + (this.state.data[2]*amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
           </div>
         );
         break;
@@ -108,14 +108,16 @@ class DetailsCard extends Component {
     }
 
     let buttonTxt = this.state.editable ? "Save" : "Edit";
-
+    let editButtonStyle = this.state.editable ? { float: 'right' } : {};
+    let styles = this.props.type === 'Rules' ? "outerDiv rules" : "outerDiv"; 
+    
     return (
-      <div className="outerDiv">
+      <div className={styles}>
         <div class={containerClasses}>
           <h5>{mainHeadingTxt}</h5>
           {jsx}
         </div>
-        { this.props.canEdit && <button className="editButton" onClick={this.switchEditable.bind((this))}><span>{buttonTxt}</span></button> }
+        { this.props.canEdit && <button className="editButton" onClick={this.switchEditable.bind((this))}><span style={editButtonStyle}>{buttonTxt}</span></button> }
       </div>
     );
   }

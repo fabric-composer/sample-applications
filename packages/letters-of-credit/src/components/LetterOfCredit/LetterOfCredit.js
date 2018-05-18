@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { getProductDeatils } from "../../actions/actions";
 import Config from '../../utils/config';
 import backButtonIcon from '../../resources/images/left-arrow.svg'
-import Stepper from 'react-stepper-horizontal';
+import Stepper from '../../components/Stepper/Stepper.js';
 import Modal from '../../components/Modal/Modal.js'
 
 class LetterOfCredit extends Component {
@@ -86,6 +86,12 @@ class LetterOfCredit extends Component {
     .catch(error => {
       console.log(error);
     });
+  }
+
+  componentDidMount() {
+    let user = this.props.match.params.name;
+    let id = this.props.match.params.id;
+    document.title = (user === "matias" ? "Matías" : user.charAt(0).toUpperCase() + user.substr(1)) + " - " + (id === "create" ? "Create LoC" : id);
   }
 
   componentWillUnmount() {
@@ -393,7 +399,7 @@ class LetterOfCredit extends Component {
           <table className="contentTable">
             <tr>
               <td> <h1>Contract Details</h1> </td>
-              <td colspan="2"> <Stepper steps={ [{title: 'Letter Application'}, {title: 'BoD\'s Approval'}, {title: 'EB\'s Approval'}, {title: 'Bob\'s Approval'}, {title: 'Goods Shipped'}, {title: 'Shipment Accepted'}, {title: 'Payment Made'}, {title: 'Letter Closed'}] } activeStep={activeStep} circleFontSize={12} titleFontSize={12} completeColor={"#4880ff"} activeColor={"#b3d5ff"} completeBarColor={"#4880ff"} size={24}/> </td>  
+              <td colspan="2"> <Stepper steps= {['Letter Application','BoD\'s Approval','EB\'s Approval','Bob\'s Approval','Goods Shipped','Shipment Accepted','Payment Made','Letter Closed']} activeStep={activeStep}/> </td>  
             </tr>
             <tr>
               <td> <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/> </td>

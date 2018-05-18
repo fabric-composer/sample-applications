@@ -34,6 +34,7 @@ class EllaPage extends Component {
   }
 
 	componentDidMount() {
+    document.title = "Ella - Eastwood Banking";
     // open a websocket
     this.connection = new WebSocket(this.config.restServer.webSocketURL);
     this.connection.onmessage = ((evt) => {
@@ -126,13 +127,12 @@ class EllaPage extends Component {
         backgroundColor: status.statusColour
       }
       return (
-		  	<tr className="row" onClick={() => this.openLetter(i)}>
+		  	<tr onClick={() => this.openLetter(i)}>
 		  		<td className="purpleText">{this.state.letters[i].letterId}</td>
 		  		<td>{submitter}</td>
 		  		<td>{company}</td>
 		  		<td>
             {status.status}
-            <span style={statusStyle}></span>
           </td>
 		  	</tr>
       );
@@ -169,7 +169,7 @@ class EllaPage extends Component {
             <h1> Welcome back {this.state.userDetails.name} </h1>
           </div>
           <div id="tableDiv">
-            <Table rows={rowsJSX}/>
+            <Table rows={rowsJSX} styling={"ellaTable"}/>
           </div>
         </div>
       );

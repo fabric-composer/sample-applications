@@ -85,7 +85,6 @@ class LoCCard extends Component {
     }
     else {
       status = letter.status.toUpperCase();
-      // status = status.charAt(0).toUpperCase() + status.slice(1);
     }
     return status.toUpperCase();
   }
@@ -104,10 +103,10 @@ class LoCCard extends Component {
             <h2>{newMessage}</h2>
             <h2>{'Ref: ' + letter.letterId}</h2>
             <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-            <div className = "shipButtonDiv">
-                <Toggle className='customToggle' defaultChecked={false} disabled/>
-                <span className="shipText">Ship Product</span>
-              </div>
+            <div className = "toggleContainer">
+              <Toggle className='customToggle' defaultChecked={false} disabled/>
+              <span className="shipText">Ship Product</span>
+            </div>
           </div>
           <img class="viewButtonBob" src={viewArrow} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
         </div>
@@ -120,7 +119,7 @@ class LoCCard extends Component {
             <h2>{this.generateStatus(letter)}</h2>
             <h2>{'Ref: ' + letter.letterId}</h2>
             <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-            <div className = "shipButtonDiv">
+            <div className = "toggleContainer">
                 <Toggle className='customToggle customToggleAlice' defaultChecked={false} icons={false} disabled/>
                 <span className="shipText">Receive Product</span>
               </div>
@@ -131,8 +130,8 @@ class LoCCard extends Component {
         </div>
       );
     }
-    let statusMessage = this.generateStatus(letter);
     let shippingText;
+    let checked = letter.status !== 'APPROVED';
     //generate accepted LoC cards
     if (user === 'bob') {
       if (letter.status !== 'AWAITING_APPROVAL') {
@@ -150,11 +149,11 @@ class LoCCard extends Component {
           <div className = "LoCCardBob" id= {idStyle}>
             <Modal show={this.state.showModal} modalType={'SHIP'} cancelCallback={this.hideModal} yesCallback={() => {this.shipProduct(letter.letterId, hash)}}/>
             <div>
-              <h2>{statusMessage}</h2>
+              <h2>{this.generateStatus(letter)}</h2>
               <h2>{'Ref: ' + letter.letterId}</h2>
               <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-              <div className = "shipButtonDiv">
-                <Toggle className='customToggle' defaultChecked={this.state.toggleChecked} onChange={this.showModal} disabled ={this.state.toggleDisabled} />
+              <div className = "toggleContainer">
+                <Toggle className='customToggle' checked={checked} defaultChecked={this.state.toggleChecked} onChange={this.showModal} disabled ={this.state.toggleDisabled} />
                 <span className="shipText">{shippingText}</span>
               </div>
                 <img class="viewButtonBob" src={viewArrow} alt="View Letter of Credit" onClick={this.handleOnClick}/>
@@ -174,10 +173,10 @@ class LoCCard extends Component {
         contents = (
           <div className = "LoCCard">
             <div>
+              <h2>{this.generateStatus(letter)}</h2>
               <h2>{'Ref: ' + letter.letterId}</h2>
-              <p>{statusMessage}</p>
               <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-              <div className = "shipButtonDiv">
+              <div className = "toggleContainer">
                 <Toggle className='customToggle customToggleAlice' defaultChecked={this.state.toggleChecked} icons={false} onChange={() => {this.receiveProduct(letter.letterId)}} disabled ={this.state.toggleDisabled}/>
                 <span className="shipText">{shippingText}</span>
               </div>

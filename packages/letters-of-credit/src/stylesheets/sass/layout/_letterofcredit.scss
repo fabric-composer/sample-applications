@@ -53,7 +53,7 @@ body {
   top: 0;
   right: 0;
   text-align: center;
-  margin-right: 5%;
+  margin-right: 70px;
 }
 
 .cardsContainer {
@@ -72,6 +72,7 @@ body {
   position: relative;
   left: 50%;
   margin-left: -597.5px;
+  top: 15px;
 }
 
 tr:nth-child(1) {
@@ -83,7 +84,7 @@ tr:nth-child(1) {
 }
 
 td > h1 {
-  font-weight: 100;
+  font-weight: 300;
 }
 
 td {
@@ -96,22 +97,15 @@ td {
   height: 100%;
 }
 
-.rules {
-  display: block;
-  text-align: left;
-  width: 76.5%;
-  margin: 2%;
-}
-
 .actions {
-  padding-right: 1%;
+  padding-right: 15px;
   display: flex;
   justify-content: flex-end;
 
   > button {
     border-radius: 30px;
     padding: 10px 20px;
-    margin: 0 10px 10px 0;
+    margin-right: 10px;
     font-weight: 500;
     white-space: nowrap;
     text-align: center;
