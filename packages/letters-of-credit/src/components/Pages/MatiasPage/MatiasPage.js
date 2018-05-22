@@ -35,6 +35,7 @@ class MatiasPage extends Component {
   }
 
 	componentDidMount() {
+    document.title = "Matías - Bank of Dinero";
     // open a websocket
     this.connection = new WebSocket(this.config.restServer.webSocketURL);
     this.connection.onmessage = ((evt) => {
@@ -49,7 +50,6 @@ class MatiasPage extends Component {
 		})
 		.then(() => {
 			let bankURL = this.config.restServer.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
-			console.log(bankURL);
 			return axios.get(bankURL)
 		})
 		.then(response => {
@@ -133,7 +133,6 @@ class MatiasPage extends Component {
 				<td>{company}</td>
         <td>
           {status.status}
-          <span style={statusStyle}></span>
         </td>
 			</tr>
 		);
@@ -160,22 +159,14 @@ class MatiasPage extends Component {
       return (
         <div id="matiasPageContainer" className="matiasPageContainer">
           <div id="matiasHeaderDiv" className="flexDiv matiasHeaderDiv">
-            <span className="matiasUsername">
-              <img src={matiasUsernameIcon} alt="" className="matiasUsernameIcon"/>
-              {username}
-            </span>
-            <div id="matiasMenu" className="matiasMenuItems">
-              <span>Change Account Details</span>
-              <span>View Transaction History</span>
-              <span>Make Transaction</span>
-              <span>Viewing All Business Acccounts</span>
-            </div>
+            <span className="matiasUsername">{username}</span>
+            <span>Viewing All Business Acccounts</span>
           </div>
           <div id="matiasWelcomeDiv" className="matiasWelcomeDiv">
             <h1> Welcome back {this.state.userDetails.name} </h1>
           </div>
           <div id="tableDiv">
-            <Table rows={rowsJSX}/>
+            <Table rows={rowsJSX} styling={"matiasTable"}/>
           </div>
         </div>
       );

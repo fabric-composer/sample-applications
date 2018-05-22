@@ -21,25 +21,24 @@
   height: 10vh;
 }
 
+.bobUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .bobUsername {
   float: left;
-  margin: 3vh;
-  font-weight: lighter;
+  margin: 30px;
+  font-weight: 300;
   font-size: 90%;
   color: white;
   text-decoration: none;
-}
-
-.bobMenuItems {
-  margin-top: 3vh;
-  margin-left: 20%;
-}
-
-.bobMenuItems > span {
-  margin: 3vh;
-  color: white;
-  font-weight: lighter;
-  font-size: 90%;
 }
 
 .infoDivBob {
@@ -69,6 +68,7 @@
   flex-direction: row;
   width: 100%;
   overflow-x: auto;
+  padding: 10px 0;
 }
 
 .LoCCardConnector {
@@ -79,11 +79,10 @@
 
 #welcomeMessage {
   font-size: 20px;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 #accountBalance {
   font-size: 55px;
-  font-weight: lighter;
-  margin-bottom: 15px;
+  font-weight: 300;
 }

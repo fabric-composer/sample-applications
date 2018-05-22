@@ -15,7 +15,6 @@ class Block extends React.Component {
   render() {
     return (
       <div className="Block">
-        <div className="BlockNumber">{this.state.number}</div>
         <div className="BlockLine"></div>
         <div className="BlockText">
           <p>{this.state.transactionDetails}</p>

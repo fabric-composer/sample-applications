@@ -13,18 +13,13 @@ class UserDetails extends Component {
   }
 
   render() {
-    let nameText = 'Name: ' ;
-    let companyNameText = 'Company Name: ';
-    let ibanText = 'IBAN : ';
-    let swiftCodeText = 'SWIFT code: ';
-    
     return (
       <div className="UserDetails">
-        <h1>Business Account</h1>
-        {nameText}<b>{this.state.name}</b><br/>
-        {companyNameText}<b>{this.state.companyName}</b><br/>
-        {ibanText}<b>{this.state.IBAN}</b><br/>
-        {swiftCodeText}<b>{this.state.swiftCode}</b>
+        <h2>Business Account Details</h2>
+        <div>Name: <b>{this.state.name}</b></div>
+        <div>Company Name: <b>{this.state.companyName}</b></div>
+        <div>IBAN: <b>{this.state.IBAN}</b></div>
+        <div>SWIFT code: <b>{this.state.swiftCode}</b></div>
       </div>
     );
   }

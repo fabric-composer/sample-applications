@@ -3,23 +3,29 @@
   align-items: center;
   display: flex;
   margin: 0;
-  color: #95989a;
-  min-height: 70px;
+  color: #949494;
+  min-height: 65px;
+
+  &:nth-child(2) {
+    .BlockLine {
+      box-shadow: 0 0 5px #8bb0ff; 
+    }
+
+  }
 }
 
 .BlockLine {
-  background-color: #4880ff;
-  box-shadow: 0 0 5px #8bb0ff;
+  background-color: #477fff;
   border-radius: 2px;
   width: 2px;
   height: 50px;
-  margin: 0 5px;
+  margin: 0 15px;
 }
 
 .BlockText {
   display: inline-block;
   line-height: 5px;
-  font-size: 10pt;
+  font-size: 9pt;
 }
 
 .BlockNumber {

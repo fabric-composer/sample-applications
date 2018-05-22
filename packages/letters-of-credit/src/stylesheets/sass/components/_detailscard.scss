@@ -4,19 +4,32 @@
 
 .cardContainer {
   background-color: white;
+  width: 215px;
   padding: 20px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 
   input {
-    width: 75%;
+    width: 99%;
+    height: 13px;
   }
 
   > ul {
     margin: 0;
+    padding: 0;
+    padding-left: 20px;
 
     > li {
       font-size: 10pt;
+      margin: 10px 0px;
+
+      > input {
+        width: 99%;
+        height: 10px;
+      }
     }
   }
 
@@ -24,15 +37,23 @@
     margin-top: 0;
     margin-right: 0;
     margin-left: 0;
+    margin-bottom: 11px;
+    font-weight: 600;
+  }
+}
+
+.rules {
+  > div {
+    width: unset;
   }
 }
 
 .editButton {
   width: 130px;
-  height: 30px;
+  height: 34px;
   position: absolute;
   bottom: -15px;
-  left: 5px;
+  left: 20px;
   border-radius: 30px;
   background-color: #4880ff;
   border: none;
@@ -40,12 +61,16 @@
   font-size: 10pt;
 
   > span {
-    background-color: #2c58bd;
+    background-color: #416dd1;;
     border-radius: 30px;
     width: 50px;
     float: left;
     padding: 3px;
   }
+}
+
+.right {
+  float: right;
 }
 
 .disabled {

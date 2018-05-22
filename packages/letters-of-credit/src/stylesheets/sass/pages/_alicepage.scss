@@ -1,9 +1,10 @@
 .alicePageContainer {
   width: 100%;
   height: 100vh;
-  background-image: url("../../resources/backgrounds/smallbackgroundslice.png"), url("../../resources/backgrounds/largebackgroundslice.png");
-  background-repeat: no-repeat, no-repeat;
+  background-image: url("../../resources/backgrounds/BACKGROUND3.svg");
+  background-repeat: no-repeat;
   background-color: #3B51DC;
+  background-size: contain;
   display: flex;
   flex-direction: column;
 }
@@ -20,13 +21,24 @@
 
 .aliceHeaderDiv {
   width: 100%;
-  height: 10vh;
+  height: 100px;
+}
+
+.aliceUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .aliceUsername {
   float: left;
-  margin: 3vh;
-  font-weight: lighter;
+  margin: 30px;
+  font-weight: 300;
   font-size: 90%;
   color: white;
   text-decoration: none;
@@ -39,31 +51,26 @@
 .aliceMenuItems {
   position: absolute;
   right: 0;
-  margin-top: 3vh;
+  margin-top: 30px;
   > span {
-    margin: 3vh;
+    margin: 30px;
     color: white;
-    font-weight: lighter;
-    font-size: 90%;
+    font-weight: 300;
+    font-size: 10pt;
   }
-}
-
-.infoDiv {
-  height: 50vh;
 }
 
 .aliceWelcomeDiv {
   > h1 {
-    margin-left: 6vh;
-    margin-top: 5vh;
-    margin-bottom: 4vh;
+    margin-left: 60px;
+    margin-top: 45px;
+    margin-bottom: 40px;
     color: white;
   }
 }
 
 .aliceWelcomeMessage {
-  font-family:HiraMaruPro-W4, sans-serif;
-  font-weight: lighter;
+  font-weight: 300;
   font-size:44px;
   color:#ffffff;
   letter-spacing:0;
@@ -89,5 +96,10 @@
   border-radius: 20px;
   background-color: #273ec6;
   color: white;
-  padding: 12px;
+  padding: 8px 20px;
+}
+
+.cardSpace {
+  display: inline-block;
+  margin-left: 60px;
 }

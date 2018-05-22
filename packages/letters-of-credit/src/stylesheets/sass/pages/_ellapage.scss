@@ -15,27 +15,35 @@
 }
 
 .ellaHeaderDiv {
-  background-color: #a0066f;
+  background-color: #28293c;
   width: 100%;
   color: white;
 }
 
+.ellaUsername:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #bc5183;
+  border-radius: 15px;
+  background-color: #bc5183;
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .ellaUsername {
   float: left;
-  margin: 2vh 0 2vh 3vh;
-  font-weight: lighter;
+  margin: 15px 0 0 30px;
+  font-weight: 300;
   font-size: 90%;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  padding-bottom: 0.5%;
 }
 
 .ellaWelcomeDiv {
-  background-color: #a0066f;
+  background-color: #28293c;
   color: white;
   text-align: center;
   text-shadow: 0 1px #4e3747;
-  padding-top: 1%;
+  padding-top: 24px;
 }
 
 .ellaWelcomeDiv > span {
@@ -46,5 +54,5 @@
 
 .ellaWelcomeDiv > h1 {
   text-align: center;
-  font-weight: lighter;
+  font-weight: 300;
 }

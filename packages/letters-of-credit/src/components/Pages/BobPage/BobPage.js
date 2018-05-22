@@ -24,6 +24,7 @@ class BobPage extends Component {
   }
 
 	componentDidMount() {
+    document.title = "Bob - Eastwood Banking";
     // open a websocket
     this.connection = new WebSocket(this.config.restServer.webSocketURL);
     this.connection.onmessage = ((evt) => {
@@ -105,17 +106,20 @@ class BobPage extends Component {
     }
   }
 
-  getBalance() {
-    let balance = 12399;
-    this.state.letters.map(i => {
-      balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 0.8 : 0;
-    });
-    return balance;
+	getBalance() {
+		let balance = 12000;
+		this.state.letters.map(i => {
+			balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 0.8 : 0;
+		});
+		return balance.toLocaleString(undefined, {minimumFractionDigits: 2});
   }
-
+  
   getBalanceIncrease() {
-    let closedLetter = this.state.letters[0];
-    let increase = (closedLetter.productDetails.quantity * closedLetter.productDetails.pricePerUnit * 0.8);
+    let increase = 0;
+    if (this.state.letters.length) {
+      let closedLetter = this.state.letters[0];
+      increase = (closedLetter.productDetails.quantity * closedLetter.productDetails.pricePerUnit * 0.8);
+    }
     return increase;
   }
 
@@ -124,14 +128,16 @@ class BobPage extends Component {
       return <Redirect push to={"/" + this.state.redirectTo} />;
     }
 
-    if(this.state.userDetails.name && !this.state.gettingLetters) {
-      let username = this.state.userDetails.name + ", Customer of " + this.state.userDetails.bank;
-      let cardsJSX = [];
-      if(this.state.letters.length) {
-        for(let i = 0; i < this.state.letters.length; i++) {
-          cardsJSX.push(this.generateCard(i));
-        }
-      }
+		if(this.state.userDetails.name && !this.state.gettingLetters) {
+			let username = this.state.userDetails.name + ", Customer of " + this.state.userDetails.bank;
+
+    	let cardsJSX = [];
+    	if(this.state.letters.length) {
+				for(let i = 0; i < this.state.letters.length; i++) {
+					cardsJSX.push(this.generateCard(i));
+				}
+				cardsJSX.push(<div className="cardSpace">&nbsp;</div>);
+			}
 
       return (
         <div id="bobPageContainer" className="bobPageContainer">
@@ -141,7 +147,7 @@ class BobPage extends Component {
           <div class="bobWelcomeDiv">
             <p id="welcomeMessage">Welcome back {this.state.userDetails.name}</p>
             <h1 id ="accountBalance">€{this.getBalance().toLocaleString()}</h1>
-            <Alert amount={this.getBalanceIncrease().toLocaleString()} show={this.state.alert}/>
+            <Alert amount={this.getBalanceIncrease().toLocaleString(undefined, {minimumFractionDigits: 2})} show={this.state.alert}/>
           </div>
           <div id="infoDivBob" className="flexDiv infoDivBob">
             <div id="bobDetailsDiv" className="bobDetailsDiv">

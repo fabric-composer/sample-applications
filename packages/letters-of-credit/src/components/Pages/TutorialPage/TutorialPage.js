@@ -9,6 +9,10 @@ class TutorialPage extends Component {
         this.config = new Config();
     }
 
+    componentDidMount() {
+        document.title = "Tutorial";
+    }
+
     render() {
         return (
             <div id="tutorialPageContainer" className="tutorialPageContainer" >
