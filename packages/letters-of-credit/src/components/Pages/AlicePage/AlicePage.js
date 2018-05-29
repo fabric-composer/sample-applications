@@ -116,7 +116,7 @@ class AlicePage extends Component {
     		      <span> Change account details </span>
     		      <span> View Transaction History </span>
     		      <span> Make Transaction </span>
-    		      <span className="currentBalance"> Current Balance: $15,276.00 </span>
+    		      <span className="currentBalance"> Current Balance: €15,276.00 </span>
     		    </div>
     		  </div>
     		  <div id="infoDiv" className="flexDiv infoDiv">

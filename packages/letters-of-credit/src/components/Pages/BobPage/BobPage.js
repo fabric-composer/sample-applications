@@ -109,7 +109,7 @@ class BobPage extends Component {
 	getBalance() {
 		let balance = 12000;
 		this.state.letters.map(i => {
-			balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 0.8 : 0;
+			balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 1.15 : 0;
 		});
 		return balance.toLocaleString(undefined, {minimumFractionDigits: 2});
   }
@@ -118,7 +118,7 @@ class BobPage extends Component {
     let increase = 0;
     if (this.state.letters.length) {
       let closedLetter = this.state.letters[0];
-      increase = (closedLetter.productDetails.quantity * closedLetter.productDetails.pricePerUnit * 0.8);
+      increase = (closedLetter.productDetails.quantity * closedLetter.productDetails.pricePerUnit * 1.15);
     }
     return increase;
   }

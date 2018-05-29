@@ -64,11 +64,11 @@ class DetailsCard extends Component {
       case 'Product':
         let currency, amount;
         if (this.props.user === 'alice' || this.props.user === 'matias') {
-          currency = '$';
+          currency = '€';
           amount = this.state.data[3];
         } else {
-          currency = '€'
-          amount = this.state.data[3] * 0.8;
+          currency = '$'
+          amount = this.state.data[3] * 1.15;
         }
 
         jsx = (
