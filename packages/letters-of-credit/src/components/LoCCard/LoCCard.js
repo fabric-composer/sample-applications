@@ -103,7 +103,7 @@ class LoCCard extends Component {
             <h2>{newMessage}</h2>
             <h2>{'Ref: ' + letter.letterId}</h2>
             <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-            <div className = "toggleContainer">
+            <div className = "toggleContainer hide">
               <Toggle className='customToggle' defaultChecked={false} disabled/>
               <span className="shipText">Ship Product</span>
             </div>
@@ -119,7 +119,7 @@ class LoCCard extends Component {
             <h2>{this.generateStatus(letter)}</h2>
             <h2>{'Ref: ' + letter.letterId}</h2>
             <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-            <div className = "toggleContainer">
+            <div className = "toggleContainer hide">
                 <Toggle className='customToggle customToggleAlice' defaultChecked={false} icons={false} disabled/>
                 <span className="shipText">Receive Product</span>
               </div>

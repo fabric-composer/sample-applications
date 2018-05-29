@@ -268,18 +268,112 @@
   margin-left: 55px;
   font-weight: 300; }
 
-.tutorialPageContainer {
+.tutorialPageContainer h1 {
+  font-weight: 300;
+  font-size: 2em;
+  margin-bottom: 1rem; }
+  .tutorialPageContainer h1:first-of-type {
+    margin-top: 0; }
+  .tutorialPageContainer h1:not(:first-of-type) {
+    margin-top: 3rem; }
+
+.tutorialPageContainer #contents {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  padding-top: 75px;
+  padding-right: 50px;
+  padding-left: 50px;
+  height: 100%;
+  width: 350px;
+  box-sizing: border-box;
+  background-color: #FDFDFD;
+  font-size: 10pt;
+  overflow: auto; }
+  .tutorialPageContainer #contents ul {
+    padding: 0px;
+    list-style-type: none; }
+    .tutorialPageContainer #contents ul li {
+      padding: 15px 0;
+      font-weight: 600;
+      position: relative; }
+      .tutorialPageContainer #contents ul li ul li {
+        font-weight: 400;
+        margin-left: 25px;
+        position: relative; }
+        .tutorialPageContainer #contents ul li ul li:hover::after {
+          content: '';
+          background-color: rgba(63, 85, 175, 0.3);
+          position: absolute;
+          width: calc(100% + 125px);
+          height: 100%;
+          left: -75px;
+          top: 0px;
+          pointer-events: none; }
+        .tutorialPageContainer #contents ul li ul li:first-of-type {
+          margin-top: 10px; }
+      .tutorialPageContainer #contents ul li.top-level > a:hover::after {
+        content: '';
+        background-color: rgba(63, 85, 175, 0.3);
+        position: absolute;
+        width: calc(100% + 100px);
+        height: 10pt;
+        left: -50px;
+        top: 0px;
+        padding: 15px 0 21px 0;
+        pointer-events: none; }
+      .tutorialPageContainer #contents ul li.top-level.parent + .top-level {
+        margin-top: -15px; }
+  .tutorialPageContainer #contents a {
+    color: #19273C;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%; }
+  .tutorialPageContainer #contents a:visited {
+    color: #19273C;
+    text-decoration: none; }
+  .tutorialPageContainer #contents a:link {
+    color: #19273C;
+    text-decoration: none; }
+
+.tutorialPageContainer #tutorialContainer {
   position: absolute;
-  top: 50px;
+  top: 75px;
   width: 750px;
-  left: 50%;
-  margin-left: -400px;
-  background-color: #FFF;
-  padding: 25px;
-  border-bottom: 50px solid #f5f6fa; }
+  left: 350px;
+  padding: 0px 100px;
+  border-bottom: 50px solid #f5f6fa;
+  line-height: 1.6;
+  font-size: 16px; }
+  .tutorialPageContainer #tutorialContainer h2 {
+    font-weight: 300;
+    font-size: 1.35em;
+    border-bottom: 1px solid #c6c6c6;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.83em; }
+    .tutorialPageContainer #tutorialContainer h2:first-of-type {
+      margin-top: 0; }
+  .tutorialPageContainer #tutorialContainer p, .tutorialPageContainer #tutorialContainer li {
+    font-size: 10pt; }
+  .tutorialPageContainer #tutorialContainer ul {
+    padding-left: 0; }
+    .tutorialPageContainer #tutorialContainer ul li {
+      list-style-type: none;
+      margin-bottom: 10pt; }
+  .tutorialPageContainer #tutorialContainer .code {
+    background-color: #FFF;
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.8rem;
+    padding: 1px 4px;
+    border: 1px solid #E3ECEC;
+    position: relative;
+    top: -1px;
+    display: inline-block; }
 
 body {
-  background-color: #f5f6fa; }
+  background-color: #F9F9F9;
+  color: #19273C; }
 
 .Page {
   height: 100vh;
@@ -707,6 +801,8 @@ td {
 .toggleContainer {
   display: flex;
   margin-top: 25px; }
+  .toggleContainer.hide {
+    opacity: 0; }
 
 .shipText {
   margin-left: 10px;
