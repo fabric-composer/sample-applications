@@ -146,12 +146,12 @@ class BobPage extends Component {
           </div>
           <div class="bobWelcomeDiv">
             <p id="welcomeMessage">Welcome back {this.state.userDetails.name}</p>
-            <h1 id ="accountBalance">€{this.getBalance().toLocaleString()}</h1>
+            <h1 id ="accountBalance">${this.getBalance().toLocaleString()}</h1>
             <Alert amount={this.getBalanceIncrease().toLocaleString(undefined, {minimumFractionDigits: 2})} show={this.state.alert}/>
           </div>
           <div id="infoDivBob" className="flexDiv infoDivBob">
             <div id="bobDetailsDiv" className="bobDetailsDiv">
-              <UserDetails name={this.state.userDetails.name} companyName={this.state.userDetails.companyName} IBAN={'BE05 1234 5678 0101'} swiftCode={'EWBKBE05'}/>
+              <UserDetails name={this.state.userDetails.name} companyName={this.state.userDetails.companyName} IBAN={'US22 1234 5678 0101'} swiftCode={'EWBKUS22'}/>
             </div>
           </div>
           <div className="locDivBob">

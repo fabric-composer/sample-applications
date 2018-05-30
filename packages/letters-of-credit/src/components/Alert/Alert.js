@@ -23,7 +23,7 @@ class Alert extends React.Component {
       <div className={containerStyle}>
         <div className="tick"/>
         <div className="alert">
-          <p>Your balance has increased by <b>{"€" + this.state.amount}</b>.</p>
+          <p>Your balance has increased by <b>{"$" + this.state.amount}</b>.</p>
           <button onClick={this.handleClick} disabled={!this.state.show}>×</button>
         </div>
       </div>

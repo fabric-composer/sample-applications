@@ -5,15 +5,15 @@ const initialState = {
   applicant: {
     name: 'Alice Hamilton',
     companyName: 'QuickFix IT',
-    IBAN: 'AR22 9876 5321 9090',
-    swiftCode: 'BKDOAR22',
+    IBAN: 'IT60 9876 5321 9090',
+    swiftCode: 'BKDOIT60',
     bankName: 'Bank of Dinero'
   },
   beneficiary: {
     name: 'Bob Appleton',
     companyName: 'Conga Computers',
-    IBAN: 'BE05 1234 5678 0101',
-    swiftCode: 'EWBKBE05',
+    IBAN: 'US22 1234 5678 0101',
+    swiftCode: 'EWBKUS22',
     bankName: 'Eastwood Banking'
   },
   productDetails: {
