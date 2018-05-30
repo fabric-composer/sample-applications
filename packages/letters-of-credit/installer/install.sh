@@ -148,8 +148,7 @@ docker run \
   hyperledger/composer-cli:latest \
   network install -c PeerAdmin@hlfv1 -a letters-of-credit-network.bna
 
-# NETWORK_VERSION=$(grep -o '"version": *"[^"]*"' $ROOT/node_modules/letters-of-credit-network/package.json | grep -o '[0-9]\.[0-9]\.[0-9]')
-NETWORK_VERSION='0.2.4'
+NETWORK_VERSION=$(grep -o '"version": *"[^"]*"' $ROOT/node_modules/letters-of-credit-network/package.json | grep -o '[0-9]\.[0-9]\.[0-9]')
 
 # START THE BNA
 docker run \
@@ -175,7 +174,7 @@ docker run \
   --network composer_default \
   -v $(pwd)/.loc-card-store:/home/composer/.composer \
   hyperledger/composer-cli:latest \
-  transaction submit -c admin@letters-of-credit-network -d '{"$class": "org.acme.loc.CreateDemoParticipants"}'
+  transaction submit -c admin@letters-of-credit-network -d '{"$class": "org.example.loc.CreateDemoParticipants"}'
 
 # SET CORRECT PERMISSIONS
 docker exec \
