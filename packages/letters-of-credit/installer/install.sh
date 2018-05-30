@@ -136,8 +136,7 @@ ROOT=$DIR/..
 cd $ROOT
 npm install
 cd $DIR
-# cp $ROOT/node_modules/letters-of-credit-network/dist/letters-of-credit-network.bna letters-of-credit-network.bna
-cp $ROOT/letters-of-credit-network@0.2.4.bna letters-of-credit-network.bna
+cp $ROOT/node_modules/letters-of-credit-network/dist/letters-of-credit-network.bna letters-of-credit-network.bna
 
 # INSTALL THE BNA
 docker run \
@@ -204,7 +203,7 @@ docker run \
 --name vda \
 -e REACT_APP_REST_SERVER_CONFIG='{"webSocketURL": "ws://localhost:3000", "httpURL": "http://localhost:3000/api"}' \
 -p 6001:6001 \
-awjh/letters-of-credit:latest
+hyperledger/letters-of-credit:latest
 
 #WAIT FOR REACT SERVER TO WAKE UP
 sleep 10

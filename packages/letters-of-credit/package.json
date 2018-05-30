@@ -5,6 +5,7 @@
   "author": "Erin Hughes, Hannah Rayner, Nikola Ignatov, Jackson Ross, Andrew Hurt",
   "dependencies": {
     "axios": "^0.18.0",
+    "letters-of-credit-network": "^0.2.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
