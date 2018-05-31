@@ -82,7 +82,7 @@ angular.module('bc-vda')
           }
 
           var message = JSON.parse(event.data);
-          if (message.$class = 'org.acme.vehicle_network.UpdateOrderStatusEvent') {
+          if (message.$class === 'org.acme.vehicle_network.UpdateOrderStatusEvent') {
             if (message.orderStatus === 'VIN_ASSIGNED') {
               scope.registered_vehicles++;
               scope.vin_assigned++;

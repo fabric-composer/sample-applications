@@ -12,8 +12,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http, Response } from '@angular/http';
+import { NavController, NavParams } from 'ionic-angular';
+import { Http } from '@angular/http';
+import { ConfigProvider } from '../../providers/config/config';
 
 /**
  * Generated class for the StatusPage page.
@@ -21,7 +22,6 @@ import { Http, Response } from '@angular/http';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-status',
   templateUrl: 'status.html',
@@ -33,7 +33,7 @@ export class StatusPage {
   relativeDate: any;
   config: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private configProvider: ConfigProvider) {
     this.car = navParams.get('car');
     this.stage = [Date.now() + ''];
     this.orderId = navParams.get('orderId');
@@ -79,17 +79,11 @@ export class StatusPage {
       };
     }
 
-    this.loadConfig()
-      .then((config) => {
-        this.config = config;
+    this.configProvider.ready.subscribe((ready) => {
+      if (ready) {
+        this.config = this.configProvider.getConfig();
         openWebSocket();
-      });
-  }
-
-  loadConfig(): Promise<any> {
-      // Load the config data.
-      return this.http.get('/assets/config.json')
-      .map((res: Response) => res.json())
-      .toPromise();
+      }
+    });
   }
 }

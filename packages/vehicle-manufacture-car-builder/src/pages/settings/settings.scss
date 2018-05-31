@@ -1,0 +1,107 @@
+/*
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+page-settings {
+
+    ion-content.content > .scroll-content {
+      padding: 0 !important;
+    }
+  
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: url("../assets/background.png");
+      background-size: cover;
+  
+      #back {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        z-index: 11;
+        cursor: pointer;
+      }
+  
+      .map {
+        position: absolute;
+        z-index: 5;
+        opacity: 0.2;
+        height: 100%;
+        pointer-events: none;
+      }
+  
+      ion-card.card {
+  
+        max-width: 700px;
+  
+        &:last-of-type {
+          padding: 0;
+          height: 60px;
+        }
+  
+        .card-content {
+          background-color: #F3F3F3;
+          padding-top: 13px;
+          display: grid;
+          grid-column-gap: 15px;
+          grid-row-gap: 30px;
+          grid-template-columns: min-content auto;
+  
+          label {
+            white-space: nowrap;
+          }
+  
+          input[type=text] {
+            font-size: 1.4rem;
+            font-family: OpenSans;
+            border: 0;
+            border-bottom: 1px solid;
+            background: none;
+            flex: 1;
+            -webkit-appearance: none;
+          }
+        }
+  
+        button {
+          margin: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 1;
+          font-size: 1.4rem;
+          font-family: OpenSans;
+          background: map-get($colors, secondary);
+          text-transform: uppercase;
+    
+          .button-inner {
+            width: 100%;
+            height: 100%;
+          }
+  
+          img {
+            display: inline;
+            float: none;
+            margin-left: 10px;
+          }
+        }
+    
+        button.outline-btn {
+          border: 3px solid map-get($colors, secondary);
+          background: white;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+  

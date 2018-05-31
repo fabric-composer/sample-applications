@@ -1,0 +1,33 @@
+<!--
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<ion-content padding>
+  <div class="content" >
+    <img class="map" src="assets/world_map.svg" alt="">
+    <img id="back" src="assets/arrow_left.svg" (click)="back()" />
+    <ion-card *ngIf="ready" >
+      <ion-card-header>
+        REST Server Settings
+      </ion-card-header>
+
+      <ion-card-content>
+        <label for="restHttp" >HTTP Address:</label><input type="text" placeholder="HTTP address" id="restHttp" name="restHttp" [(ngModel)]="storedConfig.restServer.httpURL" />
+        <label for="restWs" >Web Socket Address:</label><input type="text" placeholder="WS address" id="restWs" name="restWs" [(ngModel)]="storedConfig.restServer.webSocketURL" />
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="ready" >
+      <button id="updateBtn" ion-button color="secondary" (click)="update()" >Update <img src="assets/arrow_right.svg" /></button>
+    </ion-card>
+  </div>
+</ion-content>

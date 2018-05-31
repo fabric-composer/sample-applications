@@ -69,3 +69,7 @@ typings/
 .env
 
 www/
+
+# Phone app generated
+plugins
+platforms

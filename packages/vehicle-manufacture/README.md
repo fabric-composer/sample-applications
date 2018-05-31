@@ -21,6 +21,8 @@ This is an application that has been designed by the manufacturer **Arium** and 
 
 Location localhost:8100.
 
+You can also run this application on mobile using the instructions on the [Ionic Website](https://ionicframework.com/docs/intro/deploying/). When running the application on mobile you can point it to the REST server by pressing the cog icon on the login screen and updating the settings. This usually involves changing localhost to your PC's IP. Note that the REST server and mobile device need to be on the same network in most cases.
+
 ### Manufacturer Screen
 This application displays to the manufacturer **Arium** the orders that have been placed with them through the *Vehicle Builder* application. Within this screen the manufacturer starts the manufacture on the order and updates the status of the order to mark where in the process the vehicle is.
 

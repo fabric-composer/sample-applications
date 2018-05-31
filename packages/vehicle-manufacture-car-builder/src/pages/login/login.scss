@@ -25,6 +25,14 @@ page-login {
     background: url("../assets/background.png");
     background-size: cover;
 
+    #cog {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      cursor: pointer;
+      z-index: 11;
+    }
+
     .map {
       position: absolute;
       z-index: 5;

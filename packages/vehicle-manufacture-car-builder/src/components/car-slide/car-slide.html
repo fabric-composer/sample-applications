@@ -17,7 +17,7 @@ limitations under the License.
     <h2><strong>Arium</strong> {{car.name}}</h2>
   </div>
 
-  <div class="image" [ngStyle]="{'background-image': 'url(assets/' + car.image + ')', 'background-size': car.zoom}">
+  <div class="image" [ngStyle]="{'background-image': 'url(assets/' + car.image + ')', 'background-size': car.zoom, 'background-repeat': car.repeat, 'background-position': car.position}">
   </div>
 
   <div class="build">

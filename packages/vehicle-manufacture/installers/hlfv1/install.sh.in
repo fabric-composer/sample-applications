@@ -282,7 +282,7 @@ docker run \
 -d \
 --network composer_default \
 --name car-builder \
--e REST_SERVER_CONFIG='{"webSocketURL": "ws://rest:3000", "httpURL": "http://rest:3000/api"}' \
+-e REST_SERVER_CONFIG='{"webSocketURL": "ws://localhost:3000", "httpURL": "http://localhost:3000/api"}' \
 -e NODE_RED_BASE_URL=ws://node-red:1880 \
 -p 8100:8100 \
 hyperledger/vehicle-manufacture-car-builder:{{VEHICLE-MANUFACTURE-VERSION}}

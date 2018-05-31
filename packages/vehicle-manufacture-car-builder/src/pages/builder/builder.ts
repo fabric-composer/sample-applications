@@ -12,9 +12,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { StatusPage } from '../status/status';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
+import { ConfigProvider } from '../../providers/config/config';
 
 /**
  * Generated class for the BuilderPage page.
@@ -22,7 +23,6 @@ import { Http, Response } from '@angular/http';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-builder',
   templateUrl: 'builder.html'
@@ -31,25 +31,20 @@ export class BuilderPage {
   car: any;
   states: any;
   selected: string;
-  ready: Promise<any>;
-  config: any;
 
-  constructor(private navController: NavController, private navParams: NavParams, private http: Http) {
+  private config = {};
+  private ready = false;
+
+  constructor(private navController: NavController, private navParams: NavParams, private http: Http, private configProvider: ConfigProvider) {
     this.car = navParams.get('car');
     this.states = {};
 
-    this.ready = this.loadConfig()
-      .then((config) => {
-        this.config = config;
-        console.log('Config loaded:',this.config)
-      });
-  }
-
-  loadConfig(): Promise<any> {
-      // Load the config data.
-      return this.http.get('/assets/config.json')
-      .map((res: Response) => res.json())
-      .toPromise();
+    this.configProvider.ready.subscribe((ready) => {
+      if (ready) {
+        this.ready = true;
+        this.config = this.configProvider.getConfig();
+      }
+    });
   }
 
   open(option) {
@@ -111,31 +106,29 @@ export class BuilderPage {
       orderId: this.generateID()
     };
 
-    this.ready.then(() => {
 
-      let parent = this;
+    let parent = this;
 
-      var data = JSON.stringify(order);
+    var data = JSON.stringify(order);
 
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
-      xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === 4 && this.status === 200) {
-          parent.navController.push(StatusPage, {
-            car: parent.car,
-            orderId: order.orderId
-          });
-        } else if (this.readyState === 4) {
-          document.getElementById('purchase').getElementsByTagName('span')[0].innerHTML = 'An error occurred';
-          console.log('RESPONSE TEXT', this.responseText);
-        }
-      });
-      xhr.open("POST", this.config.restServer.httpURL+"/PlaceOrder");
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.send(data);
-      document.getElementById('purchase').getElementsByTagName('span')[0].innerHTML = 'Sending request...';
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4 && this.status === 200) {
+        parent.navController.push(StatusPage, {
+          car: parent.car,
+          orderId: order.orderId
+        });
+      } else if (this.readyState === 4) {
+        document.getElementById('purchase').getElementsByTagName('span')[0].innerHTML = 'An error occurred';
+        console.log('RESPONSE TEXT', this.responseText);
+      }
     });
+    xhr.open("POST", this.config['restServer'].httpURL+"/PlaceOrder");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    document.getElementById('purchase').getElementsByTagName('span')[0].innerHTML = 'Sending request...';
   }
 
   containsExtra(state) {

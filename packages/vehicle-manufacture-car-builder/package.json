@@ -2,7 +2,7 @@
   "name": "vehicle-manufacture-car-builder",
   "private": false,
   "author": "Hyperledger Composer",
-  "homepage": "http://ionicframework.com/",
+  "homepage": "http://github.com/hyperledger/composer-sample-applications",
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -37,8 +37,20 @@
     }
   },
   "dependencies": {
+    "@ionic-native/keyboard": "3.4.2",
     "config": "^1.26.1",
+    "cordova-ios": "^4.5.4",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-console": "^1.1.0",
+    "cordova-plugin-device": "^1.1.7",
+    "cordova-plugin-ionic-keyboard": "^2.1.2",
+    "cordova-plugin-ionic-webview": "^1.2.1",
+    "cordova-plugin-splashscreen": "^4.1.0",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "express": "^4.15.2",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "shelljs": "^0.8.2",
     "ws": "^2.3.1"
   },
   "devDependencies": {
@@ -68,5 +80,20 @@
   },
   "version": "0.0.7",
   "description": "Vehicle Lifecycle - A mobile application for the customers view",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "ios"
+    ]
+  }
 }
