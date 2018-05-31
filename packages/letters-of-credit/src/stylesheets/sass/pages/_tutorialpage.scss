@@ -1,0 +1,160 @@
+$contentsWidth: 350px;
+$top: 75px;
+
+.tutorialPageContainer {
+
+    h1 {
+        font-weight: 300;
+        font-size: 2em;
+        margin-bottom: 1rem;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+
+        &:not(:first-of-type) {
+            margin-top: 3rem;
+        }
+    }
+
+    #contents {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        padding-top: $top;
+        padding-right: 50px;
+        padding-left: 50px;
+        height: 100%;
+        width: $contentsWidth;
+        box-sizing: border-box;
+        background-color: #FDFDFD;
+        font-size: 10pt;
+        overflow: auto;
+
+        ul {
+            padding: 0px;
+            list-style-type: none;
+
+            li {
+                padding: 15px 0;
+                font-weight: 600;
+                position: relative;
+
+                ul {
+                    li {
+                        font-weight: 400;
+                        margin-left: 25px;
+                        position: relative;
+
+                        &:hover {
+                            &::after {
+                                content: '';
+                                background-color: rgba(63,85,175,0.3);
+                                position: absolute;
+                                width: calc(100% + 125px);
+                                height: 100%;
+                                left: -75px;
+                                top: 0px;
+                                pointer-events: none;
+                            }
+                        }
+
+                        &:first-of-type {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+
+                &.top-level {
+                    & >a:hover {
+                        &::after {
+                            content: '';
+                            background-color: rgba(63,85,175,0.3);
+                            position: absolute;
+                            width: calc(100% + 100px);
+                            height: 10pt;
+                            left: -50px;
+                            top: 0px;
+                            padding: 15px 0 21px 0;
+                            pointer-events: none;
+                        }
+                    }
+
+                    &.parent {
+
+                        + .top-level {
+                            margin-top: -15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        a {
+            color: #19273C;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+        a:visited {
+            color: #19273C;
+            text-decoration: none;
+        }
+        a:link {
+            color: #19273C;
+            text-decoration: none;
+        }
+    }
+
+    #tutorialContainer {
+        position: absolute;
+        top: $top;
+        width: 750px;
+        left: $contentsWidth;
+        padding: 0px 100px;
+        border-bottom: 50px solid #f5f6fa;
+        line-height: 1.6;
+        font-size: 16px;
+    
+        h2 {
+            font-weight: 300;
+            font-size: 1.35em;
+            border-bottom: 1px solid #c6c6c6;
+            padding-bottom: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 0.83em;
+    
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
+    
+        p, li {
+            font-size: 10pt;
+        }
+
+        ul {
+            padding-left: 0;
+            li {
+                list-style-type: none;
+                margin-bottom: 10pt;
+            }
+        }
+    
+        .code {
+            background-color: #FFF;
+            font-family: "Source Code Pro", monospace;
+            font-size: 0.8rem;
+            padding: 1px 4px;
+            border: 1px solid #E3ECEC;
+            position: relative;
+            top: -1px;
+            display: inline-block;
+        }
+    }
+}
+
+body {
+    background-color: #F9F9F9;
+    color: #19273C;
+}
