@@ -44,9 +44,9 @@ class LoCCard extends Component {
   }
 
   shipProduct(letterId, evidenceHash) {
-    let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
+    let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
     axios.post(this.config.restServer.httpURL+'/ShipProduct', {
-      "$class": "org.acme.loc.ShipProduct",
+      "$class": "org.example.loc.ShipProduct",
       "loc": letter,
       "evidence": evidenceHash,
       "transactionId": "",
@@ -61,9 +61,9 @@ class LoCCard extends Component {
   }
 
   receiveProduct(letterId) {
-    let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
+    let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
     axios.post(this.config.restServer.httpURL+'/ReceiveProduct', {
-      "$class": "org.acme.loc.ReceiveProduct",
+      "$class": "org.example.loc.ReceiveProduct",
       "loc": letter,
       "transactionId": "",
       "timestamp": "2018-03-13T11:25:08.043Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value

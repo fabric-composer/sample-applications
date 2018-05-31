@@ -17,9 +17,9 @@ class BlockChainDisplay extends React.Component {
         name: "",
         timestamp: tx.transactionTimestamp
       }
-      if (tx.transactionType === 'org.acme.loc.InitialApplication') {
+      if (tx.transactionType === 'org.example.loc.InitialApplication') {
         transaction.name = 'Created by Alice';
-      } else if (tx.transactionType === 'org.acme.loc.Approve') {
+      } else if (tx.transactionType === 'org.example.loc.Approve') {
         switch (index) {
           case 1: 
             transaction.name = 'Approved by Matías'; 
@@ -34,13 +34,13 @@ class BlockChainDisplay extends React.Component {
             transaction.name = 'Approved';
             break;
         }
-      } else if (tx.transactionType === 'org.acme.loc.ShipProduct') {
+      } else if (tx.transactionType === 'org.example.loc.ShipProduct') {
         transaction.name = 'Shipped by Bob';
-      } else if (tx.transactionType === 'org.acme.loc.ReceiveProduct') {
+      } else if (tx.transactionType === 'org.example.loc.ReceiveProduct') {
         transaction.name = 'Received by Alice';
-      } else if (tx.transactionType === 'org.acme.loc.ReadyForPayment') {
+      } else if (tx.transactionType === 'org.example.loc.ReadyForPayment') {
         transaction.name = 'Paid by Matías';
-      } else if (tx.transactionType === 'org.acme.loc.Close') {
+      } else if (tx.transactionType === 'org.example.loc.Close') {
         transaction.name = 'Closed by Ella';
       } else {
         transaction.name = 'Rejected';

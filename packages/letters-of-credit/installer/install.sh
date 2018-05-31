@@ -1,3 +1,4 @@
+#!/bin/bash
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,12 +13,11 @@
 
 # REMOVE EXISTING REST SERVER, PLAYGROUND ETC
 docker rm -f $(docker ps -a | grep hyperledger/* | awk '{ print $1 }')
-docker rm -f $(docker ps -a | grep awjh/* | awk '{ print $1 }')
 
 docker pull hyperledger/composer-playground:latest
 docker pull hyperledger/composer-cli:latest
 docker pull hyperledger/composer-rest-server:latest
-docker pull awjh/letters-of-credit:latest
+docker pull hyperledger/letters-of-credit:latest
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

@@ -95,7 +95,7 @@ class BobPage extends Component {
 
   generateCard(i) {
     // should only show LOCs that are ready for Bob to approve
-    if (this.state.letters[i].approval.includes('resource:org.acme.loc.BankEmployee#ella')){
+    if (this.state.letters[i].approval.includes('resource:org.example.loc.BankEmployee#ella')){
       if(i < this.state.letters.length){
         return (
           <LoCCard letter={this.state.letters[i]} callback={this.state.callback} pageType={"view"} user="bob"/>

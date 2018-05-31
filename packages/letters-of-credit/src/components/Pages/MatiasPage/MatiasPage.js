@@ -89,11 +89,11 @@ class MatiasPage extends Component {
     let status = '';
     let statusColour;
     if (letter.status === 'AWAITING_APPROVAL') {
-      if (!letter.approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
+      if (!letter.approval.includes('resource:org.example.loc.BankEmployee#matias')) {
         status = 'Awaiting approval from YOU';
-      } else if (!letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
+      } else if (!letter.approval.includes('resource:org.example.loc.BankEmployee#ella')) {
         status = 'Awaiting approval from Exporting Bank';
-      } else if (letter.approval.includes('resource:org.acme.loc.BankEmployee#ella') && !letter.approval.includes('resource:org.acme.loc.Customer#bob')) {
+      } else if (letter.approval.includes('resource:org.example.loc.BankEmployee#ella') && !letter.approval.includes('resource:org.example.loc.Customer#bob')) {
         status = 'Awaiting approval from Beneficiary';
       }
       statusColour = "red";
@@ -118,7 +118,7 @@ class MatiasPage extends Component {
   generateRow(i) {
     let submitter = "Alice Hamilton";
     let company = "QuickFix IT";
-    if(this.state.letters[i].applicant === 'resource:org.acme.loc.Customer#bob') {
+    if(this.state.letters[i].applicant === 'resource:org.example.loc.Customer#bob') {
       submitter = "Bob Appleton";
       company = "Conga Computers";
     }

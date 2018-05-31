@@ -88,9 +88,9 @@ class EllaPage extends Component {
     let status = '';
     let statusColour;
     if (letter.status === 'AWAITING_APPROVAL') {
-      if (!letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
+      if (!letter.approval.includes('resource:org.example.loc.BankEmployee#ella')) {
         status = 'Awaiting approval from YOU';
-      } else if (!letter.approval.includes('resource:org.acme.loc.Customer#bob')) {
+      } else if (!letter.approval.includes('resource:org.example.loc.Customer#bob')) {
         status = 'Awaiting approval from Beneficiary';
       }
       statusColour = "red";
@@ -115,10 +115,10 @@ class EllaPage extends Component {
 
   generateRow(i) {
     // should only show LOCs that are ready for Ella to approve
-    if (this.state.letters[i].approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
+    if (this.state.letters[i].approval.includes('resource:org.example.loc.BankEmployee#matias')) {
       let submitter = "Alice Hamilton";
       let company = "QuickFix IT";
-      if(this.state.letters[i].applicant === 'resource:org.acme.loc.Customer#bob') {
+      if(this.state.letters[i].applicant === 'resource:org.example.loc.Customer#bob') {
         submitter = "Bob Appleton";
         company = "Conga Computers"
       }

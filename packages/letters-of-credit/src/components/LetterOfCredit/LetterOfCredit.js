@@ -156,7 +156,7 @@ class LetterOfCredit extends Component {
     this.props.rules.map((i) => {
       if (i.ruleText !== "") {
         rules.push({
-          "$class": "org.acme.loc.Rule",
+          "$class": "org.example.loc.Rule",
           "ruleId": "rule"+ruleIndex,
           "ruleText": i.ruleText
         });
@@ -172,13 +172,13 @@ class LetterOfCredit extends Component {
     });
     let currentTime = new Date().toLocaleTimeString().split(":").join('');
     axios.post(this.config.restServer.httpURL+'/InitialApplication', {
-      "$class": "org.acme.loc.InitialApplication",
+      "$class": "org.example.loc.InitialApplication",
       "letterId": ("L" + currentTime),
-      "applicant": "resource:org.acme.loc.Customer#alice",
-      "beneficiary": "resource:org.acme.loc.Customer#bob",
+      "applicant": "resource:org.example.loc.Customer#alice",
+      "beneficiary": "resource:org.example.loc.Customer#bob",
       "rules": this.createRules(),
       "productDetails": {
-        "$class": "org.acme.loc.ProductDetails",
+        "$class": "org.example.loc.ProductDetails",
         "productType": type,
         "quantity": quantity,
         "pricePerUnit": price.toFixed(2),
@@ -205,19 +205,19 @@ class LetterOfCredit extends Component {
   }
 
   approveLOC(letterId, approvingParty) {
-    let resourceURL = "resource:org.acme.loc.Customer#";
+    let resourceURL = "resource:org.example.loc.Customer#";
 
     if (approvingParty === 'ella' || approvingParty === 'matias') {
-      resourceURL = "resource:org.acme.loc.BankEmployee#";
+      resourceURL = "resource:org.example.loc.BankEmployee#";
     }
 
     if(!this.state.letter.approval.includes(this.state.user)) {
       this.setState({
         disableButtons: true
       });
-      let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
+      let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
       axios.post(this.config.restServer.httpURL+'/Approve', {
-        "$class": "org.acme.loc.Approve",
+        "$class": "org.example.loc.Approve",
         "loc": letter,
         "approvingParty": resourceURL+approvingParty,
         "transactionId": "",
@@ -239,9 +239,9 @@ class LetterOfCredit extends Component {
     this.setState({
       disableButtons: true
     });
-    let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
+    let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
     axios.post(this.config.restServer.httpURL+'/Reject', {
-      "$class": "org.acme.loc.Reject",
+      "$class": "org.example.loc.Reject",
       "loc": letter,
       "closeReason": "Letter has been rejected",
       "transactionId": "",
@@ -262,11 +262,11 @@ class LetterOfCredit extends Component {
     this.setState({
       disableButtons: true
     });
-    let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
+    let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
     axios.post(this.config.restServer.httpURL+'/ReadyForPayment', {
-      "$class" : "org.acme.loc.ReadyForPayment",
+      "$class" : "org.example.loc.ReadyForPayment",
       "loc": letter,
-      'beneficiary': "resource:org.acme.loc.Customer#bob",
+      'beneficiary': "resource:org.example.loc.Customer#bob",
       "transactionId": "",
       "timestamp": "2018-03-13T11:35:00.281Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
     })
@@ -285,9 +285,9 @@ class LetterOfCredit extends Component {
     this.setState({
       disableButtons: true
     });
-    let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
+    let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
     axios.post(this.config.restServer.httpURL+'/Close', {
-      "$class": "org.acme.loc.Close",
+      "$class": "org.example.loc.Close",
       "loc": letter,
       "closeReason": "Letter has been completed.",
       "transactionId": "",
@@ -311,14 +311,14 @@ class LetterOfCredit extends Component {
 
     let activeStep = 0;
     if (this.state.letter.status === 'AWAITING_APPROVAL') {
-      if (!this.state.letter.approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
+      if (!this.state.letter.approval.includes('resource:org.example.loc.BankEmployee#matias')) {
 
         activeStep = 1;
       }
-      else if (!this.state.letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
+      else if (!this.state.letter.approval.includes('resource:org.example.loc.BankEmployee#ella')) {
         activeStep = 2;
       }
-      else if (!this.state.letter.approval.includes('resource:org.acme.loc.Customer#bob')) {
+      else if (!this.state.letter.approval.includes('resource:org.example.loc.Customer#bob')) {
         activeStep = 3;
       }
     }
@@ -346,8 +346,8 @@ class LetterOfCredit extends Component {
       rules = this.state.letter.rules;
       let isAwaitingApproval = (
         this.state.letter.status === 'AWAITING_APPROVAL' &&
-         (!this.state.letter.approval.includes('resource:org.acme.loc.Customer#'+this.state.user) &&
-         (!this.state.letter.approval.includes('resource:org.acme.loc.BankEmployee#'+this.state.user)))
+         (!this.state.letter.approval.includes('resource:org.example.loc.Customer#'+this.state.user) &&
+         (!this.state.letter.approval.includes('resource:org.example.loc.BankEmployee#'+this.state.user)))
       );
       if (isAwaitingApproval) {
         buttonJSX = (
