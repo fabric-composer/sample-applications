@@ -1,0 +1,238 @@
+.LoCCard {
+  padding: 20px 10px 5px 35px;
+  margin-left: 60px;
+  border: 1px solid white;
+  border-radius: 2px;
+  text-align: left;
+  color: white;
+  font-weight: 300;
+  min-width: 250px;
+  max-width: 250px;
+
+  > h2 {
+    font-weight: 300;
+    font-size: 10pt;
+  }
+  > h2 {
+    font-weight: 300;
+    font-size: 19px;
+  }
+  > div {
+    font-size: 10pt;
+    > h2 {
+      font-weight: 300;
+      font-size: 10pt;
+    }
+    > h2:first-of-type {
+      font-weight: 300;
+      font-size: 19px;
+    }
+    > p > b {
+      font-weight: 500;
+    }
+  }
+}
+
+.noBorder {
+  border: none;
+  padding-left: 0;
+  
+  > p {
+    font-size: 10pt;
+    line-height: 1.8;
+  }
+
+}
+
+.viewButton {
+  margin-top: 5px;
+  margin-left: -5px;
+  color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 0px;
+  display: flex;
+  font-size: 10pt;
+  background: none;
+  border: none;
+}
+
+.applyButton {
+  background-color: #fc6a66;
+  border: 1px solid #fc6a66;
+  padding: 8px 20px;
+  margin-top: 23px;
+  border-radius: 20px;
+}
+
+.buttonText:before {
+  content: "";
+  height: 7.5px;
+  width: 7.5px;
+  border: 1px solid #fc6a66;
+  border-radius: 15px;
+  background-color: #fc6a66;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.buttonText {
+  margin: 0;
+
+  > span {
+    border-bottom: 1px solid white;
+  }
+}
+
+.LoCCardBob {
+    padding: 8px 20px 30px 30px;
+    margin-left: 40px;
+    margin-top: 8px;
+    border: 5px solid #7646c0;
+    text-align: left;
+    color: white;
+    font-weight: 300;
+    min-width: 220px;
+    font-size: 10pt;
+    height: 180px;
+
+  > div {
+    > h2 {
+      font-weight: 300;
+      font-size: 10pt;
+    }
+    > h2:first-of-type {
+      font-weight: 300;
+      font-size: 19px;
+    }
+    > b {
+      font-weight:500;
+    }
+    > p > b {
+      font-weight: 500;
+    }
+  }
+
+  > .background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.viewButtonBob {
+  margin-top: 5px;
+  margin-left: -5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  float: right;
+  width: 15px;
+  transform: rotate(180deg);
+}
+
+.viewButtonBob:hover {
+  cursor: pointer;
+}
+
+.viewButtonImage {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.toggleContainer {
+  display: flex;
+  margin-top: 25px;
+
+  &.hide {
+    opacity: 0;
+  }
+}
+
+.shipText {
+  margin-left: 10px;
+  margin-top: 6px
+}
+
+#LoCCardBobAccepted {
+  background: linear-gradient(90deg, #7a3cbc 0%, #ae4581 100%);
+  border: none;
+  padding: 13px 25px 35px 35px;
+  box-shadow: none;
+}
+
+// CUSTOM TOGGLE CLASSES //
+.customToggle .react-toggle-track {
+  height: 20px;
+  margin-top: 5px;
+  background-color: #1b1b28 !important;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.customToggle .react-toggle-thumb {
+  height: 28px;
+  width: 28px;
+  left: 0;
+  border: 2px solid #dcdcdc;
+  background-color: #f4f4f4;
+}
+
+.customToggle .react-toggle-thumb:after {
+  content: "\D7";
+  color: #9b9b9b;
+  font-weight: 500;
+  font-size: 13pt;
+  width: 0px;
+  height: 0px;
+  margin-left: 6.5px;
+}
+
+.customToggle .react-toggle-checked {
+  left: 20px;
+
+}
+
+.customToggle .react-toggle-track-check {
+  display: none;
+}
+
+.customToggle .react-toggle-track-x {
+  display: none;
+}
+
+.customToggle.react-toggle--disabled {
+  opacity: 1;
+}
+
+.customToggle.react-toggle--checked .react-toggle-track {
+  background-color: #9b65c3 !important;
+}
+
+.customToggle.react-toggle--checked .react-toggle-thumb {
+  background-color: #953ea5 !important;
+  border-color: #953ea5;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.customToggle.react-toggle--checked .react-toggle-thumb:after {
+  content: "";
+  height: 5px;
+  width: 8px;
+  border-left: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+  transform: rotate(-45deg);
+  display: inline-block;
+}
+
+.customToggleAlice .react-toggle-track {
+  background-color: #d6e1f6 !important;
+}
+
+.customToggleAlice.react-toggle--checked .react-toggle-track {
+  background-color: #d6e1f6 !important;
+}
+
+.customToggleAlice.react-toggle--checked .react-toggle-thumb {
+  background-color: #6464e8 !important;
+  border-color: #6464e8;
+}

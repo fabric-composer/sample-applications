@@ -1,0 +1,98 @@
+.outerDiv {
+  position: relative;
+}
+
+.cardContainer {
+  background-color: white;
+  width: 215px;
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+  input {
+    width: 99%;
+    height: 13px;
+  }
+
+  > ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+
+    > li {
+      font-size: 10pt;
+      margin: 10px 0px;
+
+      > input {
+        width: 99%;
+        height: 10px;
+      }
+    }
+  }
+
+  > h5 {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 11px;
+    font-weight: 600;
+  }
+}
+
+.rules {
+  > div {
+    width: unset;
+  }
+}
+
+.editButton {
+  width: 130px;
+  height: 34px;
+  position: absolute;
+  bottom: -15px;
+  left: 20px;
+  border-radius: 30px;
+  background-color: #4880ff;
+  border: none;
+  color: white;
+  font-size: 10pt;
+
+  > span {
+    background-color: #416dd1;;
+    border-radius: 30px;
+    width: 50px;
+    float: left;
+    padding: 3px;
+  }
+}
+
+.right {
+  float: right;
+}
+
+.disabled {
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid #d1d1d1;
+}
+
+.subheadingSpan {
+  float: left;
+  clear: left;
+}
+
+.topHeading {
+  float: left;
+  clear: left;
+  color: #95989a;
+  padding-top: 5px;
+}
+
+.subheadingSpan, .topHeading {
+  font-size: 10pt;
+  padding-bottom: 5px;
+  width: unset;
+}

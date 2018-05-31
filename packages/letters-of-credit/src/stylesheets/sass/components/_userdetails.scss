@@ -1,0 +1,25 @@
+.UserDetails {
+  font-size: 10pt;
+  text-align: left;
+  padding-left: 60px;
+  padding-bottom: 50px;
+  color: white;
+  font-weight: 300;
+  > h2 {
+    font-size: 19px;
+    font-weight: 300;
+  }
+
+  > div {
+    margin-bottom: 10px;
+
+    > b {
+      font-weight: 500;
+    }
+  }
+}
+
+.userDetailsTextBold {
+  font-weight: bold;
+  display: inline;
+}
