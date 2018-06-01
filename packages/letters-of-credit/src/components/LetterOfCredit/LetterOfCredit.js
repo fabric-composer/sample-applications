@@ -181,11 +181,8 @@ class LetterOfCredit extends Component {
         "$class": "org.example.loc.ProductDetails",
         "productType": type,
         "quantity": quantity,
-        "pricePerUnit": price.toFixed(2),
-        "id": "string"
-      },
-      "transactionId": "",
-      "timestamp": "2018-03-13T11:35:00.218Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
+        "pricePerUnit": price.toFixed(2)
+      }
     })
     .then(() => {
       this.setState({
@@ -219,9 +216,7 @@ class LetterOfCredit extends Component {
       axios.post(this.config.restServer.httpURL+'/Approve', {
         "$class": "org.example.loc.Approve",
         "loc": letter,
-        "approvingParty": resourceURL+approvingParty,
-        "transactionId": "",
-        "timestamp": "2018-03-13T11:25:08.043Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
+        "approvingParty": resourceURL+approvingParty
       })
       .then(() => {
         this.setState({
@@ -243,9 +238,7 @@ class LetterOfCredit extends Component {
     axios.post(this.config.restServer.httpURL+'/Reject', {
       "$class": "org.example.loc.Reject",
       "loc": letter,
-      "closeReason": "Letter has been rejected",
-      "transactionId": "",
-      "timestamp": "2018-03-13T11:35:00.281Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
+      "closeReason": "Letter has been rejected"
     })
     .then(() => {
       this.setState({
@@ -265,10 +258,7 @@ class LetterOfCredit extends Component {
     let letter = "resource:org.example.loc.LetterOfCredit#" + letterId;
     axios.post(this.config.restServer.httpURL+'/ReadyForPayment', {
       "$class" : "org.example.loc.ReadyForPayment",
-      "loc": letter,
-      'beneficiary': "resource:org.example.loc.Customer#bob",
-      "transactionId": "",
-      "timestamp": "2018-03-13T11:35:00.281Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
+      "loc": letter
     })
     .then(() => {
       this.setState({
@@ -289,9 +279,7 @@ class LetterOfCredit extends Component {
     axios.post(this.config.restServer.httpURL+'/Close', {
       "$class": "org.example.loc.Close",
       "loc": letter,
-      "closeReason": "Letter has been completed.",
-      "transactionId": "",
-      "timestamp": "2018-03-13T11:35:00.139Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
+      "closeReason": "Letter has been completed."
     })
     .then(() => {
       this.setState({

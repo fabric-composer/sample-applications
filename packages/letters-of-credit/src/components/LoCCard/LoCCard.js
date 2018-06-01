@@ -162,7 +162,7 @@ class LoCCard extends Component {
         );
       }
     } else {
-      if (letter.status !== 'AWAITING_APPROVAL' && letter.status !== 'APPROVED') {
+      if (letter.status !== 'AWAITING_APPROVAL' && letter.status !== 'APPROVED' && letter.status !== 'REJECTED') {
         // generating a hash from the timestamp
         shippingText = "Receive Product";
         if (letter.status !== 'SHIPPED') {
