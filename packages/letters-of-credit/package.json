@@ -1,6 +1,6 @@
 {
   "name": "letters-of-credit",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": false,
   "author": "Erin Hughes, Hannah Rayner, Nikola Ignatov, Jackson Ross, Andrew Hurt",
   "dependencies": {
