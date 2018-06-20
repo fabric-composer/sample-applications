@@ -31,7 +31,7 @@ limitations under the License.
     <div class="bc-vda-stats-item">
       <p class="bc-vda-stats-item-header">REGISTERED VEHICLES</p>
       <div class="bc-vda-item-value-container">
-        <p class="bc-vda-stats-item-value">{{registered_vehicles | number:0}}</p>
+        <p class="bc-vda-stats-item-value" id="registeredVehicles" >{{registered_vehicles | number:0}}</p>
         <img src="regulator/assets/images/up.svg" class="bc-vda-stats-item-arrow" />
       </div>
 
@@ -39,7 +39,7 @@ limitations under the License.
     <div class="bc-vda-stats-item">
       <p class="bc-vda-stats-item-header">VIN ASSIGNED</p>
       <div class="bc-vda-item-value-container">
-        <p class="bc-vda-stats-item-value">{{vin_assigned | number:0}}</p>
+        <p class="bc-vda-stats-item-value" id="vinAssigned" >{{vin_assigned | number:0}}</p>
         <img src="regulator/assets/images/up.svg" class="bc-vda-stats-item-arrow" />
       </div>
 
@@ -47,7 +47,7 @@ limitations under the License.
     <div class="bc-vda-stats-item">
       <p class="bc-vda-stats-item-header">OWNER ISSUED</p>
       <div class="bc-vda-item-value-container">
-        <p class="bc-vda-stats-item-value">{{v5c_issued | number:0}}</p>
+        <p class="bc-vda-stats-item-value" id="ownerIssued" >{{v5c_issued | number:0}}</p>
         <img src="regulator/assets/images/up.svg" class="bc-vda-stats-item-arrow" />
       </div>
     </div>

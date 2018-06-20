@@ -22,10 +22,13 @@
       "node_modules"
     ],
     "file_type_method": "EXCLUDE",
-    "file_types": [
-      ".md"
-    ],
-    "insert_license": false
+    "file_types": [],
+    "insert_license": false,
+    "license_formats": {
+      "md": {
+          "file": "../../markdown-license.txt"
+      }
+    }
   },
   "author": "Hyperledger Composer",
   "license": "Apache-2.0",

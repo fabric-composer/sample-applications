@@ -6,9 +6,9 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2015"
+      "es6"
     ],
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es5"
@@ -17,7 +17,8 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "www"
   ],
   "compileOnSave": false,
   "atom": {
