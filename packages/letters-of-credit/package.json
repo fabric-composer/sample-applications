@@ -3,6 +3,13 @@
   "version": "0.0.11",
   "private": false,
   "author": "Erin Hughes, Hannah Rayner, Nikola Ignatov, Jackson Ross, Andrew Hurt",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "npm run licchk",
+    "eject": "react-scripts eject",
+    "licchk": "license-check-and-add"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "letters-of-credit-network": "^0.2.4",
@@ -15,15 +22,39 @@
     "react-toggle": "^4.0.2",
     "redux": "^3.7.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deployNetwork": "composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName letters-of-credit-network && composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile *.bna --file networkadmin.card && composer-rest-server -c admin@letters-of-credit-network -n never -w true && composer-rest-server -c admin@letters-of-credit-network -n never -w true"
-  },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.2.1"
+    "gulp-sass": "^3.2.1",
+    "license-check-and-add": "~2.3.0"
+  },
+  "license-check-and-add-config": {
+    "folder": ".",
+    "license": "LICENSE.txt",
+    "exact_paths_method": "EXCLUDE",
+    "exact_paths": [
+      "node_modules",
+      "Dockerfile"
+    ],
+    "file_type_method": "EXCLUDE",
+    "file_types": [],
+    "insert_license": false,
+    "license_formats": {
+      "gitignore": {
+        "append": "\n",
+        "eachLine": {
+          "prepend": "# "
+        }
+      },
+      "js|ts|scss|css": {
+        "prepend": "/*",
+        "append": " */",
+        "eachLine": {
+          "prepend": " * "
+        }
+      },
+      "md": {
+        "file": "../../markdown-license.txt"
+      }
+    }
   }
 }

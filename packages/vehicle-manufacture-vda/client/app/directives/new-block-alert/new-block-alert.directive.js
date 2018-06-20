@@ -36,8 +36,8 @@ angular.module('bc-vda')
           .data(scope.chain);
 
         alerts.transition().duration(1000)
-          .style('opacity', 0)
-          .remove();
+        .style('opacity', 0)
+        .remove();
 
         var newAlert = alerts.enter()
           .filter(function(d,i) { return i === (scope.chain.length -1)})

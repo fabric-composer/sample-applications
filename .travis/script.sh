@@ -24,6 +24,12 @@ ME=`basename "$0"`
 
 echo ${ME} `date`
 
+# Start the X virtual frame buffer used by Karma.
+if [ -r "/etc/init.d/xvfb" ]; then
+    export DISPLAY=:99.0
+    sh -e /etc/init.d/xvfb start
+fi
+
 #source ${DIR}/build.cfg
 
 #if [ "${ABORT_BUILD}" = "true" ]; then
@@ -49,19 +55,33 @@ export PATH=$(npm bin -g):$PATH
 # change into the repo directory
 cd "${DIR}"
 npm install
-cd packages/digitalproperty-app
+npm run licchk
+
+cd "${DIR}/packages/digitalproperty-app"
 npm run deployNetwork
 npm test
-
 
 cd "${DIR}"/fabric-tools
 ./stopFabric.sh
 ./teardownFabric.sh
 
+# Test the vehicle manufacture sample
+cd "${DIR}/packages/vehicle-manufacture"
+npm test
 
-# Build the car builder application.
+# Build the car builder application. Check that it has licenses
 cd "${DIR}/packages/vehicle-manufacture-car-builder"
 npm run build
+npm test
+
+cd "${DIR}/packages/vehicle-manufacture-manufacturing"
+npm test
+
+cd "${DIR}/packages/vehicle-manufacture-vda"
+npm test
+
+cd "${DIR}/packages/letters-of-credit"
+npm test
 
 # Build the install.sh script for vehicle-manufacture quick install
 cd "${DIR}/packages/vehicle-manufacture"

@@ -4,8 +4,8 @@
   "author": "Hyperledger Composer",
   "homepage": "http://github.com/hyperledger/composer-sample-applications",
   "scripts": {
-    "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
+    "clean": "ionic-app-scripts clean",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "licchk": "license-check-and-add",
@@ -21,18 +21,21 @@
       "node_modules",
       "resources",
       "www",
-      "src/assets/fonts"
+      "src/assets/fonts",
+      "plugins",
+      "platforms"
     ],
     "file_type_method": "EXCLUDE",
-    "file_types": [
-      ".md"
-    ],
+    "file_types": [],
     "insert_license": false,
     "license_formats": {
       "editorconfig": {
         "eachLine": {
           "prepend": "# "
         }
+      },
+      "md": {
+          "file": "../../markdown-license.txt"
       }
     }
   },
@@ -75,11 +78,11 @@
     "license-check-and-add": "~2.3.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.4.0",
-    "typescript": "~2.2.1",
+    "typescript": "2.4.0",
     "zone.js": "^0.8.4"
   },
   "version": "0.0.11",
-  "description": "Vehicle Lifecycle - A mobile application for the customers view",
+  "description": "Vehicle Manufacture - A mobile application for the customers view",
   "license": "Apache-2.0",
   "cordova": {
     "plugins": {

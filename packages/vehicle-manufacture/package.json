@@ -5,20 +5,30 @@
   "description": "## Installation",
   "main": "index.js",
   "scripts": {
+    "build": "cd ../vehicle-manufacture-car-builder && npm run build",
+    "e2e:build": "npm run build && ts-node ./e2e/test.ts",
+    "e2e:no-build": "ts-node ./e2e/test.ts",
+    "e2e:fabric-build": "npm run build && ts-node ./e2e/test.ts --fabric",
+    "e2e:fabric-no-build": "ts-node ./e2e/test.ts --fabric",
+    "e2e:main": "npm run build && npm run e2e:no-build &&  npm run e2e:fabric-no-build",
     "licchk": "license-check-and-add",
-    "test": "npm run licchk"
+    "test": "npm run licchk && npm run e2e:main",
+    "webdriver-manager": "webdriver-manager",
+    "webdriver:start": "npm run webdriver-manager start",
+    "webdriver:update": "npm run webdriver-manager update --gecko false --versions.chrome 2.37",
+    "webpack-dev-server": "webpack-dev-server"
   },
   "license-check-and-add-config": {
     "folder": ".",
     "license": "LICENSE.txt",
     "exact_paths_method": "EXCLUDE",
     "exact_paths": [
-      "node_modules"
+      "node_modules",
+      "e2e/fabric",
+      "e2e/tmp"
     ],
     "file_type_method": "EXCLUDE",
-    "file_types": [
-      ".md"
-    ],
+    "file_types": [],
     "insert_license": false,
     "license_formats": {
       "in": {
@@ -26,6 +36,16 @@
         "eachLine": {
           "prepend": "# "
         }
+      },
+      "js|ts": {
+        "prepend": "/*",
+        "append": " */",
+        "eachLine": {
+          "prepend": " * "
+        }
+      },
+      "md": {
+          "file": "../../markdown-license.txt"
       }
     }
   },
@@ -35,6 +55,14 @@
     "vehicle-manufacture-network": "^0.2.3"
   },
   "devDependencies": {
-    "license-check-and-add": "~2.3.0"
+    "license-check-and-add": "~2.3.0",
+    "@types/jasmine": "^2.8.8",
+    "@types/jasminewd2": "^2.0.3",
+    "jasmine-spec-reporter": "^4.1.0",
+    "composer-cli": "latest",
+    "composer-rest-server": "latest",
+    "protractor": "^5.3.2",
+    "ts-node": "2.0.0",
+    "typescript": "2.4.0"
   }
 }

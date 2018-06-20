@@ -20,13 +20,13 @@ limitations under the License.
     <h3>Order</h3>
     <h2><strong>Arium</strong> {{car.name}}</h2>
 
-    <h5>#{{ orderId }}</h5>
+    <h5 id="orderId" >#{{ orderId }}</h5>
   </ion-card>
 
   <ion-card>
-    <h3 [ngClass]="{selected: stage[0]}">
+    <h3 id="orderReceived" [ngClass]="{selected: stage[0]}">
       <img [hidden]="stage[0]" src="assets/circle_empty.svg">
-      <img [hidden]="!stage[0]" src="assets/circle_tick.svg">
+      <img [hidden]="!stage[0]" class="tick-circle" src="assets/circle_tick.svg">
       <span>
         Order Received
       </span>
@@ -37,9 +37,9 @@ limitations under the License.
       <span class="connector" [hidden]="!stage[1]"></span>
     </div>
 
-    <h3 [ngClass]="{selected: stage[1]}">
+    <h3 id="manufactureComplete" [ngClass]="{selected: stage[1]}">
       <img [hidden]="stage[1]" src="assets/circle_empty.svg">
-      <img [hidden]="!stage[1]" src="assets/circle_tick.svg">
+      <img [hidden]="!stage[1]" class="tick-circle" src="assets/circle_tick.svg">
       <span>
         Manufacture
       </span>
@@ -50,9 +50,9 @@ limitations under the License.
       <span class="connector" [hidden]="!stage[2]"></span>
     </div>
 
-    <h3 [ngClass]="{selected: stage[2]}">
+    <h3 id="vinAssigned" [ngClass]="{selected: stage[2]}">
       <img [hidden]="stage[2]" src="assets/circle_empty.svg">
-      <img [hidden]="!stage[2]" src="assets/circle_tick.svg">
+      <img [hidden]="!stage[2]" class="tick-circle" src="assets/circle_tick.svg">
       <span>
         VIN Assigned
       </span>
@@ -63,9 +63,9 @@ limitations under the License.
       <span class="connector" [hidden]="!stage[3]"></span>
     </div>
 
-    <h3 [ngClass]="{selected: stage[3]}">
+    <h3 id="ownerIssued" [ngClass]="{selected: stage[3]}">
       <img [hidden]="stage[3]" src="assets/circle_empty.svg">
-      <img [hidden]="!stage[3]" src="assets/circle_tick.svg">
+      <img [hidden]="!stage[3]" class="tick-circle" src="assets/circle_tick.svg">
       <span>
         Owner Issued
       </span>
@@ -78,6 +78,6 @@ limitations under the License.
   </div>
 
   <ion-card>
-    <button ion-button color="white" [ngClass]="{selected: stage[4]}">Delivery <img src="assets/diamond.svg"></button>
+    <button ion-button color="white" id="delivered" [ngClass]="{selected: stage[4]}">Delivery <img src="assets/diamond.svg"></button>
   </ion-card>
 </ion-content>
