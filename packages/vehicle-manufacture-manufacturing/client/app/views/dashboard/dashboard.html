@@ -52,19 +52,19 @@ limitations under the License.
               <h5>Detail</h5>
               <h3 style="text-transform: uppercase"><strong>Manufacture</strong></h3>
           </div>
-          <p class="status" ng-class="orders[0].manufacture.chassis ? 'status-green' : 'status-red'">
+          <p class="status" id="chassis" ng-class="orders[0].manufacture.chassis ? 'status-green' : 'status-red'">
             <span class="field">Chassis</span><span class="data">{{orders[0].manufacture.chassis | relativeDate : orders[0].placed}}</span>
           </p>
-          <p class="status" ng-class="orders[0].manufacture.vinIssue ? 'status-green' : 'status-red'">
+          <p class="status" id="vin" ng-class="orders[0].manufacture.vinIssue ? 'status-green' : 'status-red'">
             <span class="field">VIN Issue</span><span class="data">{{orders[0].manufacture.vinIssue | relativeDate : orders[0].placed}}</span>
           </p>
-          <p class="status" ng-class="orders[0].manufacture.vinPrinting ? 'status-green' : 'status-red'">
+          <p class="status" id="owner" ng-class="orders[0].manufacture.vinPrinting ? 'status-green' : 'status-red'">
             <span class="field">Owner Assigned</span><span class="data">{{orders[0].manufacture.vinPrinting | relativeDate : orders[0].placed}}</span>
           </p>
-          <p class="status" ng-class="orders[0].manufacture.interior ? 'status-green' : 'status-red'">
+          <p class="status" id="interior" ng-class="orders[0].manufacture.interior ? 'status-green' : 'status-red'">
             <span class="field">Interior</span><span class="data">{{orders[0].manufacture.interior | relativeDate : orders[0].placed}}</span>
           </p>
-          <p class="status" ng-class="orders[0].manufacture.paint ? 'status-green' : 'status-red'">
+          <p class="status" id="paint" ng-class="orders[0].manufacture.paint ? 'status-green' : 'status-red'">
             <span class="field">Paint</span><span class="data">{{orders[0].manufacture.paint | relativeDate : orders[0].placed}}</span>
           </p>
         </div>
@@ -76,16 +76,16 @@ limitations under the License.
           </div>
           <div class="column" >
             <p class="conf-data" >
-              <span class="field">{{ orders[0].configuration.trim }}</span><span class="data">Trim</span>
+              <span id="order-trim" class="field">{{ orders[0].configuration.trim }}</span><span class="data">Trim</span>
             </p>
             <p class="conf-data" >
-              <span class="field">{{ orders[0].configuration.interior }}</span><span class="data">Interior</span>
+              <span id="order-interior" class="field">{{ orders[0].configuration.interior }}</span><span class="data">Interior</span>
             </p>
             <p class="conf-data" >
-              <span class="field">{{ orders[0].configuration.colour }}</span><span class="data">Colour</span>
+              <span id="order-colour" class="field">{{ orders[0].configuration.colour }}</span><span class="data">Colour</span>
             </p>
           </div>
-          <div class="column" >
+          <div class="column" id="order-extras"  >
             <p class="conf-data" ng-repeat="extra in orders[0].configuration.extras" >
                 <span class="field">{{ extra }}</span><span class="data">Extra</span>
             </p>
@@ -95,7 +95,7 @@ limitations under the License.
         <div ng-if="orders[0].delivery" class="card-block" >
           <h3 style="text-transform: uppercase"><strong>Delivery
           </strong></h3>
-          <p class="status" ng-class="orders[0].delivery.shipping ? 'status-green' : 'status-red'" >
+          <p id="delivered" class="status" ng-class="orders[0].delivery.shipping ? 'status-green' : 'status-red'" >
             <span class="field">Shipping</span><span class="data">{{orders[0].delivery.shipping | relativeDate : orders[0].placed}}</span>
           </p>
         </div>
@@ -104,7 +104,7 @@ limitations under the License.
         <div class="card card-secondary card-manufacture">
           <div class="card-block">
             <h5 class="card-title">Manufacture</h5>
-            <button class="start-manufacture btn btn-primary" ng-click="start(orders[0])">Start Manufacture</button>
+            <button id="start-manufacture" class="start-manufacture btn btn-primary" ng-click="start(orders[0])">Start Manufacture</button>
           </div>
         </div>
       </div>

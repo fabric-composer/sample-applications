@@ -39,11 +39,14 @@
       ".git",
       "node_modules",
       "packages",
-      ".travis/fix_github_https_repo.sh"
+      ".travis/fix_github_https_repo.sh",
+      "markdown-license.txt",
+      "fabric-tools"
     ],
     "file_type_method": "EXCLUDE",
     "file_types": [
       ".cfg",
+      ".deb",
       ".enc",
       ".log",
       ".md",

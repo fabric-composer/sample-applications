@@ -30,11 +30,11 @@ limitations under the License.
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="t in transactions | orderBy: order.key : order.reverse">
+			<tr class="transaction" ng-repeat="t in transactions | orderBy: order.key : order.reverse">
 				<td>{{ t.timestamp | date:'medium' }}</td>
 				<td>{{ t.transaction_id }}</td>
 				<td>{{ t.transaction_type }}</td>
-				<td>{{ t.transaction_submitter }}</td>
+				<td class="submitter" >{{ t.transaction_submitter }}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -49,12 +49,22 @@ app.use('/manufacturer/less/stylesheets/*', function (req, res, next) {
 
 require('./routes')(app);
 
-var restServerConfig = Object.assign({}, config.get('restServer'));
+
+var restServerConfig;
+
+try {
+  restServerConfig = Object.assign({}, config.get('restServer'));
+} catch (err) {
+  if (!process.env.REST_SERVER_CONFIG) {
+    throw new Error('Cannot get restServer from config, the config file may not exist. Provide this file or a value for REST_SERVER_CONFIG');
+  }
+  restServerConfig = {};
+}
+
 if (process.env.REST_SERVER_CONFIG ) {
   try {
     var restServerEnv = JSON.parse(process.env.REST_SERVER_CONFIG);
     restServerConfig = Object.assign(restServerConfig, restServerEnv); // allow for them to only specify some fields
-    restServerConfig = restServerEnv;
   } catch (err) {
     console.error('Error getting rest config from env vars, using default');
   }
@@ -101,12 +111,9 @@ app.use('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
-
 // start server on the specified port
-server.listen(appEnv.port, function () {
+server.listen(6002, function () {
   'use strict';
   // print a message when the server starts listening
-  console.log('server starting on ' + appEnv.url);
+  console.log('server starting on http://localhost:6002');
 });
