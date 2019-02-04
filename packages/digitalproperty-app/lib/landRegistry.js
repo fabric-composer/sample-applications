@@ -36,7 +36,7 @@ class LandRegistry {
 
    /**
     * Need to have the mapping from bizNetwork name to the URLs to connect to.
-    * bizNetwork nawme will be able to be used by Composer to get the suitable model files.
+    * bizNetwork name will be able to be used by Composer to get the suitable model files.
     *
     */
     constructor() {
